@@ -14,10 +14,11 @@ import Link from "next/link"
 export default function AppPage() {
   return (
     <>
+      <div className="w-full max-w-screen-2xl h-full bg-[url('/images/header-bg.png')] bg-no-repeat absolute -z-10"></div>
       <header className="lg:top-0 w-full max-w-screen-2xl px-2 md:px-4 2xl:px-0">
         <div className="flex h-14 items-center">
           <div>
-            <span className="text-lg">Next.js + Auth.js Template</span>
+            <span>next-auth-template</span>
           </div>
           <div className="justify-end flex flex-1 gap-2">
             <Button variant="ghost" size="icon" asChild>
@@ -54,7 +55,7 @@ export default function AppPage() {
               <CardTitle className="text-2xl">Features</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="">
+              <ul>
                 <li>Feature 1</li>
                 <li>Feature 2</li>
               </ul>
