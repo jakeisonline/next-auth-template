@@ -10,11 +10,19 @@ import {
 } from "@/components/ui/card"
 import { GithubIcon } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function AppPage() {
   return (
     <>
-      <div className="w-full max-w-screen-2xl h-full bg-[url('/images/header-bg.png')] bg-no-repeat absolute -z-10"></div>
+      <Image
+        src="/images/header-bg.png"
+        width="1398"
+        height="555"
+        alt="header-bg"
+        className="absolute -z-10"
+        priority
+      />
       <header className="lg:top-0 w-full max-w-screen-2xl px-2 md:px-4 2xl:px-0">
         <div className="flex h-14 items-center">
           <div>
