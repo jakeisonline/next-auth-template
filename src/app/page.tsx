@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -61,12 +63,56 @@ export default function AppPage() {
           <Card className="mx-auto w-[32rem]">
             <CardHeader>
               <CardTitle className="text-2xl">Dependencies</CardTitle>
+              <CardDescription>
+                These are the core dependencies, which are required to make the
+                basics work.
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="grid grid-cols-2 gap-4">
-                <li>Frameworks</li>
-                <li>DB ORM</li>
+                <li>
+                  <img
+                    alt="next.js"
+                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next"
+                  />
+                </li>
+                <li>
+                  <img
+                    alt="next-auth"
+                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next-auth"
+                  />
+                </li>
+                <li>
+                  <img
+                    alt="drizzle-orm"
+                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/drizzle-orm"
+                  />
+                </li>
+                <li>
+                  <img
+                    alt="zod"
+                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/zod"
+                  />
+                </li>
+                <li>
+                  <img
+                    alt="tailwindcss"
+                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/dev/tailwindcss"
+                  />
+                </li>
+                <li>
+                  <img
+                    alt="shadcn/ui"
+                    src="https://img.shields.io/badge/shadcn%2Fui-gray"
+                  />
+                </li>
               </ul>
+              <p className="mt-8 text-sm text-muted-foreground">
+                See the full list of dependencies in{" "}
+                <Link href="https://github.com/jakeisonline/next-auth-template/blob/main/package.json">
+                  package.json
+                </Link>
+              </p>
             </CardContent>
           </Card>
         </section>
