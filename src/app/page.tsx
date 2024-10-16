@@ -65,7 +65,7 @@ export default function AppPage() {
             </Button>
           </div>
         </section>
-        <section className="grid grid-cols-2 gap-8 mt-20">
+        <section className="grid grid-cols-2 gap-8 mt-20 auto-rows-max">
           <Card className="mx-auto w-[32rem] bg-white bg-opacity-35 border-border/70">
             <CardHeader>
               <CardTitle className="text-2xl">Features</CardTitle>
@@ -115,6 +115,11 @@ export default function AppPage() {
                   Easily protect app routes with auth middleware
                 </dd>
               </dl>
+              <p className="mt-5 text-sm text-muted-foreground">
+                <Link href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template">
+                  See all the features and how to use them in the documentation
+                </Link>
+              </p>
             </CardContent>
           </Card>
 
@@ -159,10 +164,10 @@ export default function AppPage() {
                   />
                 </li>
               </ul>
-              <h3 className="font-semibold tracking-tight text-2xl mt-8">
+              <h3 className="font-semibold tracking-tight text-2xl mt-10">
                 Other Dependencies
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground mt-1.5">
                 Adds a bit of style or utility, could easily be replaced.
               </p>
               <ul className="grid grid-cols-2 gap-4 mt-5">
@@ -198,9 +203,8 @@ export default function AppPage() {
                 </li>
               </ul>
               <p className="mt-8 text-sm text-muted-foreground">
-                See the full list of dependencies in{" "}
                 <Link href="https://github.com/jakeisonline/next-auth-template/blob/main/package.json">
-                  package.json
+                  See the full list of dependencies in package.json
                 </Link>
               </p>
             </CardContent>
