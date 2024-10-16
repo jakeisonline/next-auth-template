@@ -8,7 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { GithubIcon } from "lucide-react"
+import {
+  CircleUser,
+  DatabaseZapIcon,
+  GithubIcon,
+  KeyRound,
+  LockKeyhole,
+  WandSparkles,
+} from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -58,18 +65,52 @@ export default function AppPage() {
           </div>
         </section>
         <section className="grid grid-cols-2 gap-8 mt-20">
-          <Card className="mx-auto w-[32rem]">
+          <Card className="mx-auto w-[32rem] bg-white bg-opacity-35 border-border/70">
             <CardHeader>
               <CardTitle className="text-2xl">Features</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul>
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-              </ul>
+              <dl className="[&_dd]:mb-3 [&_dd]:pl-[32px]">
+                <dt className="flex gap-3">
+                  <DatabaseZapIcon className="h-5 w-5" /> Database-backed
+                  sessions
+                </dt>
+                <dd className="block text-sm text-muted-foreground">
+                  Not using Postgresql? Drizzle lets you use any db
+                </dd>
+                <dt className="flex gap-3">
+                  <KeyRound className="h-5 w-5" /> Google Sign-in ready for
+                  config
+                </dt>
+                <dd className="block text-sm text-muted-foreground">
+                  Easily add more via nextauth.js
+                </dd>
+                <dt className="flex gap-3">
+                  <WandSparkles className="h-5 w-5" />
+                  Magic Links via Resend ready for config
+                </dt>
+                <dd className="block text-sm text-muted-foreground">
+                  Or use any other email providers
+                </dd>
+                <dt className="flex gap-3">
+                  <CircleUser className="h-5 w-5" />
+                  Basic account creation and set up
+                </dt>
+                <dd className="block text-sm text-muted-foreground">
+                  A pre-built account setup page ready to buid from
+                </dd>
+                <dt className="flex gap-3">
+                  <LockKeyhole className="h-5 w-5" />
+                  Protected paths via middleware
+                </dt>
+                <dd className="block text-sm text-muted-foreground">
+                  Easily protect app routes with auth middleware
+                </dd>
+              </dl>
             </CardContent>
           </Card>
-          <Card className="mx-auto w-[32rem]">
+
+          <Card className="mx-auto w-[32rem] bg-white bg-opacity-35 border-border/70">
             <CardHeader>
               <CardTitle className="text-2xl">Dependencies</CardTitle>
               <CardDescription>
