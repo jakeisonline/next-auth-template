@@ -13,6 +13,7 @@ import {
   DatabaseZapIcon,
   GithubIcon,
   KeyRound,
+  LayoutTemplate,
   LockKeyhole,
   WandSparkles,
 } from "lucide-react"
@@ -71,6 +72,13 @@ export default function AppPage() {
             </CardHeader>
             <CardContent>
               <dl className="[&_dd]:mb-3 [&_dd]:pl-[32px]">
+                <dt className="flex gap-3">
+                  <LayoutTemplate className="h-5 w-5" />
+                  Custom sign in and sign up pages
+                </dt>
+                <dd className="block text-sm text-muted-foreground">
+                  Simple, interactive-rich, and server action-backed
+                </dd>
                 <dt className="flex gap-3">
                   <DatabaseZapIcon className="h-5 w-5" />
                   Database-backed sessions
