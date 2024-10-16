@@ -43,7 +43,9 @@ export default function AppPage() {
               </Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="https://github.com/jakeisonline">Documentation</Link>
+              <Link href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template">
+                Documentation
+              </Link>
             </Button>
           </div>
         </div>
