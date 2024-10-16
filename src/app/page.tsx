@@ -72,15 +72,15 @@ export default function AppPage() {
             <CardContent>
               <dl className="[&_dd]:mb-3 [&_dd]:pl-[32px]">
                 <dt className="flex gap-3">
-                  <DatabaseZapIcon className="h-5 w-5" /> Database-backed
-                  sessions
+                  <DatabaseZapIcon className="h-5 w-5" />
+                  Database-backed sessions
                 </dt>
                 <dd className="block text-sm text-muted-foreground">
                   Not using Postgresql? Drizzle lets you use any db
                 </dd>
                 <dt className="flex gap-3">
-                  <KeyRound className="h-5 w-5" /> Google Sign-in ready for
-                  config
+                  <KeyRound className="h-5 w-5" />
+                  Google Sign-in ready for config
                 </dt>
                 <dd className="block text-sm text-muted-foreground">
                   Easily add more via nextauth.js
@@ -112,48 +112,80 @@ export default function AppPage() {
 
           <Card className="mx-auto w-[32rem] bg-white bg-opacity-35 border-border/70">
             <CardHeader>
-              <CardTitle className="text-2xl">Dependencies</CardTitle>
+              <CardTitle className="text-2xl">Core Dependencies</CardTitle>
               <CardDescription>
-                These are the core dependencies, which are required to make the
-                basics work.
+                Required to make the basics work. They could be replaced, but it
+                would defeat the point of this template.
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-sm">
               <ul className="grid grid-cols-2 gap-4">
-                <li>
+                <li className="h-[20px]">
                   <img
                     alt="next.js"
                     src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next"
                   />
                 </li>
-                <li>
+                <li className="h-[20px]">
                   <img
                     alt="next-auth"
                     src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next-auth"
                   />
                 </li>
-                <li>
+                <li className="h-[20px]">
                   <img
                     alt="drizzle-orm"
                     src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/drizzle-orm"
                   />
                 </li>
-                <li>
+                <li className="h-[20px]">
                   <img
                     alt="zod"
                     src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/zod"
                   />
                 </li>
-                <li>
+                <li className="h-[20px]">
                   <img
                     alt="tailwindcss"
                     src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/dev/tailwindcss"
                   />
                 </li>
-                <li>
+              </ul>
+              <h3 className="font-semibold tracking-tight text-2xl mt-8">
+                Other Dependencies
+              </h3>
+              <p className="text-muted-foreground">
+                Adds a bit of style or utility, could easily be replaced.
+              </p>
+              <ul className="grid grid-cols-2 gap-4 mt-5">
+                <li className="h-[20px]">
+                  <img
+                    alt="@neondatabase/serverless"
+                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/@neondatabase/serverless"
+                  />
+                </li>
+                <li className="h-[20px] flex">
                   <img
                     alt="shadcn/ui"
                     src="https://img.shields.io/badge/shadcn%2Fui-gray"
+                  />
+                  <span className="text-sm text-muted-foreground ml-2">
+                    components
+                  </span>
+                </li>
+                <li className="h-[20px] flex">
+                  <img
+                    alt="@radix-ui"
+                    src="https://img.shields.io/badge/radix--ui-gray"
+                  />
+                  <span className="text-sm text-muted-foreground ml-2">
+                    components
+                  </span>
+                </li>
+                <li className="h-[20px]">
+                  <img
+                    alt="lucide-react"
+                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/lucide-react"
                   />
                 </li>
               </ul>
