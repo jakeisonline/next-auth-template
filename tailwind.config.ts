@@ -10,40 +10,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        card: {
+        "background": "hsl(var(--background))",
+        "foreground": "hsl(var(--foreground))",
+        "link": "hsl(var(--link))",
+        "link-hover": "hsl(var(--link-hover))",
+        "card": {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        popover: {
+        "popover": {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
-        primary: {
+        "primary": {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
-        secondary: {
+        "secondary": {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
-        muted: {
+        "muted": {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
+        "accent": {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        destructive: {
+        "destructive": {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        chart: {
+        "border": "hsl(var(--border))",
+        "input": "hsl(var(--input))",
+        "ring": "hsl(var(--ring))",
+        "chart": {
           "1": "hsl(var(--chart-1))",
           "2": "hsl(var(--chart-2))",
           "3": "hsl(var(--chart-3))",
