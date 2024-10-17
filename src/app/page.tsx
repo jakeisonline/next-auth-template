@@ -31,7 +31,7 @@ export default function AppPage() {
         className="absolute -z-10"
         priority
       />
-      <header className="lg:top-0 w-full max-w-screen-2xl px-2 md:px-4 2xl:px-0">
+      <header className="lg:top-0 w-full max-w-screen-2xl px-3 md:px-4 2xl:px-0">
         <div className="flex h-14 items-center">
           <div>
             <span>next-auth-template</span>
@@ -51,11 +51,11 @@ export default function AppPage() {
         </div>
       </header>
       <main className="w-full flex flex-col items-center justify-center max-w-screen-2xl px-2 md:px-4 2xl:px-0">
-        <section className="mt-20 flex flex-col gap-2 text-center">
-          <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1]">
+        <section className="mt-20 flex flex-col gap-2 text-center items-center">
+          <h1 className="text-3xl font-bold leading-tight tracking-tighter">
             Sign up and auth, super quick
           </h1>
-          <p className="text-lg font-light">
+          <p className="text-lg font-light w-5/6 lg:w-full">
             With database-backed sessions, social sign in, and magic links.
           </p>
           <div className="flex gap-3 mt-3 justify-center">
@@ -67,7 +67,7 @@ export default function AppPage() {
             </Button>
           </div>
         </section>
-        <section className="grid grid-cols-2 gap-8 mt-20 auto-rows-max">
+        <section className="grid lg:grid-cols-2 grid-cols-1 gap-8 mt-20 auto-rows-max">
           <Card className="mx-auto w-[32rem] bg-white bg-opacity-35 border-border/70">
             <CardHeader>
               <CardTitle className="text-2xl">Features</CardTitle>
@@ -213,7 +213,7 @@ export default function AppPage() {
           </Card>
         </section>
       </main>
-      <footer className="mt-auto grid w-full mb-4 lg:text-sm text-xs max-w-screen-2xl px-2 md:px-4 2xl:px-0">
+      <footer className="mt-auto grid w-full mb-4 pt-8 lg:text-sm text-xs max-w-screen-2xl px-2 md:px-4 2xl:px-0">
         <div className="text-lg text-center">
           <Link href="https://www.jakeisonline.com">👋 a template by Jake</Link>
         </div>
