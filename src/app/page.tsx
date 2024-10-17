@@ -68,7 +68,7 @@ export default function AppPage() {
           </div>
         </section>
         <section className="grid lg:grid-cols-2 grid-cols-1 gap-8 mt-20 auto-rows-max">
-          <Card className="mx-auto w-[32rem] bg-white bg-opacity-35 border-border/70">
+          <Card className="mx-auto max-w-[32rem] bg-white bg-opacity-35 border-border/70">
             <CardHeader>
               <CardTitle className="text-2xl">Features</CardTitle>
             </CardHeader>
@@ -107,7 +107,7 @@ export default function AppPage() {
                   Basic account creation and set up
                 </dt>
                 <dd className="block text-sm text-muted-foreground">
-                  A pre-built account setup page ready to buid from
+                  A pre-built account setup page ready to build on
                 </dd>
                 <dt className="flex gap-3">
                   <LockKeyhole className="h-5 w-5" />
@@ -125,7 +125,7 @@ export default function AppPage() {
             </CardContent>
           </Card>
 
-          <Card className="mx-auto w-[32rem] bg-white bg-opacity-35 border-border/70">
+          <Card className="mx-auto max-w-[32rem] bg-white bg-opacity-35 border-border/70">
             <CardHeader>
               <CardTitle className="text-2xl">Core Dependencies</CardTitle>
               <CardDescription>
@@ -213,7 +213,7 @@ export default function AppPage() {
           </Card>
         </section>
       </main>
-      <footer className="mt-auto grid w-full mb-4 pt-8 lg:text-sm text-xs max-w-screen-2xl px-2 md:px-4 2xl:px-0">
+      <footer className="mt-auto grid w-full mb-6 pt-10 lg:text-sm text-xs max-w-screen-2xl px-2 md:px-4 2xl:px-0">
         <div className="text-lg text-center">
           <Link href="https://www.jakeisonline.com">👋 a template by Jake</Link>
         </div>
