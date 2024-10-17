@@ -19,8 +19,42 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { Fragment } from "react"
 
 export default function AppPage() {
+  const features = [
+    {
+      name: "Custom sign in and sign up pages",
+      description: "Simple, interactive-rich, and server action-backed",
+      icon: LayoutTemplate,
+    },
+    {
+      name: "Database-backed sessions",
+      description: "Not using Postgresql? Drizzle lets you use any db",
+      icon: DatabaseZapIcon,
+    },
+    {
+      name: "Google Sign-in ready for config",
+      description: "Easily add more via nextauth.js",
+      icon: KeyRound,
+    },
+    {
+      name: "Magic Links via Resend ready for config",
+      description: "Or use any other email providers",
+      icon: WandSparkles,
+    },
+    {
+      name: "Basic account creation and set up",
+      description: "A pre-built account setup page ready to build on",
+      icon: CircleUser,
+    },
+    {
+      name: "Protected paths via middleware",
+      description: "Easily protect app routes with auth middleware",
+      icon: LockKeyhole,
+    },
+  ]
+
   return (
     <>
       <Image
@@ -74,48 +108,17 @@ export default function AppPage() {
             </CardHeader>
             <CardContent>
               <dl className="[&_dd]:mb-3 [&_dd]:pl-[32px]">
-                <dt className="flex gap-3">
-                  <LayoutTemplate className="h-5 w-5" />
-                  Custom sign in and sign up pages
-                </dt>
-                <dd className="block text-sm text-muted-foreground">
-                  Simple, interactive-rich, and server action-backed
-                </dd>
-                <dt className="flex gap-3">
-                  <DatabaseZapIcon className="h-5 w-5" />
-                  Database-backed sessions
-                </dt>
-                <dd className="block text-sm text-muted-foreground">
-                  Not using Postgresql? Drizzle lets you use any db
-                </dd>
-                <dt className="flex gap-3">
-                  <KeyRound className="h-5 w-5" />
-                  Google Sign-in ready for config
-                </dt>
-                <dd className="block text-sm text-muted-foreground">
-                  Easily add more via nextauth.js
-                </dd>
-                <dt className="flex gap-3">
-                  <WandSparkles className="h-5 w-5" />
-                  Magic Links via Resend ready for config
-                </dt>
-                <dd className="block text-sm text-muted-foreground">
-                  Or use any other email providers
-                </dd>
-                <dt className="flex gap-3">
-                  <CircleUser className="h-5 w-5" />
-                  Basic account creation and set up
-                </dt>
-                <dd className="block text-sm text-muted-foreground">
-                  A pre-built account setup page ready to build on
-                </dd>
-                <dt className="flex gap-3">
-                  <LockKeyhole className="h-5 w-5" />
-                  Protected paths via middleware
-                </dt>
-                <dd className="block text-sm text-muted-foreground">
-                  Easily protect app routes with auth middleware
-                </dd>
+                {features.map((feature) => (
+                  <Fragment key={feature.name}>
+                    <dt className="flex gap-3">
+                      <feature.icon className="h-5 w-5" />
+                      {feature.name}
+                    </dt>
+                    <dd className="block lg:text-sm text-muted-foreground">
+                      {feature.description}
+                    </dd>
+                  </Fragment>
+                ))}
               </dl>
               <p className="mt-5 text-sm text-muted-foreground">
                 <Link href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template">
