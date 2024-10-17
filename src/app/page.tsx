@@ -85,15 +85,20 @@ export default function AppPage() {
         </div>
       </header>
       <main className="w-full flex flex-col items-center justify-center max-w-screen-2xl px-2 md:px-4 2xl:px-0">
-        <section className="mt-20 flex flex-col gap-2 text-center items-center">
-          <h1 className="text-3xl font-bold leading-tight tracking-tighter">
+        <section className="mt-20 w-5/6 lg:w-full flex flex-col gap-2 text-center items-center">
+          <h1 className="text-4xl lg:text-6xl font-bold leading-tight tracking-tighter">
             Sign up and auth, super quick
           </h1>
           <p className="text-lg font-light w-5/6 lg:w-full">
             With database-backed sessions, social sign in, and magic links.
           </p>
           <div className="flex gap-3 mt-3 justify-center">
-            <Button size="xl" variant="outline" asChild>
+            <Button
+              size="xl"
+              variant="outline"
+              className="lg:bg-background"
+              asChild
+            >
               <Link href="/signin">Sign in</Link>
             </Button>
             <Button size="xl" asChild>
@@ -131,12 +136,12 @@ export default function AppPage() {
           <Card className="mx-auto max-w-[32rem] bg-white bg-opacity-35 border-border/70">
             <CardHeader>
               <CardTitle className="text-2xl">Core Dependencies</CardTitle>
-              <CardDescription>
+              <CardDescription className="text-base lg:text-sm">
                 Required to make the basics work. They could be replaced, but it
                 would defeat the point of this template.
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm">
+            <CardContent className="lg:text-sm">
               <ul className="grid grid-cols-2 gap-4">
                 <li className="h-[20px]">
                   <img
