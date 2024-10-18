@@ -71,13 +71,9 @@ export default function AppPage() {
             <span>next-auth-template</span>
           </div>
           <div className="justify-end flex flex-1 gap-2">
-            <Button variant="ghost" size="icon" asChild>
-              <Link href="https://github.com/jakeisonline">
-                <GithubIcon className="h-5 w-5" />
-              </Link>
-            </Button>
             <Button variant="outline" asChild>
               <Link href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template">
+                <GithubIcon className="h-5 w-5 mr-1.5" />
                 <span className="sr-only">Documentation</span>
                 <div className="not-sr-only">
                   Doc<span className="lg:hidden">s</span>
