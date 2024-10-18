@@ -55,6 +55,58 @@ export default function AppPage() {
     },
   ]
 
+  const packageDependencies = [
+    {
+      name: "next",
+      shieldsUrl:
+        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next",
+      isCore: true,
+    },
+    {
+      name: "next-auth",
+      shieldsUrl:
+        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next-auth",
+      isCore: true,
+    },
+    {
+      name: "drizzle-orm",
+      shieldsUrl:
+        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/drizzle-orm",
+      isCore: true,
+    },
+    {
+      name: "zod",
+      shieldsUrl:
+        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/zod",
+      isCore: true,
+    },
+
+    {
+      name: "@neondatabase/serverless",
+      shieldsUrl:
+        "https://img.shields.io/badge/@neondatabase%2Fserverless-gray",
+      isCore: true,
+    },
+    {
+      name: "tailwindcss",
+      shieldsUrl:
+        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/dev/tailwindcss",
+    },
+    {
+      name: "shadcn/ui",
+      shieldsUrl: "https://img.shields.io/badge/shadcn%2Fui-gray",
+    },
+    {
+      name: "lucide-react",
+      shieldsUrl:
+        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/lucide-react",
+    },
+    {
+      name: "@radix-ui",
+      shieldsUrl: "https://img.shields.io/badge/radix--ui-gray",
+    },
+  ]
+
   return (
     <>
       <Image
@@ -143,36 +195,15 @@ export default function AppPage() {
             </CardHeader>
             <CardContent className="lg:text-sm">
               <ul className="grid grid-cols-2 gap-4">
-                <li className="h-[20px]">
-                  <img
-                    alt="next.js"
-                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next"
-                  />
-                </li>
-                <li className="h-[20px]">
-                  <img
-                    alt="next-auth"
-                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next-auth"
-                  />
-                </li>
-                <li className="h-[20px]">
-                  <img
-                    alt="drizzle-orm"
-                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/drizzle-orm"
-                  />
-                </li>
-                <li className="h-[20px]">
-                  <img
-                    alt="zod"
-                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/zod"
-                  />
-                </li>
-                <li className="h-[20px]">
-                  <img
-                    alt="tailwindcss"
-                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/dev/tailwindcss"
-                  />
-                </li>
+                {packageDependencies.map((dependency) => {
+                  if (!dependency.isCore) return null
+
+                  return (
+                    <li className="h-[20px]" key={dependency.name}>
+                      <img alt={dependency.name} src={dependency.shieldsUrl} />
+                    </li>
+                  )
+                })}
               </ul>
               <h3 className="font-semibold tracking-tight text-2xl mt-10">
                 Other Dependencies
@@ -181,36 +212,15 @@ export default function AppPage() {
                 Adds a bit of style or utility, could easily be replaced.
               </p>
               <ul className="grid grid-cols-2 gap-4 mt-5">
-                <li className="h-[20px]">
-                  <img
-                    alt="@neondatabase/serverless"
-                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/@neondatabase/serverless"
-                  />
-                </li>
-                <li className="h-[20px] flex">
-                  <img
-                    alt="shadcn/ui"
-                    src="https://img.shields.io/badge/shadcn%2Fui-gray"
-                  />
-                  <span className="text-sm text-muted-foreground ml-2">
-                    components
-                  </span>
-                </li>
-                <li className="h-[20px] flex">
-                  <img
-                    alt="@radix-ui"
-                    src="https://img.shields.io/badge/radix--ui-gray"
-                  />
-                  <span className="text-sm text-muted-foreground ml-2">
-                    components
-                  </span>
-                </li>
-                <li className="h-[20px]">
-                  <img
-                    alt="lucide-react"
-                    src="https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/lucide-react"
-                  />
-                </li>
+                {packageDependencies.map((dependency) => {
+                  if (dependency.isCore) return null
+
+                  return (
+                    <li className="h-[20px]" key={dependency.name}>
+                      <img alt={dependency.name} src={dependency.shieldsUrl} />
+                    </li>
+                  )
+                })}
               </ul>
               <p className="mt-8 text-sm text-muted-foreground">
                 <Link href="https://github.com/jakeisonline/next-auth-template/blob/main/package.json">
