@@ -114,7 +114,7 @@ export default function AppPage() {
         width="1398"
         height="555"
         alt="header-bg"
-        className="absolute -z-10"
+        className="absolute -z-10 flex-shrink-0 max-w-6xl md:max-w-7xl lg:max-w-full"
         priority
       />
       <header className="lg:top-0 w-full max-w-screen-2xl px-3 md:px-4 2xl:px-0">
