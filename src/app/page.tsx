@@ -124,7 +124,10 @@ export default function AppPage() {
           </div>
           <div className="justify-end flex flex-1 gap-2">
             <Button variant="outline" asChild>
-              <Link href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template">
+              <Link
+                external
+                href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template"
+              >
                 <GithubIcon className="h-5 w-5 mr-1.5" />
                 <span className="sr-only">Documentation</span>
                 <div className="not-sr-only">
@@ -178,7 +181,10 @@ export default function AppPage() {
                 ))}
               </dl>
               <p className="mt-5 text-sm text-muted-foreground">
-                <Link href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template">
+                <Link
+                  external
+                  href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template"
+                >
                   See all the features and how to use them in the documentation
                 </Link>
               </p>
@@ -223,7 +229,10 @@ export default function AppPage() {
                 })}
               </ul>
               <p className="mt-8 text-sm text-muted-foreground">
-                <Link href="https://github.com/jakeisonline/next-auth-template/blob/main/package.json">
+                <Link
+                  external
+                  href="https://github.com/jakeisonline/next-auth-template/blob/main/package.json"
+                >
                   See the full list of dependencies in package.json
                 </Link>
               </p>
