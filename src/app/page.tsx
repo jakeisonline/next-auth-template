@@ -110,8 +110,8 @@ export default function AppPage() {
             </Button>
           </div>
         </section>
-        <section className="grid lg:grid-cols-2 grid-cols-1 gap-8 mt-20 auto-rows-max">
-          <Card className="mx-auto max-w-[32rem] bg-white bg-opacity-35 border-border/70">
+        <section className="w-full md:w-3/5 lg:w-4/5 grid lg:grid-cols-2 grid-cols-1 gap-8 mt-20 auto-rows-max">
+          <Card className="mx-auto w-full bg-white bg-opacity-35 border-border/70">
             <CardHeader>
               <CardTitle className="text-2xl">Features</CardTitle>
             </CardHeader>
@@ -137,7 +137,7 @@ export default function AppPage() {
             </CardContent>
           </Card>
 
-          <Card className="mx-auto max-w-[32rem] bg-white bg-opacity-35 border-border/70">
+          <Card className="mx-auto w-full bg-white bg-opacity-35 border-border/70">
             <CardHeader>
               <CardTitle className="text-2xl">Core Dependencies</CardTitle>
               <CardDescription className="text-base lg:text-sm">
