@@ -8,7 +8,7 @@ This template gets you up a running with social sign in, magic links, database-b
 - Database-backed sessions all managed for you thanks to [Auth.js](https://authjs.dev/) and [Drizzle ORM](https://orm.drizzle.team/)
 - Basic account creation and set up for first time users
 - Google Sign-in ready for config, easily add [other providers Auth.js has to offer](https://authjs.dev/reference/core/providers)
-- [Magic Links](https://authjs.dev/getting-started/authentication/email) via [Resend](https://resend.com/emails) ready for config, or [any other email provider Auth.js can support](https://authjs.dev/getting-started/authentication/email#providers), or don't use magic links at all
+- Optional [Magic Links](https://authjs.dev/getting-started/authentication/email) via [Resend](https://resend.com/emails) ready for config, or [any other email provider Auth.js can support](https://authjs.dev/getting-started/authentication/email#providers)
 - Protected paths via middleware, easily customisable to your needs
 
 > [!NOTE]
@@ -30,6 +30,35 @@ There is some initial setup required to get this template up and running. It won
 3. Run `pnpm install && pnpm run db:push` to install dependencies and push the database schema
 4. Run `pnpm run dev` to start the development server
 5. Navigate to `http://localhost:3000`, and click the "Sign up" or "Sign in" buttons
+
+# Customising
+
+This template is designed to be as simple as possible, and it's intended that you customise it to your needs, using your own coding skills. Nonetheless, there are some things you can customise to make it easier to get started.
+
+## Database
+
+This template expects a PostgreSQL database, and uses Drizzle ORM to interface with it. Out of the box, Drizzle is configured to use Neon, but you can change this to any other database.
+
+1. In `db/db.ts`, change the `sql` variable to point to your database
+
+See [Drizzle ORM's documentation](https://orm.drizzle.team/docs/get-started-postgresql) for more information.
+
+## Add other Auth.js providers
+
+This template uses Google Sign-in, but you can add other providers Auth.js supports.
+
+1. Browse the available providers in [Auth.js's documentation](https://authjs.dev/getting-started/authentication/oauth)
+2. Add the required environment variables for your new provider to `.env`
+3. In `src/lib/auth.ts`, add the provider to the `providers` array (and be sure to import it!)
+4. On your sign in and sign up pages, add `<SocialSignInButton provider="new_provider" />` component where `new_provider` is the name of the provider you added
+
+## Enable Magic Links
+
+Magic links are a great way to sign in users without having to create an account, but are not enabled by default due to requiring an email provider. To enable them, follow these steps:
+
+## Change Email Provider
+
+By default, this template uses [Resend](https://resend.com/emails) to send magic links. You can change this to any other email provider that Auth.js supports.
 
 # Environment Variables
 
