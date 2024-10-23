@@ -8,6 +8,10 @@ export async function doMagicAuth(
   prevState: ServerActionResponse | undefined,
   formData?: FormData,
 ): Promise<ServerActionResponse> {
+  if (!process.env.AUTH_RESEND_KEY || !process.env.AUTH_MAGIC_LINK_EMAIL_FROM) {
+    throw new Error("Magic link environment variables are not set")
+  }
+
   if (!(formData instanceof FormData)) {
     throw new Error("Form data is not a FormData object")
   }

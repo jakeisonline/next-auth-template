@@ -26,10 +26,7 @@ export default function SignInPage() {
             Sign up with Google
           </SocialSignInButton>
         </div>
-        <div className="w-full border-t border-gray-200 mt-6 text-center">
-          <p className="-translate-y-3 inline-block px-3 bg-card">or</p>
-        </div>
-        <MagicSignInButton />
+        {process.env.AUTH_RESEND_KEY && <MagicSignInButton />}
         <div className="mt-8 text-center text-sm">
           <Link href="/signin">Already have an account?</Link>
         </div>
