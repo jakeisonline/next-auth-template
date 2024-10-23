@@ -31,15 +31,24 @@ There is some initial setup required to get this template up and running. It won
 4. Run `pnpm run dev` to start the development server
 5. Navigate to `http://localhost:3000`, and click the "Sign up" or "Sign in" buttons
 
+### Enabling Magic Links
+
+Magic links are a great way to sign in users without having to create an account, but are not enabled by default due to requiring an email provider and live domain and DNS record setup. To enable them, follow these steps:
+
+1. Follow the [Auth.js documentation](https://authjs.dev/getting-started/providers/resend#configuration) up to and including setting the `AUTH_RESEND_KEY` environment variable.
+2. Be sure to set `MAGIC_LINK_EMAIL_FROM` to the email address you want to send magic links from.
+
+That's it! Note domain validation with Resend will be required for magic links to work, and could take anywhere from a few minutes to a few hours to validate.
+
 # Customising
 
 This template is designed to be as simple as possible, and it's intended that you customise it to your needs, using your own coding skills. Nonetheless, there are some things you can customise to make it easier to get started.
 
-## Database
+## Change PostgreSQL host
 
-This template expects a PostgreSQL database, and uses Drizzle ORM to interface with it. Out of the box, Drizzle is configured to use Neon, but you can change this to any other database.
+This template expects a PostgreSQL database, and uses Drizzle ORM to interface with it. Out of the box, Drizzle is configured to use Neon, but you can change this to any other PostgreSQL host.
 
-1. In `db/db.ts`, change the `sql` variable to point to your database
+1. In [`db/db.ts`](src/db/db.ts), change the `sql` variable to point to your PostgreSQL provider of choice.
 
 See [Drizzle ORM's documentation](https://orm.drizzle.team/docs/get-started-postgresql) for more information.
 
@@ -49,27 +58,18 @@ This template uses Google Sign-in, but you can add other providers Auth.js suppo
 
 1. Browse the available providers in [Auth.js's documentation](https://authjs.dev/getting-started/authentication/oauth)
 2. Add the required environment variables for your new provider to `.env`
-3. In `src/lib/auth.ts`, add the provider to the `providers` array (and be sure to import it!)
+3. In [`src/lib/auth.ts`](src/lib/auth.ts), add the provider to the `providers` array (and be sure to import it!)
 4. On your sign in and sign up pages, add `<SocialSignInButton provider="new_provider" />` component where `new_provider` is the name of the provider you added
-
-## Enable Magic Links
-
-Magic links are a great way to sign in users without having to create an account, but are not enabled by default due to requiring an email provider and live domain and DNS record setup. To enable them, follow these steps:
-
-1. Follow the [Auth.js documentation](https://authjs.dev/getting-started/providers/resend#configuration) up to and including setting the `AUTH_RESEND_KEY` environment variable.
-2. Be sure to set `MAGIC_LINK_EMAIL_FROM` to the email address you want to send magic links from.
-
-That's it! Note domain validation with Resend will be required for magic links to work, and could take anywhere from a few minutes to a few hours to validate.
 
 ## Change Email Provider
 
 By default, this template uses [Resend](https://resend.com/emails) to send magic links. You can change this to any other email provider that Auth.js supports.
 
-See [Auth.js's documentation](https://authjs.dev/getting-started/authentication/email#signin-5) for more information on which email providers Auth.js supports. You'll need to update [lib/auth.ts](src/lib/auth.ts) and [actions/magic-auth.ts](src/actions/magic-auth.ts) to support the new provider.
+See [Auth.js's documentation](https://authjs.dev/getting-started/authentication/email#signin-5) for more information on which email providers Auth.js supports. You'll need to update [`lib/auth.ts`](src/lib/auth.ts) and [`actions/magic-auth.ts`](src/actions/magic-auth.ts) to support the new provider.
 
 # Environment Variables
 
-This template relies on environment variables to work. You can use the `.env.example` file as a starting guide; rename `.env.example` to `.env` and fill in the values.
+This template relies on environment variables to work. You can use the [`.env.example`](.env.example) file as a starting guide; rename `.env.example` to `.env` and fill in the values.
 
 | Variable Name                | Description                                                                                                                                                                                                                                                  |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
