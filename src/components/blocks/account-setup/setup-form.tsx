@@ -12,12 +12,12 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useFormState } from "react-dom"
+import { useActionState } from "react"
 import AccountSetupSubmitButton from "./setup-submit"
 import { useRouter } from "next/navigation"
 
 export function AccountSetupForm() {
-  const [state, formAction] = useFormState(doAccountSetup, undefined)
+  const [state, formAction] = useActionState(doAccountSetup, undefined)
   const router = useRouter()
 
   if (state?.status === "success") {

@@ -1,7 +1,7 @@
 "use client"
 
 import { SocialSignInClientButton } from "./client-button"
-import { useFormState } from "react-dom"
+import { useActionState } from "react"
 import { doSocialAuth } from "@/actions/social-auth"
 
 export function SocialSignInButton({
@@ -14,7 +14,7 @@ export function SocialSignInButton({
   className?: string
   children: React.ReactNode
 }) {
-  const [, formAction] = useFormState(doSocialAuth, undefined)
+  const [, formAction] = useActionState(doSocialAuth, undefined)
 
   return (
     <form action={formAction}>

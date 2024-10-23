@@ -9,12 +9,12 @@ import {
 import { MagicSignInDialogButtons } from "./dialog-buttons"
 import { MagicSignInDialogError } from "./dialog-error"
 import { MagicSignInDialogInput } from "./dialog-input"
-import { useFormState } from "react-dom"
+import { useActionState } from "react"
 import { useRouter } from "next/navigation"
 import { doMagicAuth } from "@/actions/magic-auth"
 
 export default function MagicSignInDialogForm() {
-  const [state, formAction] = useFormState(doMagicAuth, undefined)
+  const [state, formAction] = useActionState(doMagicAuth, undefined)
   const router = useRouter()
 
   if (state?.status === "success") {
