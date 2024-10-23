@@ -109,14 +109,16 @@ export default function AppPage() {
 
   return (
     <>
-      <Image
-        src="/images/header-bg.png"
-        width="1398"
-        height="555"
-        alt="header-bg"
-        className="absolute -z-10 flex-shrink-0 max-w-6xl md:max-w-7xl lg:max-w-full"
-        priority
-      />
+      <div className="absolute -z-10 flex-shrink-0">
+        <Image
+          src="/images/header-bg.png"
+          width="1398"
+          height="555"
+          alt="A decorative background image"
+          className="w-full"
+          priority
+        />
+      </div>
       <header className="lg:top-0 w-full max-w-screen-2xl px-3 md:px-4 2xl:px-0">
         <div className="flex h-14 items-center">
           <div>
