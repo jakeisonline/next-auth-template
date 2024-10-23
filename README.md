@@ -4,6 +4,10 @@
 
 This template gets you up a running with social sign in, magic links, database-backed sessions, and account creation and setup. It's a good starting point for your next project.
 
+### [[View the demo]](https://next-auth-template-demo.vercel.app/)
+
+<sup>_\* The demo database is reset every few hours_ </sup>
+
 ## Features
 
 - Custom sign in and sign up pages as a starting point for your own
