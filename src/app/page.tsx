@@ -147,7 +147,7 @@ export default function AppPage() {
           <p className="text-lg font-light w-5/6 lg:w-full">
             With database-backed sessions, social sign in, and magic links.
           </p>
-          <div className="flex gap-3 mt-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-3 mt-3 justify-center w-full sm:w-auto">
             <Button
               size="xl"
               variant="outline"
