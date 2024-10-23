@@ -54,11 +54,18 @@ This template uses Google Sign-in, but you can add other providers Auth.js suppo
 
 ## Enable Magic Links
 
-Magic links are a great way to sign in users without having to create an account, but are not enabled by default due to requiring an email provider. To enable them, follow these steps:
+Magic links are a great way to sign in users without having to create an account, but are not enabled by default due to requiring an email provider and live domain and DNS record setup. To enable them, follow these steps:
+
+1. Follow the [Auth.js documentation](https://authjs.dev/getting-started/providers/resend#configuration) up to and including setting the `AUTH_RESEND_KEY` environment variable.
+2. Be sure to set `MAGIC_LINK_EMAIL_FROM` to the email address you want to send magic links from.
+
+That's it! Note domain validation with Resend will be required for magic links to work, and could take anywhere from a few minutes to a few hours to validate.
 
 ## Change Email Provider
 
 By default, this template uses [Resend](https://resend.com/emails) to send magic links. You can change this to any other email provider that Auth.js supports.
+
+See [Auth.js's documentation](https://authjs.dev/getting-started/authentication/email#signin-5) for more information on which email providers Auth.js supports. You'll need to update [lib/auth.ts](src/lib/auth.ts) and [actions/magic-auth.ts](src/actions/magic-auth.ts) to support the new provider.
 
 # Environment Variables
 
