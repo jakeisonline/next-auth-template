@@ -6,8 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { MagicSignInButton } from "@/components/blocks/magic-signin"
-import { SocialSignInButton } from "@/components/blocks/social-signin"
+import { MagicSignInButton } from "@/components/magic-sign-in-button"
+import { SocialSignInButton } from "@/components/social-sign-in-button"
 import Link from "next/link"
 
 export default function SignInPage() {
