@@ -12,9 +12,10 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useFormState } from "react-dom"
-import AccountSetupSubmitButton from "./setup-submit"
+import { Button } from "@/components/ui/button"
+import { useFormState, useFormStatus } from "react-dom"
 import { useRouter } from "next/navigation"
+import { Loader2 } from "lucide-react"
 
 export function AccountSetupForm() {
   const [state, formAction] = useFormState(doAccountSetup, undefined)
@@ -48,5 +49,16 @@ export function AccountSetupForm() {
         </CardFooter>
       </form>
     </Card>
+  )
+}
+
+function AccountSetupSubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <Button type="submit" disabled={pending}>
+      {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+      Complete sign up
+    </Button>
   )
 }
