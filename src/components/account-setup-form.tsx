@@ -12,13 +12,9 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-<<<<<<< HEAD:src/components/blocks/account-setup/setup-form.tsx
 import { useActionState } from "react"
-import AccountSetupSubmitButton from "./setup-submit"
-=======
 import { Button } from "@/components/ui/button"
-import { useFormState, useFormStatus } from "react-dom"
->>>>>>> main:src/components/account-setup-form.tsx
+import { useFormStatus } from "react-dom"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
 
