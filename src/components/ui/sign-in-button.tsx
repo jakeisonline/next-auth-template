@@ -8,10 +8,14 @@ export function SignInButton({
   children,
   ...props
 }: {
-  providerName: "google"
+  providerName: string
   className?: string
   children: React.ReactNode
 }) {
+  if (!providerName) {
+    throw new Error("SignInButton requires a providerName")
+  }
+
   return (
     <form
       action={async () => {
