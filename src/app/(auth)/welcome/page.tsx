@@ -1,6 +1,6 @@
 "use client"
 
-import { AccountSetupForm } from "@/components/blocks/account-setup"
+import { AccountSetupForm } from "@/components/account-setup-form"
 
 export default function SignUpWelcomePage() {
   return <AccountSetupForm />

@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-dvh bg-background overflow-y-scroll flex flex-col items-center`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-dvh bg-background overflow-y-scroll overflow-x-clip flex flex-col items-center`}
       >
         {children}
       </body>

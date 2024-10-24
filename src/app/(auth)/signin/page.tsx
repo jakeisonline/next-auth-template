@@ -6,8 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { MagicSignInButton } from "@/components/blocks/magic-signin"
-import { SocialSignInButton } from "@/components/blocks/social-signin"
+import { MagicSignInButton } from "@/components/magic-sign-in-button"
+import { SocialSignInButton } from "@/components/social-sign-in-button"
 import Link from "next/link"
 
 export default function SignInPage() {
@@ -24,10 +24,7 @@ export default function SignInPage() {
             Sign in with Google
           </SocialSignInButton>
         </div>
-        <div className="w-full border-t border-gray-200 mt-6 text-center">
-          <p className="-translate-y-3 inline-block px-3 bg-card">or</p>
-        </div>
-        <MagicSignInButton />
+        {process.env.AUTH_RESEND_KEY && <MagicSignInButton />}
         <div className="mt-8 text-center text-sm">
           <Link href="/signup">Don&apos;t have an account? </Link>
         </div>
