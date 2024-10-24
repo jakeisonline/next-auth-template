@@ -40,46 +40,6 @@ export function MagicSignInButton() {
   )
 }
 
-function MagicSignInDialogButtons({ disabled }: { disabled?: boolean }) {
-  const { pending } = useFormStatus()
-
-  const isDisabled = pending || disabled ? true : false
-
-  return (
-    <>
-      <DialogClose asChild>
-        <Button type="button" variant="outline" disabled={isDisabled}>
-          Cancel
-        </Button>
-      </DialogClose>
-      <Button type="submit" disabled={isDisabled}>
-        {isDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        Send magic link
-      </Button>
-    </>
-  )
-}
-
-function MagicSignInDialogError({
-  state,
-}: {
-  state: ServerActionResponse | null
-}) {
-  if (!state?.messages) return null
-
-  return (
-    <>
-      {state.messages.map((message, index) => (
-        <Alert key={index} className="my-4 bg-red-100">
-          <CircleX className="h-4 w-4 stroke-red-700" />
-          <AlertTitle>{message.title}</AlertTitle>
-          <AlertDescription>{message.body}</AlertDescription>
-        </Alert>
-      ))}
-    </>
-  )
-}
-
 function MagicSignInDialogForm() {
   const [state, formAction] = useFormState(doMagicAuth, undefined)
   const router = useRouter()
@@ -118,5 +78,45 @@ function MagicSignInDialogInput({ disabled }: { disabled?: boolean }) {
       </Label>
       <Input id="email" name="email" className="w-full" disabled={isDisabled} />
     </div>
+  )
+}
+
+function MagicSignInDialogButtons({ disabled }: { disabled?: boolean }) {
+  const { pending } = useFormStatus()
+
+  const isDisabled = pending || disabled ? true : false
+
+  return (
+    <>
+      <DialogClose asChild>
+        <Button type="button" variant="outline" disabled={isDisabled}>
+          Cancel
+        </Button>
+      </DialogClose>
+      <Button type="submit" disabled={isDisabled}>
+        {isDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        Send magic link
+      </Button>
+    </>
+  )
+}
+
+function MagicSignInDialogError({
+  state,
+}: {
+  state: ServerActionResponse | null
+}) {
+  if (!state?.messages) return null
+
+  return (
+    <>
+      {state.messages.map((message, index) => (
+        <Alert key={index} className="my-4 bg-red-100">
+          <CircleX className="h-4 w-4 stroke-red-700" />
+          <AlertTitle>{message.title}</AlertTitle>
+          <AlertDescription>{message.body}</AlertDescription>
+        </Alert>
+      ))}
+    </>
   )
 }
