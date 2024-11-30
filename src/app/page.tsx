@@ -69,6 +69,12 @@ export default function AppPage() {
       isCore: true,
     },
     {
+      name: "react",
+      shieldsUrl:
+        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/react",
+      isCore: true,
+    },
+    {
       name: "drizzle-orm",
       shieldsUrl:
         "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/drizzle-orm",
@@ -80,7 +86,6 @@ export default function AppPage() {
         "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/zod",
       isCore: true,
     },
-
     {
       name: "@neondatabase/serverless",
       shieldsUrl:
@@ -88,22 +93,22 @@ export default function AppPage() {
       isCore: true,
     },
     {
+      name: "shadcn/ui",
+      shieldsUrl: "https://img.shields.io/badge/shadcn%2Fui-gray",
+    },
+    {
       name: "tailwindcss",
       shieldsUrl:
         "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/dev/tailwindcss",
     },
     {
-      name: "shadcn/ui",
-      shieldsUrl: "https://img.shields.io/badge/shadcn%2Fui-gray",
+      name: "@radix-ui",
+      shieldsUrl: "https://img.shields.io/badge/radix--ui-gray",
     },
     {
       name: "lucide-react",
       shieldsUrl:
         "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/lucide-react",
-    },
-    {
-      name: "@radix-ui",
-      shieldsUrl: "https://img.shields.io/badge/radix--ui-gray",
     },
   ]
 
