@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth, { Session } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import { db } from "@db"
@@ -7,6 +7,7 @@ import { usersAuthsTable } from "@/db/schema/users_auths"
 import { sessionsTable } from "@schema/sessions"
 import { verificationTokensTable } from "@schema/verification_tokens"
 import Resend from "next-auth/providers/resend"
+import { NextRequest } from "next/server"
 
 declare module "next-auth" {
   interface Session {
@@ -42,7 +43,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    authorized: async ({ auth: userSession, request }) => {
+    authorized: async ({
+      auth: userSession,
+      request,
+    }: {
+      auth: Session | null
+      request: NextRequest
+    }) => {
       const requestedPath = request.nextUrl.pathname
 
       // Anyone can visit the root path
