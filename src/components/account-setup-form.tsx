@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useActionState } from "react"
+import { useActionState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { useFormStatus } from "react-dom"
 import { useRouter } from "next/navigation"
@@ -22,9 +22,12 @@ export function AccountSetupForm() {
   const [state, formAction] = useActionState(doAccountSetup, undefined)
   const router = useRouter()
 
-  if (state?.status === "success") {
-    router.push("/app")
-  }
+  useEffect(() => {
+    if (state?.status === "success") {
+      router.push("/app")
+      return
+    }
+  }, [state])
 
   return (
     <Card className="mx-auto w-[24rem]">
