@@ -13,7 +13,7 @@ This template gets you up a running with social sign in, magic links, database-b
 
 # Documentation
 
-Visit https://jakeisonline.com/playground/tools/next-auth-template for more installation and extension documentation..
+Visit https://jakeisonline.com/playground/tools/next-auth-template for detailed documentation.
 
 # License
 
