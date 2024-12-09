@@ -2,7 +2,6 @@ import {
   pgTable as table,
   pgEnum,
   text,
-  integer,
   timestamp,
   AnyPgColumn,
 } from "drizzle-orm/pg-core"
@@ -19,9 +18,7 @@ export const usersTable = table("users", {
   email: text("email").unique(),
   emailVerified: timestamp("email_verified", { mode: "date" }),
   image: text("image"),
-  accountId: integer("account_id").references(
-    (): AnyPgColumn => accountsTable.id,
-  ),
+  accountId: text("account_id").references((): AnyPgColumn => accountsTable.id),
   updatedAt: timestamp("updated_at")
     .notNull()
     .$onUpdate(() => new Date()),

@@ -1,8 +1,10 @@
-import { pgTable as table, integer, text, timestamp } from "drizzle-orm/pg-core"
+import { pgTable as table, text, timestamp } from "drizzle-orm/pg-core"
 import { usersTable } from "./users"
 
 export const accountsTable = table("accounts", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
   name: text("name").notNull(),
   ownerId: text("owner_id")
     .notNull()

@@ -10,7 +10,7 @@ export async function getAccount() {
     throw new Error("getAccount failed: no session or user")
   }
 
-  const currentAccountId = Number(session.user.accountId)
+  const currentAccountId = session.user.accountId
 
   if (!currentAccountId) {
     throw new Error("getAccount failed: no account id")
