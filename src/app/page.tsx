@@ -11,7 +11,6 @@ import {
 import {
   CircleUser,
   DatabaseZapIcon,
-  GithubIcon,
   KeyRound,
   LayoutTemplate,
   LockKeyhole,
@@ -132,10 +131,9 @@ export default function AppPage() {
           <div className="justify-end flex flex-1 gap-2">
             <Button variant="outline" asChild>
               <Link
-                external
-                href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template"
+                href="https://jakeisonline.com/playground/tools/next-auth-template"
+                target="_blank"
               >
-                <GithubIcon className="h-5 w-5 mr-1.5" />
                 <span className="sr-only">Documentation</span>
                 <div className="not-sr-only">
                   Doc<span className="lg:hidden">s</span>
@@ -169,14 +167,16 @@ export default function AppPage() {
           </div>
           <div className="mt-4 flex flex-row gap-3 lg:gap-4 w-full items-center justify-center">
             <Link
-              external
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://github.com/jakeisonline/next-auth-template"
             >
               Clone on GitHub
             </Link>{" "}
             <span>or</span>{" "}
             <Link
-              external
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjakeisonline%2Fnext-auth-template&env=DATABASE_URL,NEXTAUTH_URL,AUTH_SECRET,AUTH_GOOGLE_ID,AUTH_GOOGLE_SECRET,AUTH_RESEND_KEY,AUTH_MAGIC_LINK_EMAIL_FROM&envDescription=API%20keys%20needed%20for%20signing%20in%20with%20Google%20and%20emailing%20magic%20links&envLink=https%3A%2F%2Fgithub.com%2Fjakeisonline%2Fnext-auth-template%3Ftab%3Dreadme-ov-file%23envrionment-variables&redirect-url=https%3A%2F%2Fgithub.com%2Fjakeisonline%2Fnext-auth-template%3Ftab%3Dreadme-ov-file%23next-auth-template&demo-title=See%20next-auth-template%20in%20action&demo-description=An%20(almost)%20vanilla%20deploy%20of%20this%20template.%20Resets%20any%20users%20and%20sessions%20every%20few%20hours.&demo-url=https%3A%2F%2Fnext-auth-template-demo.vercel.app%2F&demo-image=https%3A%2F%2Fcamo.githubusercontent.com%2Fc69f49b98c29ba792daf811661b5448ec743f721047119358ac2603ca0531b73%2F68747470733a2f2f6a616b6569736f6e6c696e652e636f6d2f6f70656e67726170682d696d6167652e706e67"
             >
               Deploy on Vercel
@@ -204,8 +204,9 @@ export default function AppPage() {
               </dl>
               <p className="mt-5 text-sm text-muted-foreground">
                 <Link
-                  external
-                  href="https://github.com/jakeisonline/next-auth-template?tab=readme-ov-file#next-auth-template"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://jakeisonline.com/playground/tools/next-auth-template"
                 >
                   See all the features and how to use them in the documentation
                 </Link>
@@ -252,7 +253,8 @@ export default function AppPage() {
               </ul>
               <p className="mt-8 text-sm text-muted-foreground">
                 <Link
-                  external
+                  target="_blank"
+                  rel="noopener noreferrer"
                   href="https://github.com/jakeisonline/next-auth-template/blob/main/package.json"
                 >
                   See the full list of dependencies in package.json
