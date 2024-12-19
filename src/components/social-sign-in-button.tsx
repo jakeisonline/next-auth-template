@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { Loader2 } from "lucide-react"
 import { useActionState } from "react"
 import { useFormStatus } from "react-dom"
-import { doSocialAuth } from "@/actions/auth/social-auth"
+import { doSocialAuth } from "@/actions/auth/do-social-auth"
 
 export function SocialSignInButton({
   providerName,
