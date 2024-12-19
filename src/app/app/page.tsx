@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { getAccount } from "@/actions/get-account"
+import { getAccount } from "@/actions/account/get-account"
 import { SignOutButton } from "@/components/ui/sign-out-button"
 
 export default async function AppPage() {

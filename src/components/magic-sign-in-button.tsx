@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ServerActionResponse } from "@/lib/types"
 import { useRouter } from "next/navigation"
-import { doMagicAuth } from "@/actions/magic-auth"
+import { doMagicAuth } from "@/actions/auth/magic-auth"
 
 export function MagicSignInButton() {
   return (
