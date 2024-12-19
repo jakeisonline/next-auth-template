@@ -13,5 +13,4 @@ export const accountsTable = table("accounts", {
     .notNull()
     .$onUpdate(() => new Date()),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  deletedAt: timestamp("deleted_at"),
 })
