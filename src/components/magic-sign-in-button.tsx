@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Loader2, CircleX } from "lucide-react"
 import { useFormStatus } from "react-dom"
-import { useActionState } from "react"
+import { useActionState, useEffect } from "react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -45,9 +45,12 @@ function MagicSignInDialogForm() {
   const [state, formAction] = useActionState(doMagicAuth, undefined)
   const router = useRouter()
 
-  if (state?.status === "success") {
-    router.push("/verify")
-  }
+  useEffect(() => {
+    if (state?.status === "success") {
+      router.push("/verify")
+      return
+    }
+  }, [state])
 
   return (
     <form action={formAction}>
