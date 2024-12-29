@@ -8,7 +8,7 @@ export const accountsTable = table("accounts", {
   name: text("name").notNull(),
   ownerId: text("owner_id")
     .notNull()
-    .references(() => usersTable.id),
+    .references(() => usersTable.id, { onDelete: "cascade" }),
   updatedAt: timestamp("updated_at")
     .notNull()
     .$onUpdate(() => new Date()),
