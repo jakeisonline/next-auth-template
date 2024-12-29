@@ -18,13 +18,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@schema/*": ["./src/db/schema/*"],
-      "@db": ["./src/db/db"],
-      "@svg/*": ["./src/components/svg/*"]
+      "@/*": ["./src/*"]
     },
     "target": "ES2017"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "tailwind.config.mjs"
+  ],
   "exclude": ["node_modules"]
 }

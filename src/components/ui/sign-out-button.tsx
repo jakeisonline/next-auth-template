@@ -1,6 +1,6 @@
-import { signOut } from "@/lib/auth"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { doSignout } from "@/actions/auth/do-signout"
 
 export function SignOutButton({
   className,
@@ -11,14 +11,7 @@ export function SignOutButton({
   children: React.ReactNode
 }) {
   return (
-    <form
-      action={async () => {
-        "use server"
-        await signOut({
-          redirectTo: "/",
-        })
-      }}
-    >
+    <form action={doSignout}>
       <Button
         type="submit"
         variant="link"

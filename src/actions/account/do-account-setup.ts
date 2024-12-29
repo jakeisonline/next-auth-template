@@ -1,9 +1,9 @@
 "use server"
 
-import { db } from "@/db/db"
-import { accountsTable } from "@schema/accounts"
+import { db } from "@/db"
+import { accountsTable } from "@/db/schema/accounts"
 import { auth } from "@/lib/auth"
-import { usersTable } from "@schema/users"
+import { usersTable } from "@/db/schema/users"
 import { eq } from "drizzle-orm"
 import { z } from "zod"
 import { ServerActionResponse } from "@/lib/types"

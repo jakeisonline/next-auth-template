@@ -1,5 +1,5 @@
-import { accountsTable } from "@schema/accounts"
-import { db } from "@db"
+import { accountsTable } from "@/db/schema/accounts"
+import { db } from "@/db"
 import { eq } from "drizzle-orm"
 import { auth } from "@/lib/auth"
 

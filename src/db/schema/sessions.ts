@@ -1,5 +1,5 @@
 import { pgTable as table, text, timestamp } from "drizzle-orm/pg-core"
-import { usersTable } from "@schema/users"
+import { usersTable } from "@/db/schema/users"
 
 export const sessionsTable = table("sessions", {
   sessionToken: text("session_token").primaryKey(),

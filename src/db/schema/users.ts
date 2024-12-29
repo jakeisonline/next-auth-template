@@ -5,7 +5,7 @@ import {
   timestamp,
   AnyPgColumn,
 } from "drizzle-orm/pg-core"
-import { accountsTable } from "@schema/accounts"
+import { accountsTable } from "@/db/schema/accounts"
 
 export const userTypes = pgEnum("user_types", ["admin", "user"])
 
@@ -24,3 +24,5 @@ export const usersTable = table("users", {
     .$onUpdate(() => new Date()),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 })
+
+export type User = typeof usersTable.$inferSelect

@@ -1,5 +1,5 @@
 import { pgTable as table, integer, text, timestamp } from "drizzle-orm/pg-core"
-import { usersTable } from "@schema/users"
+import { usersTable } from "@/db/schema/users"
 import type { AdapterAccountType } from "next-auth/adapters"
 
 export const usersAuthsTable = table("users_auths", {

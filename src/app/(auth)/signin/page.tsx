@@ -1,4 +1,4 @@
-import GoogleLogo from "@svg/google-logo"
+import GoogleLogo from "@/components/svg/google-logo"
 import {
   Card,
   CardContent,
