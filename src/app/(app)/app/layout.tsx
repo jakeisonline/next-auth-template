@@ -26,6 +26,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { redirect } from "next/navigation"
+import { cookies } from "next/headers"
 
 export default async function AppLayout({
   children,
@@ -38,12 +39,16 @@ export default async function AppLayout({
     return redirect("/signin")
   }
 
+  // Persist the open/closed state of the sidebar in a cookie
+  const cookieStore = await cookies()
+  const sidebarDefaultOpen = cookieStore.get("sidebar:state")?.value === "true"
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-dvh bg-background overflow-y-scroll overflow-x-clip flex flex-col items-center`}
       >
-        <SidebarProvider>
+        <SidebarProvider defaultOpen={sidebarDefaultOpen}>
           <AppSidebar variant="inset" currentUser={currentUser} />
           <SidebarInset className="peer-data-[variant=inset]:max-h-[calc(100svh-theme(spacing.4))]">
             <header className="flex h-16 shrink-0 items-center gap-2 sticky top-0 bg-background">
