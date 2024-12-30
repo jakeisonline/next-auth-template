@@ -27,7 +27,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { User } from "@/db/schema/users"
-import { SignOutButton } from "@/components/ui/sign-out-button"
+import Link from "next/link"
 
 export function NavUser({ user }: { user: User }) {
   const { isMobile } = useSidebar()
@@ -103,11 +103,11 @@ export function NavUser({ user }: { user: User }) {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut />
-              <SignOutButton className="hover:no-underline p-0 h-0">
+            <DropdownMenuItem asChild>
+              <Link href="/signout" className="flex items-center gap-2">
+                <LogOut />
                 Sign out
-              </SignOutButton>
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
