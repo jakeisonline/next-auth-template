@@ -8,16 +8,17 @@ export default function Page() {
     <div>
       <Card className="w-full md:max-w-3xl">
         <CardHeader>
-          <CardTitle>🎉 You're in!</CardTitle>
+          <CardTitle>🎉 You&apos;re in!</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <p>
-            Of course, none of this is a real app. It's just a demo to show the
-            registration and authentication flows. But it's ready for you to get
-            building!
+            Of course, none of this is a real app. It&apos;s just a demo to show
+            the registration and authentication flows. But it&apos;s ready for
+            you to get building!
           </p>
           <p>
-            <strong>While you're here</strong>, here's some things to try:
+            <strong>While you&apos;re here</strong>, here&apos;s some things to
+            try:
           </p>
           <ul className="space-y-2 list-disc w-10/12 ml-8">
             <li>
