@@ -22,6 +22,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from "@/components/ui/sidebar"
 import { User } from "@/db/schema/users"
 import Link from "next/link"
@@ -93,6 +94,7 @@ export function AppSidebar({
       <SidebarFooter>
         <NavUser user={currentUser} />
       </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   )
 }
