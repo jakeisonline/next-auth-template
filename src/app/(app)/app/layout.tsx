@@ -49,7 +49,11 @@ export default async function AppLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-dvh bg-background overflow-y-scroll overflow-x-clip flex flex-col items-center`}
       >
         <SidebarProvider defaultOpen={sidebarDefaultOpen}>
-          <AppSidebar variant="inset" currentUser={currentUser} />
+          <AppSidebar
+            collapsible="icon"
+            variant="inset"
+            currentUser={currentUser}
+          />
           <SidebarInset className="peer-data-[variant=inset]:max-h-[calc(100svh-theme(spacing.4))]">
             <header className="flex h-16 shrink-0 items-center gap-2 sticky top-0 bg-background">
               <div className="flex items-center gap-2 px-4">
