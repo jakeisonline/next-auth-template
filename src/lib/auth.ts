@@ -50,6 +50,7 @@ export const authConfig = {
       // Anyone can visit the root path
       if (requestedPath === "/") return true
 
+      // If the user is not authenticated, allow them to visit the signin, signup, verify, and signout pages
       if (!userSession || !userSession.user) {
         const nonSessionAllowedPaths = [
           "/signin",
@@ -73,11 +74,22 @@ export const authConfig = {
       }
 
       if (userSession.user) {
+        // Allow users to visit the welcome page if they don't have an account ID, so we can onboard them
         if (!userAccountId && requestedPath.includes("/welcome")) {
           return true
         }
 
         if (userAccountId) {
+          // If the user is on the signin page, and has a callbackUrl, redirect to it
+          if (requestedPath.includes("/signin")) {
+            const callbackUrl = request.nextUrl.searchParams.get("callbackUrl")
+
+            if (callbackUrl && callbackUrl.startsWith(request.nextUrl.origin)) {
+              return Response.redirect(new URL(callbackUrl, request.nextUrl))
+            }
+          }
+
+          // If the user is on a session-blocked path, redirect to the app
           const sessionBlockedPaths = [
             "/signin",
             "/signup",
