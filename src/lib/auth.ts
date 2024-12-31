@@ -56,7 +56,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (requestedPath === "/") return true
 
       if (!userSession || !userSession.user) {
-        const nonSessionAllowedPaths = ["/signin", "/signup", "/verify"]
+        const nonSessionAllowedPaths = [
+          "/signin",
+          "/signup",
+          "/verify",
+          "/signout",
+        ]
 
         if (nonSessionAllowedPaths.some((m) => requestedPath.includes(m))) {
           return true
