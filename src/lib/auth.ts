@@ -1,4 +1,4 @@
-import NextAuth, { Session } from "next-auth"
+import NextAuth, { NextAuthConfig, Session } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import { db } from "@/db"
@@ -20,17 +20,12 @@ declare module "next-auth" {
   }
 }
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+// Exported for reuse in other files, and testing
+export const authConfig = {
   pages: {
     signIn: "/signin",
     verifyRequest: "/verify",
   },
-  adapter: DrizzleAdapter(db, {
-    usersTable: usersTable,
-    accountsTable: usersAuthsTable,
-    sessionsTable: sessionsTable,
-    verificationTokensTable: verificationTokensTable,
-  }),
   providers: [
     GoogleProvider({
       clientId: process.env.AUTH_GOOGLE_ID,
@@ -99,5 +94,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return true
     },
   },
+} satisfies NextAuthConfig
+
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  adapter: DrizzleAdapter(db, {
+    usersTable: usersTable,
+    accountsTable: usersAuthsTable,
+    sessionsTable: sessionsTable,
+    verificationTokensTable: verificationTokensTable,
+  }),
   secret: process.env.AUTH_SECRET,
+  ...authConfig,
 })
