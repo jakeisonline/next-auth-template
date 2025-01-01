@@ -30,13 +30,13 @@ export default function Page() {
           </ul>
           <div className="pt-3 flex flex-row gap-2">
             <Button variant="outline" asChild>
-              <Link href="https://ui.shadcn.com/docs">
+              <Link href="https://jakeisonline.com/playground/tools/next-auth-template">
                 <BookHeart className="size-4 mr-2" />
                 Documentation
               </Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="https://jakeisonline.com/playground/tools/next-auth-template">
+              <Link href="https://github.com/jakeisonline/next-auth-template">
                 <Github className="size-4 mr-2" />
                 Source
               </Link>
