@@ -11,7 +11,7 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 })
-import { fetchCurrentUser } from "@/actions/auth/fetch-current-user"
+import { fetchCurrentUser } from "@/actions/user/fetch-current-user"
 import { AppSidebar } from "@/components/layout/app-sidebar"
 import {
   Breadcrumb,
