@@ -4,8 +4,8 @@
   "description": "Sign up and auth, super quick with database-backed sessions, social sign in, magic links, and multiple user models to choose from. This CLI tool enables you to quickly start building a new Next.js application, with auth already set up for you so you can focus on the fun stuff.",
   "main": "index.ts",
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc",
+    "dev": "tsup --watch",
+    "build": "tsup",
     "start": "node dist/index.ts"
   },
   "bin": {
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.3",
+    "tsup": "^8.3.5",
     "typescript": "^5.7.2"
   }
 }
