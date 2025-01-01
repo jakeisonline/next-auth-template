@@ -33,7 +33,7 @@ export const authConfig = {
       allowDangerousEmailAccountLinking: true,
     }),
     Resend({
-      apiKey: process.env.AUTH_RESEND_KEY,
+      apiKey: process.env.RESEND_KEY,
       from: process.env.AUTH_MAGIC_LINK_EMAIL_FROM,
     }),
   ],

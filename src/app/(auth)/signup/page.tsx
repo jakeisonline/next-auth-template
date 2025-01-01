@@ -26,7 +26,7 @@ export default function SignInPage() {
             Sign up with Google
           </SocialSignInButton>
         </div>
-        {process.env.AUTH_RESEND_KEY && <MagicSignInButton />}
+        {process.env.RESEND_KEY && <MagicSignInButton />}
         <div className="mt-8 text-center text-sm">
           <Link href="/signin">Already have an account?</Link>
         </div>
