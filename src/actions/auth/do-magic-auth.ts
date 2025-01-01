@@ -4,6 +4,19 @@ import { signIn } from "@/lib/auth"
 import { ServerActionResponse } from "@/lib/types"
 import { z } from "zod"
 
+/**
+ * Server action to sign in with a magic link.
+ *
+ * @param {ServerActionResponse | undefined} prevState - Previous state from the server action
+ * @param {FormData} [formData] - Form data containing the magic link information
+ * @throws {Error} When:
+ *  - Form data is invalid
+ *  - Environment variables are not set
+ *  - No providers have been configured
+ *
+ * @returns {Promise<ServerActionResponse>} Object containing the status of the operation
+ */
+
 export async function doMagicAuth(
   prevState: ServerActionResponse | undefined,
   formData?: FormData,
