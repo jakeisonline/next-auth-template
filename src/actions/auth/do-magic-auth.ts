@@ -8,14 +8,19 @@ export async function doMagicAuth(
   prevState: ServerActionResponse | undefined,
   formData?: FormData,
 ): Promise<ServerActionResponse> {
+  // If the environment variables are not set, throw an error
   if (!process.env.AUTH_RESEND_KEY || !process.env.AUTH_MAGIC_LINK_EMAIL_FROM) {
-    throw new Error("Magic link environment variables are not set")
+    throw new Error(
+      "[Config Error] Magic link environment variables are not set",
+    )
   }
 
+  // If the form didn't provide a FormData object, throw an error
   if (!(formData instanceof FormData)) {
-    throw new Error("Form data is not a FormData object")
+    throw new Error("[Form Error] Form data is not a FormData object")
   }
 
+  // Check for a valid email address
   const validatedEmail = z
     .string()
     .email("invalid_email")

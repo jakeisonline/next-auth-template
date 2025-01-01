@@ -2,6 +2,20 @@
 
 import { authConfig, signIn } from "@/lib/auth"
 
+/**
+ * Server action to sign in with a social provider.
+ *
+ * @param {void | undefined} prevState - Previous state from the server action
+ * @param {FormData} [formData] - Form data containing the social provider information
+ * @throws {Error} When:
+ *  - Form data is invalid
+ *  - No provider was provided
+ *  - Invalid provider was provided
+ *  - No providers have been configured
+ *
+ * @returns {Promise<void>}
+ */
+
 export async function doSocialAuth(
   prevState: void | undefined,
   formData?: FormData,
