@@ -1,5 +1,6 @@
 import { Command } from "commander"
 import * as fs from "fs-extra"
+import { readdirSync } from "node:fs"
 import * as path from "path"
 import { fileURLToPath } from "url"
 import { createSpinner } from "@/utils/spinner"
@@ -67,6 +68,29 @@ export const init = new Command()
       })
 
       const targetDir = path.resolve(process.cwd(), projectNamePrompt)
+
+      try {
+        const files = await readdirSync(targetDir)
+
+        if (files.length > 0) {
+          const { overwritePrompt } = await prompts({
+            type: "confirm",
+            name: "overwritePrompt",
+            message:
+              "Directory is not empty. Files will be overwritten and existing files may cause conflicts. Proceed?",
+            initial: false,
+          })
+
+          if (!overwritePrompt) {
+            spinner.fail("Aborted.")
+            process.exit(1)
+          }
+        }
+      } catch (err) {
+        spinner.fail(`Error reading directory at ${targetDir}`)
+        console.error(err)
+        process.exit(1)
+      }
 
       spinner.start()
       spinner.text = `Copying files to ${targetDir}...`
