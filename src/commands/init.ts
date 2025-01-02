@@ -2,7 +2,7 @@ import { Command } from "commander"
 import * as fs from "fs-extra"
 import * as path from "path"
 import { fileURLToPath } from "url"
-import { spinner } from "@/utils/spinner"
+import { createSpinner } from "@/utils/spinner"
 import prompts from "prompts"
 
 // Get the directory path of the current module
@@ -16,6 +16,8 @@ export const init = new Command()
   .description("Initialize a new Next.js application with auth")
   .argument("[template]", "The name of the template to initialize. Optional.")
   .action(async (template: string) => {
+    const spinner = createSpinner("")
+
     try {
       let templateName = template
 
@@ -40,12 +42,15 @@ export const init = new Command()
       })
 
       const targetDir = path.resolve(process.cwd(), projectName)
-      const indicator = spinner(`Copying files to ${targetDir}...`)
+
+      spinner.start()
+      spinner.text = `Copying files to ${targetDir}...`
 
       await fs.copy(`${TEMPLATE_DIR}/${templateName}`, targetDir)
-      indicator.succeed(`Template copied successfully to ${targetDir}!`)
+
+      spinner.succeed(`Template copied successfully to ${targetDir}`)
     } catch (err) {
-      console.error(err)
+      spinner.fail("Error copying template files.")
       process.exit(1)
     }
   })
