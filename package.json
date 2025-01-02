@@ -11,6 +11,9 @@
   "bin": {
     "next-auth-template": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "keywords": [],
   "author": {
