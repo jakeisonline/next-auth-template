@@ -6,6 +6,7 @@ import { readdirSync } from "node:fs"
 import { fileURLToPath } from "url"
 import { createSpinner } from "@/utils/spinner"
 import { validationSchemas } from "@/utils/validation-schemas"
+import { validateDirectory } from "@/utils/validate-directory"
 import { TEMPLATE_CHOICES } from "@/lib/constants"
 
 // Get the directory path of the current module
@@ -62,28 +63,7 @@ export const init = new Command()
 
       const targetDir = path.resolve(process.cwd(), projectNamePrompt)
 
-      try {
-        const files = await readdirSync(targetDir)
-
-        if (files.length > 0) {
-          const { overwritePrompt } = await prompts({
-            type: "confirm",
-            name: "overwritePrompt",
-            message:
-              "Directory is not empty. Files will be overwritten and existing files may cause conflicts. Proceed?",
-            initial: false,
-          })
-
-          if (!overwritePrompt) {
-            spinner.fail("Aborted.")
-            process.exit(1)
-          }
-        }
-      } catch (err) {
-        spinner.fail(`Error reading directory at ${targetDir}`)
-        console.error(err)
-        process.exit(1)
-      }
+      await validateDirectory(targetDir, spinner)
 
       spinner.start()
       spinner.text = `Copying files to ${targetDir}...`
