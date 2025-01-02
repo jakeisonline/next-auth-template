@@ -15,14 +15,12 @@ export const init = new Command()
   .description("Initialize a new Next.js application with auth")
   .argument("<destination>", "Destination folder to copy the template")
   .action(async (destination: string) => {
-    const indicator = spinner("Copying files...")
     const targetDir = path.resolve(process.cwd(), destination)
-
-    // console.log(`Copying files from ${TEMPLATE_DIR} to ${targetDir}...`)
+    const indicator = spinner(`Copying files to ${targetDir}...`)
 
     try {
       await fs.copy(TEMPLATE_DIR, targetDir)
-      indicator.succeed("Template copied successfully!")
+      indicator.succeed(`Template copied successfully to ${targetDir}!`)
     } catch (err) {
       indicator.fail("Error copying template files.")
       process.exit(1)
