@@ -50,14 +50,23 @@ export const init = new Command()
         templateName = templatePrompt
       }
 
-      const { projectName } = await prompts({
+      const { projectNamePrompt } = await prompts({
         type: "text",
-        name: "projectName",
+        name: "projectNamePrompt",
         message: "Enter the name of your project",
         initial: ".",
+        validate: (value) => {
+          const projectNameSchema = z
+            .string()
+            .regex(/^[^\s\/\\\?\*\:\<\>\"\|]+$/)
+          const validatedProjectName = projectNameSchema.safeParse(value)
+          return validatedProjectName.success
+            ? true
+            : "Invalid project name. Must be a valid file system directory name and no spaces."
+        },
       })
 
-      const targetDir = path.resolve(process.cwd(), projectName)
+      const targetDir = path.resolve(process.cwd(), projectNamePrompt)
 
       spinner.start()
       spinner.text = `Copying files to ${targetDir}...`
