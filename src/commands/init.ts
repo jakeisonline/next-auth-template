@@ -8,7 +8,6 @@ import prompts from "prompts"
 // Get the directory path of the current module
 // @ts-ignore # import.meta is defined just fine at compile time
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-// Navigate up to the root and into templates/one-to-one
 const TEMPLATE_DIR = path.resolve(__dirname, "../templates")
 
 export const init = new Command()
