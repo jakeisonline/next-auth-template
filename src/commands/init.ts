@@ -2,6 +2,7 @@ import { Command } from "commander"
 import * as fs from "fs-extra"
 import * as path from "path"
 import { fileURLToPath } from "url"
+import { spinner } from "@/utils/spinner"
 
 // Get the directory path of the current module
 // @ts-ignore # import.meta is defined just fine at compile time
@@ -14,15 +15,16 @@ export const init = new Command()
   .description("Initialize a new Next.js application with auth")
   .argument("<destination>", "Destination folder to copy the template")
   .action(async (destination: string) => {
+    const indicator = spinner("Copying files...")
     const targetDir = path.resolve(process.cwd(), destination)
 
-    console.log(`Copying files from ${TEMPLATE_DIR} to ${targetDir}...`)
+    // console.log(`Copying files from ${TEMPLATE_DIR} to ${targetDir}...`)
 
     try {
       await fs.copy(TEMPLATE_DIR, targetDir)
-      console.log("Template copied successfully!")
+      indicator.succeed("Template copied successfully!")
     } catch (err) {
-      console.error("Error copying template:", err)
+      indicator.fail("Error copying template files.")
       process.exit(1)
     }
   })
