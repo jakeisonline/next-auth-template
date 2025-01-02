@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from "commander"
-import { init } from "./commands/init"
+import { init } from "@/commands/init"
 
 // Get the package.json file
 const packageJson = require("../package.json")
