@@ -1,21 +1,17 @@
-import { Command } from "commander"
-import * as fs from "fs-extra"
-import { readdirSync } from "node:fs"
 import * as path from "path"
+import * as fs from "fs-extra"
+import prompts from "prompts"
+import { Command } from "commander"
+import { readdirSync } from "node:fs"
 import { fileURLToPath } from "url"
 import { createSpinner } from "@/utils/spinner"
-import prompts from "prompts"
-import { z } from "zod"
+import { validationSchemas } from "@/utils/validation-schemas"
+import { TEMPLATE_CHOICES } from "@/lib/constants"
 
 // Get the directory path of the current module
 // @ts-ignore # import.meta is defined just fine at compile time
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const TEMPLATE_DIR = path.resolve(__dirname, "../templates")
-
-const TEMPLATE_CHOICES = [
-  { title: "One-to-one", value: "one-to-one" },
-  { title: "One-to-many", value: "one-to-many" },
-]
 
 export const init = new Command()
   .name("init")
@@ -26,13 +22,8 @@ export const init = new Command()
 
     try {
       if (template) {
-        const templateSchema = z.enum(
-          TEMPLATE_CHOICES.map((choice) => choice.value) as [
-            string,
-            ...string[],
-          ],
-        )
-        const validatedTemplateName = templateSchema.safeParse(template)
+        const validatedTemplateName =
+          validationSchemas.template.safeParse(template)
 
         if (!validatedTemplateName.success) {
           spinner.fail(
@@ -61,10 +52,8 @@ export const init = new Command()
         message: "Enter the name of your project",
         initial: ".",
         validate: (value) => {
-          const projectNameSchema = z
-            .string()
-            .regex(/^[^\s\/\\\?\*\:\<\>\"\|]+$/)
-          const validatedProjectName = projectNameSchema.safeParse(value)
+          const validatedProjectName =
+            validationSchemas.projectName.safeParse(value)
           return validatedProjectName.success
             ? true
             : "Invalid project name. Must be a valid file system directory name and no spaces."
