@@ -25,18 +25,22 @@ export const init = new Command()
     const spinner = createSpinner("")
 
     try {
-      // Use zod to check if the template supplied in the argument is valid against TEMPLATE_CHOICES values
-      const templateSchema = z.enum(
-        TEMPLATE_CHOICES.map((choice) => choice.value) as [string, ...string[]],
-      )
-      const validatedTemplateName = templateSchema.safeParse(template)
-
-      if (!validatedTemplateName.success) {
-        spinner.fail(
-          "Invalid template name. Must be one of: " +
-            TEMPLATE_CHOICES.map((choice) => choice.value).join(", "),
+      if (template) {
+        const templateSchema = z.enum(
+          TEMPLATE_CHOICES.map((choice) => choice.value) as [
+            string,
+            ...string[],
+          ],
         )
-        process.exit(1)
+        const validatedTemplateName = templateSchema.safeParse(template)
+
+        if (!validatedTemplateName.success) {
+          spinner.fail(
+            "Invalid template name. Must be one of: " +
+              TEMPLATE_CHOICES.map((choice) => choice.value).join(", "),
+          )
+          process.exit(1)
+        }
       }
 
       let templateName = template
