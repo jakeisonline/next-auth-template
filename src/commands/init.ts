@@ -6,6 +6,7 @@ import { fileURLToPath } from "url"
 import { createSpinner } from "@/utils/spinner"
 import { validationSchemas } from "@/utils/validation-schemas"
 import { validateDirectory } from "@/utils/validate-directory"
+import { validateTemplate } from "@/utils/validate-template"
 import { TEMPLATE_CHOICES } from "@/lib/constants"
 
 // Get the directory path of the current module
@@ -21,18 +22,7 @@ export const init = new Command()
     const spinner = createSpinner("")
 
     try {
-      if (template) {
-        const validatedTemplateName =
-          validationSchemas.template.safeParse(template)
-
-        if (!validatedTemplateName.success) {
-          spinner.fail(
-            "Invalid template name. Must be one of: " +
-              TEMPLATE_CHOICES.map((choice) => choice.value).join(", "),
-          )
-          process.exit(1)
-        }
-      }
+      validateTemplate(template, spinner)
 
       let templateName = template
 
