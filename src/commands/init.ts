@@ -35,6 +35,13 @@ export const init = new Command()
         templateName = templatePrompt
       }
 
+      if (!templateName) {
+        spinner.fail(
+          "You must select a template to install (it's kind of the whole point!).",
+        )
+        process.exit(1)
+      }
+
       const { projectNamePrompt } = await prompts({
         type: "text",
         name: "projectNamePrompt",
@@ -48,6 +55,11 @@ export const init = new Command()
             : "Invalid project name. Must be a valid file system directory name and no spaces."
         },
       })
+
+      if (!projectNamePrompt) {
+        spinner.fail("You must enter a project name to install the template.")
+        process.exit(1)
+      }
 
       const targetDir = path.resolve(process.cwd(), projectNamePrompt)
 
