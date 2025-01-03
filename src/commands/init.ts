@@ -21,66 +21,83 @@ export const init = new Command()
     "The name of the template to initialize. Optional, a select menu will be shown if left empty.",
   )
   .option(
+    "-p, --project-name <project-name>",
+    "The name of the project to initialize, also used as the directory name. If not provided, a prompt will be shown.",
+  )
+  .option(
     "-o, --overwrite",
     "Overwrite existing files in the project directory without prompting",
   )
-  .action(async (template: string, opts: { overwrite: boolean }) => {
-    const spinner = createSpinner("")
+  .action(
+    async (
+      template: string,
+      opts: { projectName: string; overwrite: boolean },
+    ) => {
+      const spinner = createSpinner("")
 
-    try {
-      validateTemplate(template, spinner)
+      try {
+        validateTemplate(template, spinner)
 
-      let templateName = template
+        let templateName = template
 
-      if (!template) {
-        const { templatePrompt } = await prompts({
-          type: "select",
-          name: "templatePrompt",
-          message: "Select a template",
-          choices: TEMPLATE_CHOICES,
-        })
-        templateName = templatePrompt
-      }
+        if (!template) {
+          const { templatePrompt } = await prompts({
+            type: "select",
+            name: "templatePrompt",
+            message: "Select a template",
+            choices: TEMPLATE_CHOICES,
+          })
+          templateName = templatePrompt
+        }
 
-      if (!templateName) {
-        spinner.fail(
-          "You must select a template to install (it's kind of the whole point!).",
-        )
+        if (!templateName) {
+          spinner.fail(
+            "You must select a template to install (it's kind of the whole point!).",
+          )
+          process.exit(1)
+        }
+
+        let projectName = opts.projectName
+
+        if (!projectName) {
+          const { projectNamePrompt } = await prompts({
+            type: "text",
+            name: "projectNamePrompt",
+            message: "Enter the name of your project",
+            initial: ".",
+            validate: (value) => {
+              const validatedProjectName =
+                VALIDATION_SCHEMAS.projectName.safeParse(value)
+              return validatedProjectName.success
+                ? true
+                : "Invalid project name. Must be a valid file system directory name and no spaces."
+            },
+          })
+
+          if (!projectNamePrompt) {
+            spinner.fail(
+              "You must enter a project name to install the template.",
+            )
+            process.exit(1)
+          }
+
+          projectName = projectNamePrompt
+        }
+
+        const targetDir = path.resolve(process.cwd(), projectName)
+
+        await validateDirectory(targetDir, opts.overwrite, spinner)
+
+        spinner.start()
+        spinner.text = `Copying files to ${targetDir}...`
+
+        await fs.copy(`${TEMPLATE_DIR}/${templateName}`, targetDir)
+
+        spinner.succeed(`Template copied successfully to ${targetDir}`)
+      } catch (err) {
+        spinner.fail("Error copying template files.")
+        console.error(err)
         process.exit(1)
       }
-
-      const { projectNamePrompt } = await prompts({
-        type: "text",
-        name: "projectNamePrompt",
-        message: "Enter the name of your project",
-        initial: ".",
-        validate: (value) => {
-          const validatedProjectName =
-            VALIDATION_SCHEMAS.projectName.safeParse(value)
-          return validatedProjectName.success
-            ? true
-            : "Invalid project name. Must be a valid file system directory name and no spaces."
-        },
-      })
-
-      if (!projectNamePrompt) {
-        spinner.fail("You must enter a project name to install the template.")
-        process.exit(1)
-      }
-
-      const targetDir = path.resolve(process.cwd(), projectNamePrompt)
-
-      await validateDirectory(targetDir, opts.overwrite, spinner)
-
-      spinner.start()
-      spinner.text = `Copying files to ${targetDir}...`
-
-      await fs.copy(`${TEMPLATE_DIR}/${templateName}`, targetDir)
-
-      spinner.succeed(`Template copied successfully to ${targetDir}`)
-    } catch (err) {
-      spinner.fail("Error copying template files.")
-      console.error(err)
-      process.exit(1)
-    }
-  })
+    },
+  )
