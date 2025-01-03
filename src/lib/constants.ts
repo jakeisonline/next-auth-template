@@ -1,8 +1,18 @@
 import { z } from "zod"
 
 export const TEMPLATE_CHOICES = [
-  { title: "One-to-one", value: "one-to-one" },
-  { title: "One-to-many", value: "one-to-many" },
+  {
+    title: "One-to-one",
+    description:
+      "Allows one account to have one user only, and a single user can only belong to a single account",
+    value: "one-to-one",
+  },
+  {
+    title: "One-to-many",
+    description:
+      "Allows one account to have multiple users, but a single user can only belong to a single account",
+    value: "one-to-many",
+  },
 ]
 
 export const VALIDATION_SCHEMAS = {
