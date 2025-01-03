@@ -4,11 +4,12 @@ import prompts from "prompts"
 
 export async function validateDirectory(
   targetDir: string,
+  overwrite: boolean,
   spinner: ReturnType<typeof createSpinner>,
 ) {
   try {
     const files = await readdirSync(targetDir)
-    if (files.length > 0) {
+    if (files.length > 0 && !overwrite) {
       const { overwritePrompt } = await prompts({
         type: "confirm",
         name: "overwritePrompt",

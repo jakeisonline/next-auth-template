@@ -16,8 +16,15 @@ const TEMPLATE_DIR = path.resolve(__dirname, "../templates")
 export const init = new Command()
   .name("init")
   .description("Initialize a new Next.js application with auth")
-  .argument("[template]", "The name of the template to initialize. Optional.")
-  .action(async (template: string) => {
+  .argument(
+    "[template]",
+    "The name of the template to initialize. Optional, a select menu will be shown if left empty.",
+  )
+  .option(
+    "-o, --overwrite",
+    "Overwrite existing files in the project directory without prompting",
+  )
+  .action(async (template: string, opts: { overwrite: boolean }) => {
     const spinner = createSpinner("")
 
     try {
@@ -63,7 +70,7 @@ export const init = new Command()
 
       const targetDir = path.resolve(process.cwd(), projectNamePrompt)
 
-      await validateDirectory(targetDir, spinner)
+      await validateDirectory(targetDir, opts.overwrite, spinner)
 
       spinner.start()
       spinner.text = `Copying files to ${targetDir}...`
