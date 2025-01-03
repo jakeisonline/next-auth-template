@@ -15,18 +15,18 @@ const TEMPLATE_DIR = path.resolve(__dirname, "../templates")
 
 export const init = new Command()
   .name("init")
-  .description("Initialize a new Next.js application with auth")
+  .description("initialize a new Next.js application with auth")
   .argument(
     "[template]",
-    "The name of the template to initialize. Optional, a select menu will be shown if left empty.",
+    "name of the template to initialize -- optional, a select menu will be shown if left empty",
   )
   .option(
-    "-p, --project-name <project-name>",
-    "The name of the project to initialize, also used as the directory name. If not provided, a prompt will be shown.",
+    "-p, --project-name <name>",
+    "name of the project to initialize, also used as the directory name",
   )
   .option(
     "-o, --overwrite",
-    "Overwrite existing files in the project directory without prompting",
+    "overwrite existing files in the directory (project name) without prompting",
   )
   .action(
     async (
