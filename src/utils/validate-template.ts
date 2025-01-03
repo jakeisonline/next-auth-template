@@ -1,5 +1,4 @@
-import { TEMPLATE_CHOICES } from "@/lib/constants"
-import { validationSchemas } from "@/utils/validation-schemas"
+import { TEMPLATE_CHOICES, VALIDATION_SCHEMAS } from "@/lib/constants"
 import { createSpinner } from "@/utils/spinner"
 
 export function validateTemplate(
@@ -7,7 +6,8 @@ export function validateTemplate(
   spinner: ReturnType<typeof createSpinner>,
 ) {
   if (template) {
-    const validatedTemplateName = validationSchemas.template.safeParse(template)
+    const validatedTemplateName =
+      VALIDATION_SCHEMAS.template.safeParse(template)
 
     if (!validatedTemplateName.success) {
       spinner.fail(

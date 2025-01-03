@@ -4,10 +4,9 @@ import prompts from "prompts"
 import { Command } from "commander"
 import { fileURLToPath } from "url"
 import { createSpinner } from "@/utils/spinner"
-import { validationSchemas } from "@/utils/validation-schemas"
 import { validateDirectory } from "@/utils/validate-directory"
 import { validateTemplate } from "@/utils/validate-template"
-import { TEMPLATE_CHOICES } from "@/lib/constants"
+import { TEMPLATE_CHOICES, VALIDATION_SCHEMAS } from "@/lib/constants"
 
 // Get the directory path of the current module
 // @ts-ignore # import.meta is defined just fine at compile time
@@ -43,7 +42,7 @@ export const init = new Command()
         initial: ".",
         validate: (value) => {
           const validatedProjectName =
-            validationSchemas.projectName.safeParse(value)
+            VALIDATION_SCHEMAS.projectName.safeParse(value)
           return validatedProjectName.success
             ? true
             : "Invalid project name. Must be a valid file system directory name and no spaces."
