@@ -1,7 +1,7 @@
 import * as path from "path"
 import * as fs from "fs-extra"
 import prompts from "prompts"
-import { Command } from "commander"
+import { Argument, Command } from "commander"
 import { fileURLToPath } from "url"
 import { createSpinner } from "@/utils/spinner"
 import { validateDirectory } from "@/utils/validate-directory"
@@ -16,9 +16,11 @@ const TEMPLATE_DIR = path.resolve(__dirname, "../templates")
 export const init = new Command()
   .name("init")
   .description("initialize a new Next.js application with auth")
-  .argument(
-    "[template]",
-    "name of the template to initialize -- optional, a select menu will be shown if left empty",
+  .addArgument(
+    new Argument(
+      "[template]",
+      "name of the template to initialize -- optional",
+    ).choices(TEMPLATE_CHOICES.map((choice) => choice.value)),
   )
   .option(
     "-p, --project-name <name>",
