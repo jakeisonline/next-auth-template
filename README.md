@@ -56,3 +56,13 @@ Options:
   -o, --overwrite            overwrite existing files in the directory (project name) without prompting
   -h, --help                 display help for command
 ```
+
+## Getting Started
+
+Once you've initialized a template using the CLI, visit the following links to learn more about the template you've chosen:
+
+- [One-to-one](https://jakeisonline.com/playground/tools/next-auth-template)
+
+# Documentation
+
+Visit https://jakeisonline.com/playground/tools/next-auth-template for detailed documentation about this CLI tool and all the templates.
