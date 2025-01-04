@@ -1,4 +1,4 @@
-import { pgTable as table, text, timestamp, unique } from "drizzle-orm/pg-core"
+import { pgTable as table, text, timestamp } from "drizzle-orm/pg-core"
 import { usersTable } from "@/db/schema/users"
 
 export const accountsTable = table("accounts", {
