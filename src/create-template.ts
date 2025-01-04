@@ -1,7 +1,6 @@
 import * as path from "path"
 import * as fs from "fs-extra"
 import prompts from "prompts"
-import { Argument, Command } from "commander"
 import { fileURLToPath } from "url"
 import { createSpinner } from "@/utils/spinner"
 import { validateDirectory } from "@/utils/validate-directory"
