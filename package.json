@@ -6,7 +6,15 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "121:db:push": "pnpm --filter next-auth-template-one-to-one run db:push",
+    "121:db:studio": "pnpm --filter next-auth-template-one-to-one run db:studio",
+    "121:db:migrate": "pnpm --filter next-auth-template-one-to-one run db:migrate",
+    "121:db:generate": "pnpm --filter next-auth-template-one-to-one run db:generate",
+    "121:dev": "pnpm --filter next-auth-template-one-to-one run dev",
+    "121:build": "pnpm --filter next-auth-template-one-to-one run build",
+    "121:start": "pnpm --filter next-auth-template-one-to-one run start",
+    "121:lint": "pnpm --filter next-auth-template-one-to-one run lint"
   },
   "bin": "./dist/index.js",
   "files": [
