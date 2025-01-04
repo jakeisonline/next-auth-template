@@ -1,5 +1,6 @@
-import { TEMPLATE_CHOICES, VALIDATION_SCHEMAS } from "@/lib/constants"
+import { VALIDATION_SCHEMAS } from "@/lib/constants"
 import { createSpinner } from "@/utils/spinner"
+import { getValidTemplates } from "@/utils/get-valid-templates"
 
 export function validateTemplate(
   template: string,
@@ -12,7 +13,7 @@ export function validateTemplate(
     if (!validatedTemplateName.success) {
       spinner.fail(
         "Invalid template name. Must be one of: " +
-          TEMPLATE_CHOICES.map((choice) => choice.value).join(", "),
+          getValidTemplates().map((choice) => choice.value).join(", "),
       )
       process.exit(1)
     }
