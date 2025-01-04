@@ -18,7 +18,9 @@ export const usersTable = table("users", {
   email: text("email").unique(),
   emailVerified: timestamp("email_verified", { mode: "date" }),
   image: text("image"),
-  accountId: text("account_id").references((): AnyPgColumn => accountsTable.id),
+  accountId: text("account_id")
+    .references((): AnyPgColumn => accountsTable.id)
+    .unique(),
   updatedAt: timestamp("updated_at")
     .notNull()
     .$onUpdate(() => new Date()),
