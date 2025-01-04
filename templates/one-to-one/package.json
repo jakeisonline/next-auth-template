@@ -1,5 +1,5 @@
 {
-  "name": "next-auth-template",
+  "name": "next-auth-template-one-to-one",
   "version": "0.2.0",
   "private": true,
   "scripts": {
