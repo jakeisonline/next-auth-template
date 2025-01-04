@@ -30,7 +30,7 @@
   },
   "packageManager": "pnpm@9.0.6",
   "workspaces": [
-    "src/*",
+    ".",
     "templates/*"
   ],
   "repository": {
@@ -39,6 +39,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@changesets/cli": "^2.27.11",
     "commander": "^13.0.0",
     "fs-extra": "^11.2.0",
     "ora": "^8.1.1",
@@ -46,7 +47,6 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.3",
     "@types/prompts": "^2.4.9",
