@@ -20,6 +20,11 @@
     "email": "hello@jakeisonline.com",
     "url": "https://jakeisonline.com"
   },
+  "packageManager": "pnpm@9.0.6",
+  "workspaces": [
+    "src/*",
+    "templates/*"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jakeisonline/next-auth-template.git"
@@ -33,9 +38,12 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.3",
     "@types/prompts": "^2.4.9",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
   }
