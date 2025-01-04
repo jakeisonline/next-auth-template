@@ -12,14 +12,20 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useActionState, useEffect } from "react"
+import { useActionState, useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useFormStatus } from "react-dom"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
+import { User } from "@/db/schema/users"
 
-export function AccountSetupForm() {
+export function AccountSetupForm({ currentUser }: { currentUser: User }) {
+  if (!currentUser) {
+    throw new Error("currentUser has not been passed to AccountSetupForm")
+  }
+
   const [state, formAction] = useActionState(doAccountSetup, undefined)
+  const [userName, setUserName] = useState(currentUser.name ?? "")
   const router = useRouter()
 
   useEffect(() => {
@@ -32,19 +38,25 @@ export function AccountSetupForm() {
   return (
     <Card className="mx-auto w-[24rem]">
       <CardHeader>
-        <CardTitle className="text-2xl">Let&apos;s get you set up</CardTitle>
+        <CardTitle className="text-2xl">Before you get started</CardTitle>
         <CardDescription>
-          We need a few bits of information to get you started.
+          Let&apos;s make sure we have the right information.
         </CardDescription>
       </CardHeader>
       <form action={formAction}>
         <CardContent>
           <div className="grid gap-2">
-            <Label htmlFor="account_name">Account name</Label>
-            <Input id="account_name" name="account_name" type="text" required />
+            <Label htmlFor="user_name">Your name</Label>
+            <Input
+              id="user_name"
+              name="user_name"
+              type="text"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              required
+            />
             <p className="text-sm text-muted-foreground">
-              This name will be visible on the interface, and to other users in
-              this account.
+              This is how you would like to be addressed.
             </p>
           </div>
         </CardContent>

@@ -23,7 +23,7 @@ import { ServerActionResponse } from "@/lib/types"
  * @throws {Error} When:
  *  - Form data is invalid
  *  - User is not authenticated
- *  - Account name validation fails
+ *  - User name validation fails
  *  - Database operations fail
  *
  * @returns {Promise<ServerActionResponse>} Object containing the status of the operation
@@ -31,7 +31,7 @@ import { ServerActionResponse } from "@/lib/types"
  * @example
  * ```tsx
  * const formData = new FormData();
- * formData.append('account_name', 'My Account');
+ * formData.append('user_name', 'My Name');
  * const response = await doAccountSetup(undefined, formData);
  * ```
  */
@@ -52,30 +52,12 @@ export async function doAccountSetup(
     throw new Error("[Auth Error] Account setup requires a signed in user")
   }
 
-  // Check for a valid account name
-  const validatedAccountName = z
-    .string({
-      required_error: "required_error",
-      invalid_type_error: "invalid_type_error",
-    })
-    .trim()
-    .safeParse(formData.get("account_name"))
-
   const currentUserId = session.user.id
-  const accountName = formData.get("account_name")
-
-  // If the account name is not valid, throw an error
-  if (!validatedAccountName.success) {
-    throw new Error(
-      "[Form Error] No account name was provided, or type is invalid",
-    )
-  }
 
   // Create the account
   const createdAccount = await db
     .insert(accountsTable)
     .values({
-      name: accountName as string,
       ownerId: currentUserId,
     })
     .returning()
@@ -85,10 +67,24 @@ export async function doAccountSetup(
     throw new Error("[DB Error] Failed to create account")
   }
 
-  // Update the user with the account ID
+  const validatedUserName = z
+    .string({
+      required_error: "required_error",
+      invalid_type_error: "invalid_type_error",
+    })
+    .trim()
+    .safeParse(formData.get("user_name"))
+
+  // If the account name is not valid, throw an error
+  if (!validatedUserName.success) {
+    throw new Error("[Form Error] No user name was provided, or type is invalid")
+  }
+
+  // Update the user with the account ID and name
   const updatedUser = await db
     .update(usersTable)
     .set({
+      name: validatedUserName.data,
       accountId: createdAccount[0].id,
     })
     .where(eq(usersTable.id, currentUserId))

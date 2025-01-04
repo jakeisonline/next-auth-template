@@ -5,7 +5,6 @@ export const accountsTable = table("accounts", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  name: text("name").notNull(),
   ownerId: text("owner_id")
     .notNull()
     .unique()
