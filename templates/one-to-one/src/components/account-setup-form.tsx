@@ -54,6 +54,7 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
               required
+              autoFocus
             />
             <p className="text-sm text-muted-foreground">
               This is how you would like to be addressed.
