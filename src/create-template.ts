@@ -10,7 +10,7 @@ import { TEMPLATE_CHOICES, VALIDATION_SCHEMAS } from "@/lib/constants"
 // Get the directory path of the current module
 // @ts-ignore # import.meta is defined just fine at compile time
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const TEMPLATE_DIR = path.resolve(__dirname, "../templates")
+const TEMPLATE_DIR = path.resolve(__dirname, "./templates")
 
 export const createTemplate = async (
   template: string,
