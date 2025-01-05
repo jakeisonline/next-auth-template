@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.2.1
+
+### Patch Changes
+
+- don't use publish as a script name
+
 ## 0.2.0
 
 ### Minor Changes
