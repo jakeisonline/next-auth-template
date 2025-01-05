@@ -54,41 +54,43 @@ export default function AppPage() {
     },
   ]
 
+  const packageDepedenciesFilename = "templates%2Fone-to-one%2Fpackage.json"
+
   const packageDependencies = [
     {
       name: "next",
       shieldsUrl:
-        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next",
+        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "next-auth",
       shieldsUrl:
-        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next-auth",
+        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next-auth?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "react",
       shieldsUrl:
-        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/react",
+        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/react?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "drizzle-orm",
       shieldsUrl:
-        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/drizzle-orm",
+        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/drizzle-orm?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "zod",
       shieldsUrl:
-        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/zod",
+        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/zod?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "@neondatabase/serverless",
       shieldsUrl:
-        "https://img.shields.io/badge/@neondatabase%2Fserverless-gray",
+        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/@neondatabase%2Fserverless?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
@@ -98,7 +100,7 @@ export default function AppPage() {
     {
       name: "tailwindcss",
       shieldsUrl:
-        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/dev/tailwindcss",
+        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/dev/tailwindcss?filename=${packageDepedenciesFilename}`,
     },
     {
       name: "@radix-ui",
@@ -107,7 +109,7 @@ export default function AppPage() {
     {
       name: "lucide-react",
       shieldsUrl:
-        "https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/lucide-react",
+        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/lucide-react?filename=${packageDepedenciesFilename}`,
     },
   ]
 
