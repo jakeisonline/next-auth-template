@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.1.2
+
+### Patch Changes
+
+- fix(one-to-one): shield.io badges need pointing to specific file now that one-to-one isn't root
+
 ## 0.1.1
 
 ### Patch Changes
