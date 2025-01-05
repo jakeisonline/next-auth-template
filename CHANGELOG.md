@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.1.3
+
+### Patch Changes
+
+- Adds github action to automate package publishing
+
 ## 0.1.2
 
 ### Patch Changes
