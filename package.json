@@ -11,7 +11,7 @@
     "build": "tsup",
     "start": "node dist/index.js",
     "version": "pnpm changeset version",
-    "publish": "pnpm build && changeset publish",
+    "release": "pnpm build && changeset publish",
     "121:db:push": "pnpm --filter next-auth-template-one-to-one run db:push",
     "121:db:studio": "pnpm --filter next-auth-template-one-to-one run db:studio",
     "121:db:migrate": "pnpm --filter next-auth-template-one-to-one run db:migrate",
