@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.2.0
+
+### Minor Changes
+
+- Force minor version bump to re-publish on NPM registry
+
 ## 0.1.3
 
 ### Patch Changes
