@@ -1,10 +1,4 @@
-export interface ServerActionResponse {
-  status: "success" | "error"
-  messages?: [
-    {
-      code?: string
-      title: string
-      body: string
-    },
-  ]
-}
+import { z } from "zod"
+import { serverActionResponseSchema } from "@/lib/schemas"
+
+export type ServerActionResponse = z.infer<typeof serverActionResponseSchema>

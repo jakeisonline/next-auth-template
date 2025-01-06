@@ -21,7 +21,7 @@ export function SocialSignInButton({
   return (
     <form action={formAction}>
       <input type="hidden" name="provider" value={providerName} />
-        <Button
+      <Button
         type="submit"
         className={cn("w-full", className)}
         {...props}
