@@ -1,5 +1,11 @@
 # next-auth-template-one-to-one
 
+## 0.5.0
+
+### Minor Changes
+
+- [#7](https://github.com/jakeisonline/next-auth-template/pull/7) [`ff8cb61`](https://github.com/jakeisonline/next-auth-template/commit/ff8cb61646ebd90d9089e866e487d8f05c7edb79) Thanks [@jakeisonline](https://github.com/jakeisonline)! - chore(one-to-one): remove local fonts as they are not being used
+
 ## 0.4.0
 
 ### Minor Changes
