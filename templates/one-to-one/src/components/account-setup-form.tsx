@@ -23,7 +23,10 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
     throw new Error("currentUser has not been passed to AccountSetupForm")
   }
 
-  const [state, formAction, isPending] = useActionState(doAccountSetup, undefined)
+  const [state, formAction, isPending] = useActionState(
+    doAccountSetup,
+    undefined,
+  )
   const [userName, setUserName] = useState(currentUser.name ?? "")
   const router = useRouter()
 
@@ -46,7 +49,7 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
   }, [state])
 
   return (
-    <Card className="mx-auto w-[24rem]">
+    <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
       <CardHeader>
         <CardTitle className="text-2xl">Before you get started</CardTitle>
         <CardDescription>
@@ -67,7 +70,7 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
               required
               autoFocus
             />
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               This is how you would like to be addressed.
             </p>
           </div>
