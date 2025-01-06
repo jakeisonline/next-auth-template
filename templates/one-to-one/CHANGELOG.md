@@ -1,5 +1,11 @@
 # next-auth-template-one-to-one
 
+## 0.4.0
+
+### Minor Changes
+
+- [#5](https://github.com/jakeisonline/next-auth-template/pull/5) [`571ff26`](https://github.com/jakeisonline/next-auth-template/commit/571ff26b0dbf464a536da1e8b53cdfe4dfd914c1) Thanks [@jakeisonline](https://github.com/jakeisonline)! - feat(one-to-one): generally improve the UI and UX of auth forms
+
 ## 0.3.0
 
 ### Minor Changes
