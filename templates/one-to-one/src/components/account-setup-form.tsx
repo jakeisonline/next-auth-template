@@ -14,7 +14,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useActionState, useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { useFormStatus } from "react-dom"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
 import { User } from "@/db/schema/users"
@@ -24,7 +23,7 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
     throw new Error("currentUser has not been passed to AccountSetupForm")
   }
 
-  const [state, formAction] = useActionState(doAccountSetup, undefined)
+  const [state, formAction, isPending] = useActionState(doAccountSetup, undefined)
   const [userName, setUserName] = useState(currentUser.name ?? "")
   const router = useRouter()
 
@@ -53,6 +52,7 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
               type="text"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
+              disabled={isPending}
               required
               autoFocus
             />
@@ -62,20 +62,12 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
-          <AccountSetupSubmitButton />
+          <Button type="submit" disabled={isPending}>
+            {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            Complete sign up
+          </Button>
         </CardFooter>
       </form>
     </Card>
-  )
-}
-
-function AccountSetupSubmitButton() {
-  const { pending } = useFormStatus()
-
-  return (
-    <Button type="submit" disabled={pending}>
-      {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-      Complete sign up
-    </Button>
   )
 }
