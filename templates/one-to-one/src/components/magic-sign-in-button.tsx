@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Loader2, CircleX } from "lucide-react"
-import { useFormStatus } from "react-dom"
 import { useActionState, useEffect } from "react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Input } from "@/components/ui/input"
@@ -42,7 +41,7 @@ export function MagicSignInButton() {
 }
 
 function MagicSignInDialogForm() {
-  const [state, formAction] = useActionState(doMagicAuth, undefined)
+  const [state, formAction, isPending] = useActionState(doMagicAuth, undefined)
   const router = useRouter()
 
   useEffect(() => {
@@ -61,47 +60,25 @@ function MagicSignInDialogForm() {
           you can use to sign in without a password.
         </DialogDescription>
       </DialogHeader>
-      <MagicSignInDialogInput disabled={state?.status === "success"} />
+      <div className="w-full my-4">
+        <Label htmlFor="email" className="sr-only">
+          Email
+        </Label>
+        <Input id="email" name="email" className="w-full" disabled={isPending} />
+      </div>
       {state?.messages && <MagicSignInDialogError state={state} />}
       <DialogFooter>
-        <MagicSignInDialogButtons disabled={state?.status === "success"} />
+        <DialogClose asChild>
+          <Button type="button" variant="outline" disabled={isPending}>
+            Cancel
+          </Button>
+        </DialogClose>
+        <Button type="submit" disabled={isPending}>
+          {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          Send magic link
+        </Button>
       </DialogFooter>
     </form>
-  )
-}
-
-function MagicSignInDialogInput({ disabled }: { disabled?: boolean }) {
-  const { pending } = useFormStatus()
-
-  const isDisabled = pending || disabled ? true : false
-
-  return (
-    <div className="w-full my-4">
-      <Label htmlFor="email" className="sr-only">
-        Email
-      </Label>
-      <Input id="email" name="email" className="w-full" disabled={isDisabled} />
-    </div>
-  )
-}
-
-function MagicSignInDialogButtons({ disabled }: { disabled?: boolean }) {
-  const { pending } = useFormStatus()
-
-  const isDisabled = pending || disabled ? true : false
-
-  return (
-    <>
-      <DialogClose asChild>
-        <Button type="button" variant="outline" disabled={isDisabled}>
-          Cancel
-        </Button>
-      </DialogClose>
-      <Button type="submit" disabled={isDisabled}>
-        {isDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        Send magic link
-      </Button>
-    </>
   )
 }
 
