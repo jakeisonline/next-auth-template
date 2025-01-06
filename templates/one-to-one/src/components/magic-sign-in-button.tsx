@@ -16,9 +16,9 @@ import { useActionState, useEffect } from "react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ServerActionResponse } from "@/lib/types"
 import { useRouter } from "next/navigation"
 import { doMagicAuth } from "@/actions/auth/do-magic-auth"
+import { serverActionResponseSchema } from "@/lib/schemas"
 
 export function MagicSignInButton() {
   return (
@@ -44,6 +44,18 @@ function MagicSignInDialogForm() {
   const [state, formAction, isPending] = useActionState(doMagicAuth, undefined)
   const router = useRouter()
 
+  // Validate the state response is what we're expecting
+  const validState = serverActionResponseSchema.safeParse(state)
+
+  // Check if the state is valid
+  if (!validState.success) {
+    throw new Error("Invalid state response from the server")
+  }
+
+  // We want to keep the form disabled if the action is successful, because we're going to redirect the user and the form is not reusable.
+  const isDisabled = isPending || state?.status === "success"
+
+  // Redirect the user to the verify page if the action is successful
   useEffect(() => {
     if (state?.status === "success") {
       router.push("/verify")
@@ -64,40 +76,30 @@ function MagicSignInDialogForm() {
         <Label htmlFor="email" className="sr-only">
           Email
         </Label>
-        <Input id="email" name="email" className="w-full" disabled={isPending} />
+        <Input id="email" name="email" className="w-full" disabled={isDisabled} />
       </div>
-      {state?.messages && <MagicSignInDialogError state={state} />}
+      {state?.messages && (
+        <>
+          {state.messages.map((message, index) => (
+            <Alert key={index} className="my-4 bg-red-100">
+              <CircleX className="h-4 w-4 stroke-red-700" />
+              <AlertTitle>{message.title}</AlertTitle>
+              <AlertDescription>{message.body}</AlertDescription>
+            </Alert>
+          ))}
+        </>
+      )}
       <DialogFooter>
         <DialogClose asChild>
-          <Button type="button" variant="outline" disabled={isPending}>
+          <Button type="button" variant="outline" disabled={isDisabled}>
             Cancel
           </Button>
         </DialogClose>
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isDisabled}>
           {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Send magic link
         </Button>
       </DialogFooter>
     </form>
-  )
-}
-
-function MagicSignInDialogError({
-  state,
-}: {
-  state: ServerActionResponse | null
-}) {
-  if (!state?.messages) return null
-
-  return (
-    <>
-      {state.messages.map((message, index) => (
-        <Alert key={index} className="my-4 bg-red-100">
-          <CircleX className="h-4 w-4 stroke-red-700" />
-          <AlertTitle>{message.title}</AlertTitle>
-          <AlertDescription>{message.body}</AlertDescription>
-        </Alert>
-      ))}
-    </>
   )
 }

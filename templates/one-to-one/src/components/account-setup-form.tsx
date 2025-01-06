@@ -1,7 +1,6 @@
 "use client"
 
 import { doAccountSetup } from "@/actions/account/do-account-setup"
-
 import {
   Card,
   CardContent,
@@ -17,6 +16,7 @@ import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
 import { User } from "@/db/schema/users"
+import { serverActionResponseSchema } from "@/lib/schemas"
 
 export function AccountSetupForm({ currentUser }: { currentUser: User }) {
   if (!currentUser) {
@@ -26,6 +26,17 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
   const [state, formAction, isPending] = useActionState(doAccountSetup, undefined)
   const [userName, setUserName] = useState(currentUser.name ?? "")
   const router = useRouter()
+
+  // Validate the state response is what we're expecting
+  const validState = serverActionResponseSchema.safeParse(state)
+
+  // Check if the state is valid
+  if (!validState.success) {
+    throw new Error("Invalid state response from the server")
+  }
+
+  // We want to keep the form disabled if the action is successful, because we're going to redirect the user and the form is not reusable.
+  const isDisabled = isPending || state?.status === "success"
 
   useEffect(() => {
     if (state?.status === "success") {
@@ -52,7 +63,7 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
               type="text"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
-              disabled={isPending}
+              disabled={isDisabled}
               required
               autoFocus
             />
@@ -62,8 +73,8 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
-          <Button type="submit" disabled={isPending}>
-            {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          <Button type="submit" disabled={isDisabled}>
+            {isDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Complete sign up
           </Button>
         </CardFooter>
