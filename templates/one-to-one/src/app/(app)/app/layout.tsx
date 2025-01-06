@@ -1,16 +1,5 @@
-import localFont from "next/font/local"
 import "../../globals.css"
 
-const geistSans = localFont({
-  src: "../../fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-})
-const geistMono = localFont({
-  src: "../../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-})
 import { fetchCurrentUser } from "@/actions/user/fetch-current-user"
 import { AppSidebar } from "@/components/layout/app-sidebar"
 import {
@@ -45,9 +34,7 @@ export default async function AppLayout({
 
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-dvh bg-background overflow-y-scroll overflow-x-clip flex flex-col items-center`}
-      >
+      <body className="bg-background flex min-h-dvh flex-col items-center overflow-x-clip overflow-y-scroll">
         <SidebarProvider defaultOpen={sidebarDefaultOpen}>
           <AppSidebar
             collapsible="icon"
@@ -55,7 +42,7 @@ export default async function AppLayout({
             currentUser={currentUser}
           />
           <SidebarInset className="peer-data-[variant=inset]:max-h-[calc(100svh-theme(spacing.4))]">
-            <header className="flex h-16 shrink-0 items-center gap-2 sticky top-0 bg-background">
+            <header className="bg-background sticky top-0 flex h-16 shrink-0 items-center gap-2">
               <div className="flex items-center gap-2 px-4">
                 <SidebarTrigger className="-ml-1" />
                 <Separator orientation="vertical" className="mr-2 h-4" />
@@ -68,7 +55,7 @@ export default async function AppLayout({
                 </Breadcrumb>
               </div>
             </header>
-            <div className="flex flex-1 flex-col gap-4 p-4 pt-0 overflow-y-scroll [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-primary/20 hover:[&::-webkit-scrollbar-thumb]:bg-primary/40 hover:[&::-webkit-scrollbar-track]:bg-primary/10 hover:[&::-webkit-scrollbar-thumb]:cursor-pointer">
+            <div className="[&::-webkit-scrollbar-thumb]:bg-primary/20 hover:[&::-webkit-scrollbar-thumb]:bg-primary/40 hover:[&::-webkit-scrollbar-track]:bg-primary/10 flex flex-1 flex-col gap-4 overflow-y-scroll p-4 pt-0 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:cursor-pointer [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-2">
               {children}
             </div>
           </SidebarInset>
