@@ -31,7 +31,7 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
   const validState = serverActionResponseSchema.safeParse(state)
 
   // Check if the state is valid
-  if (!validState.success) {
+  if (state !== undefined && !validState.success) {
     throw new Error("Invalid state response from the server")
   }
 
