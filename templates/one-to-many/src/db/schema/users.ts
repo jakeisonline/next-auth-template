@@ -1,11 +1,4 @@
-import {
-  pgTable as table,
-  pgEnum,
-  text,
-  timestamp,
-  AnyPgColumn,
-} from "drizzle-orm/pg-core"
-import { accountsTable } from "@/db/schema/accounts"
+import { pgTable as table, pgEnum, text, timestamp } from "drizzle-orm/pg-core"
 
 export const userTypes = pgEnum("user_types", ["admin", "user"])
 
