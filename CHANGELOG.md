@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.2.7
+
+### Patch Changes
+
+- [#13](https://github.com/jakeisonline/next-auth-template/pull/13) [`294d57e`](https://github.com/jakeisonline/next-auth-template/commit/294d57e5b0203bae85f3b9fe5816a4d5769d30fc) Thanks [@jakeisonline](https://github.com/jakeisonline)! - fix(release): attempt to fix changelog not being updated, and incorrect PR descriptions
+
 ## 0.2.4
 
 ### Patch Changes
