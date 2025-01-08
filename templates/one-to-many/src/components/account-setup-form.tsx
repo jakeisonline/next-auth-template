@@ -15,10 +15,14 @@ import { useActionState, useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
-import { User } from "@/db/schema/users"
 import { serverActionResponseSchema } from "@/lib/schemas"
+import { type CurrentUser } from "@/lib/types"
 
-export function AccountSetupForm({ currentUser }: { currentUser: User }) {
+export function AccountSetupForm({
+  currentUser,
+}: {
+  currentUser: CurrentUser
+}) {
   if (!currentUser) {
     throw new Error("currentUser has not been passed to AccountSetupForm")
   }
@@ -57,7 +61,7 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
         </CardDescription>
       </CardHeader>
       <form action={formAction}>
-        <CardContent>
+        <CardContent className="flex flex-col gap-8">
           <div className="grid gap-2">
             <Label htmlFor="user_name">Your name</Label>
             <Input
@@ -72,6 +76,14 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
             />
             <p className="text-muted-foreground text-sm">
               This is how you would like to be addressed.
+            </p>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="account_name">Account name</Label>
+            <Input id="account_name" name="account_name" type="text" required />
+            <p className="text-muted-foreground text-sm">
+              This name will be visible on the interface, and to other users in
+              this account.
             </p>
           </div>
         </CardContent>

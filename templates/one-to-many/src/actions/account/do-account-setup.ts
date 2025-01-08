@@ -3,10 +3,9 @@
 import { db } from "@/db"
 import { accountsTable } from "@/db/schema/accounts"
 import { auth } from "@/lib/auth"
-import { usersTable } from "@/db/schema/users"
-import { eq } from "drizzle-orm"
 import { z } from "zod"
 import { ServerActionResponse } from "@/lib/types"
+import { usersAccountsTable } from "@/db/schema/users_accounts"
 
 /**
  * Server action to set up a new account for a authenticated user.
@@ -52,13 +51,29 @@ export async function doAccountSetup(
     throw new Error("[Auth Error] Account setup requires a signed in user")
   }
 
-  const currentUserId = session.user.id
+  // Validate the account name
+  const validatedAccountName = z
+    .string({
+      required_error: "required_error",
+      invalid_type_error: "invalid_type_error",
+    })
+    .trim()
+    .safeParse(formData.get("account_name"))
 
-  // Create the account
+  const currentUserId = session.user.id
+  const accountName = formData.get("account_name")
+
+  // If the account name is not valid, throw an error
+  if (!validatedAccountName.success) {
+    throw new Error(
+      "[Form Error] No account name was provided, or type is invalid",
+    )
+  }
+
   const createdAccount = await db
     .insert(accountsTable)
     .values({
-      ownerId: currentUserId,
+      name: accountName as string,
     })
     .returning()
 
@@ -67,31 +82,17 @@ export async function doAccountSetup(
     throw new Error("[DB Error] Failed to create account")
   }
 
-  const validatedUserName = z
-    .string({
-      required_error: "required_error",
-      invalid_type_error: "invalid_type_error",
-    })
-    .trim()
-    .safeParse(formData.get("user_name"))
-
-  // If the account name is not valid, throw an error
-  if (!validatedUserName.success) {
-    throw new Error("[Form Error] No user name was provided, or type is invalid")
-  }
-
-  // Update the user with the account ID and name
-  const updatedUser = await db
-    .update(usersTable)
-    .set({
-      name: validatedUserName.data,
+  const createdUserAccount = await db
+    .insert(usersAccountsTable)
+    .values({
+      userId: currentUserId,
       accountId: createdAccount[0].id,
+      role: "owner",
+      status: "active",
     })
-    .where(eq(usersTable.id, currentUserId))
     .returning()
 
-  // If the user was not updated, throw an error
-  if (!updatedUser[0].accountId) {
+  if (!createdUserAccount[0].id) {
     throw new Error("[DB Error] Failed to update user account")
   }
 

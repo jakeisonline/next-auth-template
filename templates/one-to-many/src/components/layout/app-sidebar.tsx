@@ -24,7 +24,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { User } from "@/db/schema/users"
+import { type CurrentUser } from "@/lib/types"
 import Link from "next/link"
 
 const data = {
@@ -68,7 +68,7 @@ const data = {
 export function AppSidebar({
   currentUser,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { currentUser: User }) {
+}: React.ComponentProps<typeof Sidebar> & { currentUser: CurrentUser }) {
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -76,12 +76,12 @@ export function AppSidebar({
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/" prefetch={false}>
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <Command className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">
-                    next-auth-template
+                    {currentUser?.account?.name}
                   </span>
                 </div>
               </Link>

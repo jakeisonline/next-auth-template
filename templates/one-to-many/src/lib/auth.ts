@@ -8,6 +8,7 @@ import { sessionsTable } from "@/db/schema/sessions"
 import { verificationTokensTable } from "@/db/schema/verification_tokens"
 import Resend from "next-auth/providers/resend"
 import { NextRequest } from "next/server"
+import { fetchUserAccounts } from "@/actions/user/fetch-user-accounts"
 
 declare module "next-auth" {
   interface Session {
@@ -37,6 +38,16 @@ export const authConfig = {
       from: process.env.AUTH_MAGIC_LINK_EMAIL_FROM,
     }),
   ],
+} satisfies NextAuthConfig
+
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  adapter: DrizzleAdapter(db, {
+    usersTable: usersTable,
+    accountsTable: usersAuthsTable,
+    sessionsTable: sessionsTable,
+    verificationTokensTable: verificationTokensTable,
+  }),
+  secret: process.env.AUTH_SECRET,
   callbacks: {
     authorized: async ({
       auth: userSession,
@@ -105,16 +116,19 @@ export const authConfig = {
 
       return true
     },
-  },
-} satisfies NextAuthConfig
+    session: async ({ session, user }) => {
+      // Don't set the accountId if it's already set
+      if (!session.user.accountId) {
+        const userAccounts = await fetchUserAccounts(user.id)
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: DrizzleAdapter(db, {
-    usersTable: usersTable,
-    accountsTable: usersAuthsTable,
-    sessionsTable: sessionsTable,
-    verificationTokensTable: verificationTokensTable,
-  }),
-  secret: process.env.AUTH_SECRET,
+        // Only set accountId if user has at least one account
+        if (userAccounts.length > 0) {
+          session.user.accountId = userAccounts[0].accountId ?? ""
+        }
+      }
+
+      return session
+    },
+  },
   ...authConfig,
 })
