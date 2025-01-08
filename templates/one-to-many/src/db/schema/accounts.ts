@@ -5,10 +5,6 @@ export const accountsTable = table("accounts", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  ownerId: text("owner_id")
-    .notNull()
-    .unique()
-    .references(() => usersTable.id, { onDelete: "cascade" }),
   updatedAt: timestamp("updated_at")
     .notNull()
     .$onUpdate(() => new Date()),
