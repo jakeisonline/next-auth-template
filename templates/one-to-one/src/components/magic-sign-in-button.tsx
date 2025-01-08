@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import { doMagicAuth } from "@/actions/auth/do-magic-auth"
 import { serverActionResponseSchema } from "@/lib/schemas"
+import { useFormGroupIsSubmitting } from "@/hooks/use-form-group-is-submitting"
 
 export function MagicSignInButton() {
   const [state, formAction, isPending] = useActionState(doMagicAuth, undefined)
@@ -25,6 +26,15 @@ export function MagicSignInButton() {
 
   // We want to keep the form disabled if the action is successful, because we're going to redirect the user and the form is not reusable.
   const isDisabled = isPending || state?.status === "success"
+
+  const { formGroupIsSubmitting, setFormGroupIsSubmitting } =
+    useFormGroupIsSubmitting()
+
+  useEffect(() => {
+    if (isDisabled) {
+      setFormGroupIsSubmitting(isDisabled)
+    }
+  }, [isDisabled])
 
   // Redirect the user to the verify page if the action is successful
   useEffect(() => {
@@ -49,7 +59,7 @@ export function MagicSignInButton() {
             name="email"
             className="w-full"
             placeholder="Enter your email"
-            disabled={isDisabled}
+            disabled={formGroupIsSubmitting}
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -68,10 +78,10 @@ export function MagicSignInButton() {
           <Button
             variant="outline"
             type="submit"
-            disabled={isDisabled}
+            disabled={formGroupIsSubmitting}
             className="w-full"
           >
-            {isDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Send me a magic link
           </Button>
           <Alert className="bg-muted border-0">
