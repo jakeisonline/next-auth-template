@@ -18,7 +18,7 @@ export function AccountSignInForm({
 }: AccountSignInFormProps) {
   return (
     <FormGroupContextProvider>
-      <div className={cn("grid gap-4", className)}>
+      <div className={cn("grid gap-4", className)} {...props}>
         <SocialSignInButton providerName="google">
           <GoogleLogo className="mr-2.5" />
           Sign in with Google
