@@ -4,6 +4,20 @@ import { usersAccountsTable } from "@/db/schema/users_accounts"
 import { eq, and, isNotNull } from "drizzle-orm"
 import { inviteTokensTable } from "@/db/schema/invite_tokens"
 
+/**
+ * Fetches both active users and pending invites for a given account.
+ *
+ * @param accountId - The unique identifier of the account
+ * @returns {Promise<AccountUsersWithInvites[]>} An array combining both active users and pending invites,
+ *          where each item is discriminated by the 'type' property ('user' | 'invite')
+ *
+ * @example
+ * const usersAndInvites = await fetchAccountUsersWithInvites('account123');
+ * // Returns an array where each item is either:
+ * // - A user object with type: 'user', containing user details and their account role/status
+ * // - An invite object with type: 'invite', containing the invitation details
+ */
+
 export async function fetchAccountUsersWithInvites(accountId: string) {
   const [userResults, inviteResults] = await db.batch([
     db
@@ -42,7 +56,6 @@ export async function fetchAccountUsersWithInvites(accountId: string) {
   ]
 }
 
-// You might want to add these types
 export type AccountUsersWithInvites =
   | {
       type: "user"

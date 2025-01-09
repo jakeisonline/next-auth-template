@@ -5,6 +5,23 @@ import { eq } from "drizzle-orm"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
 import { accountsTable } from "@/db/schema/accounts"
 
+/**
+ * Fetches the current authenticated user along with their associated account details.
+ *
+ * @returns {Promise<{
+ *   id: string;
+ *   name: string | null;
+ *   email: string | null;
+ *   image: string | null;
+ *   account: {
+ *     id?: string;
+ *     name?: string | null;
+ *     role?: string | null;
+ *     status?: string | null;
+ *   };
+ * } | null>} Returns user data with account details if authenticated, null otherwise
+ */
+
 export async function fetchCurrentUser() {
   const session = await auth()
 

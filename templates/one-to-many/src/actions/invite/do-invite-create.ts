@@ -12,6 +12,22 @@ import { usersTable } from "@/db/schema/users"
 import { eq } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 
+/**
+ * Creates and sends an invitation to join a team/account
+ *
+ * @param prevState - Previous server action response state (unused but required for Next.js Server Actions)
+ * @param formData - Form data containing accountId and email
+ * @returns {Promise<ServerActionResponse>} Response object containing status, data, and optional messages
+ * @throws {Error} If formData is invalid or user is not authenticated
+ *
+ * The function performs the following checks:
+ * 1. Validates the email address
+ * 2. Verifies the user has admin/owner permissions
+ * 3. Checks if the invited user already exists
+ * 4. Creates an invite token
+ * 5. Sends an invitation email
+ */
+
 export async function doInviteCreate(
   prevState: ServerActionResponse | undefined,
   formData?: FormData,
