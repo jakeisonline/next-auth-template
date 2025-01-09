@@ -10,6 +10,7 @@ import { Resend } from "resend"
 import { z } from "zod"
 import { usersTable } from "@/db/schema/users"
 import { eq } from "drizzle-orm"
+import { revalidatePath } from "next/cache"
 
 export async function doInviteCreate(
   prevState: ServerActionResponse | undefined,
@@ -180,6 +181,8 @@ export async function doInviteCreate(
       ],
     }
   }
+
+  revalidatePath("/app/team")
 
   return {
     status: "success",

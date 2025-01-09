@@ -16,7 +16,7 @@ export const inviteTokensTable = table(
     accountId: text("account_id")
       .notNull()
       .references(() => accountsTable.id, { onDelete: "cascade" }),
-    recipient: text("identifier").unique().notNull(),
+    recipient: text("recipient").unique().notNull(),
     expiresAt: timestamp("expires_at").notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },
