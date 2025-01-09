@@ -1,3 +1,5 @@
+"use server"
+
 import { db } from "@/db"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
 import { UUID } from "@/lib/types"

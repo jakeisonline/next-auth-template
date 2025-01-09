@@ -1,3 +1,5 @@
+"use server"
+
 import { auth } from "@/lib/auth"
 import { db } from "@/db"
 import { usersTable } from "@/db/schema/users"

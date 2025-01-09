@@ -1,3 +1,5 @@
+"use server"
+
 import { db } from "@/db"
 import { usersTable } from "@/db/schema/users"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
