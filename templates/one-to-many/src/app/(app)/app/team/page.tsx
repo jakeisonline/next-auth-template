@@ -30,8 +30,6 @@ export default async function TeamPage() {
 
   const users = await fetchAccountUsersWithInvites(accountId)
 
-  console.log(users)
-
   return (
     <div>
       <h1>Team</h1>

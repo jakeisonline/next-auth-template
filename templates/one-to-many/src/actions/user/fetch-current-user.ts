@@ -26,7 +26,6 @@ export async function fetchCurrentUser() {
   const session = await auth()
 
   if (!session) {
-    console.log("no session")
     return null
   }
 
