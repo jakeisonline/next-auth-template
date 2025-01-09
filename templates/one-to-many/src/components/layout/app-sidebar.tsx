@@ -9,6 +9,7 @@ import {
   Send,
   Settings,
   Star,
+  Users,
 } from "lucide-react"
 
 import { NavMain } from "@/components/layout/nav-main"
@@ -31,9 +32,8 @@ const data = {
   navMain: [
     {
       title: "Inbox",
-      url: "#",
+      url: "/app",
       icon: Inbox,
-      isActive: true,
     },
     {
       title: "Today",
@@ -44,6 +44,11 @@ const data = {
       title: "Upcoming",
       url: "#",
       icon: Calendar,
+    },
+    {
+      title: "Team",
+      url: "/app/team",
+      icon: Users,
     },
     {
       title: "Settings",

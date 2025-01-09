@@ -1,13 +1,14 @@
 "use client"
 
 import { type LucideIcon } from "lucide-react"
-
 import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 export function NavMain({
   items,
@@ -16,9 +17,10 @@ export function NavMain({
     title: string
     url: string
     icon: LucideIcon
-    isActive?: boolean
   }[]
 }) {
+  const currentPath = usePathname()
+
   return (
     <SidebarGroup>
       <SidebarMenu>
@@ -27,12 +29,12 @@ export function NavMain({
             <SidebarMenuButton
               asChild
               tooltip={item.title}
-              isActive={item.isActive}
+              isActive={currentPath === item.url}
             >
-              <a href={item.url}>
+              <Link href={item.url}>
                 <item.icon />
                 <span>{item.title}</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
