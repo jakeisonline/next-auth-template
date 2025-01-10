@@ -51,7 +51,7 @@ export async function fetchAccountUsersWithInvites(accountId: string) {
     ...inviteResults.map((invite) => ({
       type: "invite" as const,
       email: invite.recipient,
-      ...invite,
+      id: invite.id,
       status: "pending" as const,
       role: "user" as const,
     })),
@@ -71,8 +71,7 @@ export type AccountUsersWithInvites =
   | {
       type: "invite"
       email: string
-      expiresAt: Date
-      token: string
+      id: string
       status: "pending"
       role: string
     }

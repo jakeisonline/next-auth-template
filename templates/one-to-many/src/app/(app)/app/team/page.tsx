@@ -18,6 +18,9 @@ import {
 } from "@/components/ui/select"
 import { fetchAccountUsersWithInvites } from "@/actions/account/fetch-account-users-with-invites"
 import { CircleUser } from "lucide-react"
+import RemoveUser from "@/components/remove-user"
+import RemoveInvite from "@/components/remove-invite"
+import { User } from "next-auth"
 
 export default async function TeamPage() {
   const session = await auth()
@@ -73,6 +76,7 @@ export default async function TeamPage() {
                             <SelectItem value="user">User</SelectItem>
                           </SelectContent>
                         </Select>
+                        <RemoveUser user={user as User} accountId={accountId} />
                       </TableCell>
                     </TableRow>
                   )
@@ -94,6 +98,7 @@ export default async function TeamPage() {
                         <p className="text-sm text-gray-500">
                           Invite pending...
                         </p>
+                        <RemoveInvite inviteId={user.id ?? ""} />
                       </TableCell>
                     </TableRow>
                   )

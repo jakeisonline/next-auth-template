@@ -11,6 +11,9 @@ import { usersTable } from "./users"
 export const inviteTokensTable = table(
   "invite_tokens",
   {
+    id: text("id")
+      .unique()
+      .$defaultFn(() => crypto.randomUUID()),
     token: text("token")
       .$defaultFn(() => crypto.randomBytes(12).toString("hex"))
       .notNull(),
