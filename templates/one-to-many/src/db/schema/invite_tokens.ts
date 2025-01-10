@@ -6,6 +6,7 @@ import {
 } from "drizzle-orm/pg-core"
 import { accountsTable } from "@/db/schema/accounts"
 import * as crypto from "crypto"
+import { usersTable } from "./users"
 
 export const inviteTokensTable = table(
   "invite_tokens",
@@ -16,6 +17,11 @@ export const inviteTokensTable = table(
     accountId: text("account_id")
       .notNull()
       .references(() => accountsTable.id, { onDelete: "cascade" }),
+    inviterId: text("inviter_id")
+      .notNull()
+      .references(() => usersTable.id, {
+        onDelete: "cascade",
+      }),
     recipient: text("recipient").unique().notNull(),
     expiresAt: timestamp("expires_at").notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),

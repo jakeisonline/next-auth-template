@@ -108,6 +108,7 @@ export async function doInviteCreate(
       .insert(inviteTokensTable)
       .values({
         accountId,
+        inviterId: session.user.id,
         recipient: validatedEmail.data,
         expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24), // 24 hours
       })
