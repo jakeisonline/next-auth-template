@@ -2,101 +2,115 @@
 
 import { db } from "@/db"
 import { accountsTable } from "@/db/schema/accounts"
-import { auth } from "@/lib/auth"
 import { z } from "zod"
 import { ServerActionResponse } from "@/lib/types"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
+import { withFormProtection } from "@/actions/action-middleware"
 
 /**
  * Server action to set up a new account for a authenticated user.
  *
- * @description
- * This action performs the following steps:
- * 1. Validates the user is authenticated
- * 2. Validates the account name from form data
- * 3. Creates a new account in the database
- * 4. Links the account to the authenticated user
+ * @param prevState - Previous server action response state (unused but required for Next.js Server Actions)
+ * @param formData - Form data containing the account setup information
+ * @returns {Promise<ServerActionResponse>} Response object containing status and optional messages
  *
- * @param {ServerActionResponse | undefined} prevState - Previous state from the server action
- * @param {FormData} [formData] - Form data containing the account setup information
- * @throws {Error} When:
- *  - Form data is invalid
- *  - User is not authenticated
- *  - User name validation fails
- *  - Database operations fail
+ * Protected by withActionProtection middleware which ensures:
+ * - User is authenticated
+ * - FormData is present
  *
- * @returns {Promise<ServerActionResponse>} Object containing the status of the operation
- *
- * @example
- * ```tsx
- * const formData = new FormData();
- * formData.append('user_name', 'My Name');
- * const response = await doAccountSetup(undefined, formData);
- * ```
+ * The function performs the following:
+ * 1. Validates the account name
+ * 2. Creates a new account in the database
+ * 3. Links the account to the authenticated user as owner
  */
 
-export async function doAccountSetup(
-  prevState: ServerActionResponse | undefined,
-  formData?: FormData,
-): Promise<ServerActionResponse> {
-  // If the form didn't provide a FormData object, throw an error
-  if (!(formData instanceof FormData)) {
-    throw new Error("[Form Error] Form data is not a FormData object")
-  }
+export const doAccountSetup = withFormProtection(
+  async (
+    prevState: ServerActionResponse | undefined,
+    formData?: FormData,
+  ): Promise<ServerActionResponse> => {
+    const validatedAccountName = z
+      .string({
+        required_error: "required_error",
+        invalid_type_error: "invalid_type_error",
+      })
+      .trim()
+      .safeParse(formData!.get("account_name"))
 
-  const session = await auth()
+    if (!validatedAccountName.success) {
+      return {
+        status: "error",
+        messages: [
+          {
+            title: "Invalid account name",
+            body: "No account name was provided, or type is invalid",
+          },
+        ],
+      }
+    }
 
-  // If the user is not signed in, throw an error
-  if (!session) {
-    throw new Error("[Auth Error] Account setup requires a signed in user")
-  }
+    try {
+      const createdAccount = await db
+        .insert(accountsTable)
+        .values({
+          name: validatedAccountName.data,
+        })
+        .returning()
 
-  // Validate the account name
-  const validatedAccountName = z
-    .string({
-      required_error: "required_error",
-      invalid_type_error: "invalid_type_error",
-    })
-    .trim()
-    .safeParse(formData.get("account_name"))
+      if (!createdAccount[0].id) {
+        return {
+          status: "error",
+          messages: [
+            {
+              title: "Account creation failed",
+              body: "Failed to create account",
+            },
+          ],
+        }
+      }
 
-  const currentUserId = session.user.id
-  const accountName = formData.get("account_name")
+      const createdUserAccount = await db
+        .insert(usersAccountsTable)
+        .values({
+          userId: formData!.get("sessionUserId") as string,
+          accountId: createdAccount[0].id,
+          role: "owner",
+          status: "active",
+        })
+        .returning()
 
-  // If the account name is not valid, throw an error
-  if (!validatedAccountName.success) {
-    throw new Error(
-      "[Form Error] No account name was provided, or type is invalid",
-    )
-  }
+      if (!createdUserAccount[0].id) {
+        return {
+          status: "error",
+          messages: [
+            {
+              title: "Account setup failed",
+              body: "Failed to update user account",
+            },
+          ],
+        }
+      }
 
-  const createdAccount = await db
-    .insert(accountsTable)
-    .values({
-      name: accountName as string,
-    })
-    .returning()
-
-  // If the account was not created, throw an error
-  if (!createdAccount[0].id) {
-    throw new Error("[DB Error] Failed to create account")
-  }
-
-  const createdUserAccount = await db
-    .insert(usersAccountsTable)
-    .values({
-      userId: currentUserId,
-      accountId: createdAccount[0].id,
-      role: "owner",
-      status: "active",
-    })
-    .returning()
-
-  if (!createdUserAccount[0].id) {
-    throw new Error("[DB Error] Failed to update user account")
-  }
-
-  return {
-    status: "success",
-  }
-}
+      return {
+        status: "success",
+      }
+    } catch (error) {
+      return {
+        status: "error",
+        messages: [
+          {
+            title: "Account setup failed",
+            body:
+              error instanceof Error
+                ? error.message
+                : "An unknown error occurred",
+          },
+        ],
+      }
+    }
+  },
+  {
+    requireAuth: true,
+    validateFormData: true,
+  },
+)

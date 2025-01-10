@@ -8,7 +8,8 @@ import { sessionsTable } from "@/db/schema/sessions"
 import { verificationTokensTable } from "@/db/schema/verification_tokens"
 import Resend from "next-auth/providers/resend"
 import { NextRequest } from "next/server"
-import { fetchUserAccounts } from "@/actions/user/fetch-user-accounts"
+import { eq } from "drizzle-orm"
+import { usersAccountsTable } from "@/db/schema/users_accounts"
 
 declare module "next-auth" {
   interface Session {
@@ -117,11 +118,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return true
     },
     session: async ({ session, user }) => {
-      // Don't set the accountId if it's already set
       if (!session.user.accountId) {
-        const userAccounts = await fetchUserAccounts(user.id)
+        // Direct, clear database query
+        const userAccounts = await db
+          .select()
+          .from(usersAccountsTable)
+          .where(eq(usersAccountsTable.userId, user.id))
 
-        // Only set accountId if user has at least one account
         if (userAccounts.length > 0) {
           session.user.accountId = userAccounts[0].accountId ?? ""
         }

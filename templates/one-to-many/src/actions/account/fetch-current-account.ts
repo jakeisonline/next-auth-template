@@ -4,6 +4,7 @@ import { accountsTable } from "@/db/schema/accounts"
 import { db } from "@/db"
 import { eq } from "drizzle-orm"
 import { auth } from "@/lib/auth"
+import { withQueryProtection } from "@/actions/action-middleware"
 
 /**
  * Fetches the current user's account details from the database.
@@ -17,35 +18,40 @@ import { auth } from "@/lib/auth"
  * @returns {Promise<null>} When the user's session doesn't have an accountId
  */
 
-export async function fetchCurrentAccount() {
-  const session = await auth()
+export const fetchCurrentAccount = withQueryProtection(
+  async () => {
+    const session = await auth()
 
-  // If the user is not signed in, throw an error
-  if (!session || !session.user) {
-    throw new Error(
-      "[Auth Error] Fetch current account requires a signed in user",
-    )
-  }
+    // If the user is not signed in, throw an error
+    if (!session || !session.user) {
+      throw new Error(
+        "[Auth Error] Fetch current account requires a signed in user",
+      )
+    }
 
-  const currentAccountId = session.user.accountId
+    const currentAccountId = session.user.accountId
 
-  // If the user does not have an account, throw an error
-  if (!currentAccountId) {
-    return null
-  }
+    // If the user does not have an account, throw an error
+    if (!currentAccountId) {
+      return null
+    }
 
-  // Get the account from the database
-  const accountQuery = await db
-    .select()
-    .from(accountsTable)
-    .where(eq(accountsTable.id, currentAccountId))
+    // Get the account from the database
+    const accountQuery = await db
+      .select()
+      .from(accountsTable)
+      .where(eq(accountsTable.id, currentAccountId))
 
-  const account = accountQuery[0]
+    const account = accountQuery[0]
 
-  // If the account was not found, throw an error
-  if (!account) {
-    throw new Error("[DB Error] No account found")
-  }
+    // If the account was not found, throw an error
+    if (!account) {
+      throw new Error("[DB Error] No account found")
+    }
 
-  return account
-}
+    return account
+  },
+  {
+    requireAuth: true,
+  },
+)

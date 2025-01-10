@@ -5,6 +5,7 @@ import { usersTable } from "@/db/schema/users"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
 import { eq, and, isNotNull } from "drizzle-orm"
 import { inviteTokensTable } from "@/db/schema/invite_tokens"
+import { withQueryProtection } from "@/actions/action-middleware"
 
 /**
  * Fetches both active users and pending invites for a given account.
@@ -20,43 +21,48 @@ import { inviteTokensTable } from "@/db/schema/invite_tokens"
  * // - An invite object with type: 'invite', containing the invitation details
  */
 
-export async function fetchAccountUsersWithInvites(accountId: string) {
-  const [userResults, inviteResults] = await db.batch([
-    db
-      .select({
-        id: usersTable.id,
-        name: usersTable.name,
-        email: usersTable.email,
-        image: usersTable.image,
-        status: usersAccountsTable.status,
-        role: usersAccountsTable.role,
-      })
-      .from(usersAccountsTable)
-      .leftJoin(usersTable, eq(usersAccountsTable.userId, usersTable.id))
-      .where(
-        and(
-          eq(usersAccountsTable.accountId, accountId),
-          isNotNull(usersTable.id),
+export const fetchAccountUsersWithInvites = withQueryProtection(
+  async (accountId: string) => {
+    const [userResults, inviteResults] = await db.batch([
+      db
+        .select({
+          id: usersTable.id,
+          name: usersTable.name,
+          email: usersTable.email,
+          image: usersTable.image,
+          status: usersAccountsTable.status,
+          role: usersAccountsTable.role,
+        })
+        .from(usersAccountsTable)
+        .leftJoin(usersTable, eq(usersAccountsTable.userId, usersTable.id))
+        .where(
+          and(
+            eq(usersAccountsTable.accountId, accountId),
+            isNotNull(usersTable.id),
+          ),
         ),
-      ),
 
-    db
-      .select()
-      .from(inviteTokensTable)
-      .where(eq(inviteTokensTable.accountId, accountId)),
-  ])
+      db
+        .select()
+        .from(inviteTokensTable)
+        .where(eq(inviteTokensTable.accountId, accountId)),
+    ])
 
-  return [
-    ...userResults.map((user) => ({ type: "user" as const, ...user })),
-    ...inviteResults.map((invite) => ({
-      type: "invite" as const,
-      email: invite.recipient,
-      id: invite.id,
-      status: "pending" as const,
-      role: "user" as const,
-    })),
-  ]
-}
+    return [
+      ...userResults.map((user) => ({ type: "user" as const, ...user })),
+      ...inviteResults.map((invite) => ({
+        type: "invite" as const,
+        email: invite.recipient,
+        id: invite.id,
+        status: "pending" as const,
+        role: "user" as const,
+      })),
+    ]
+  },
+  {
+    requireAuth: true,
+  },
+)
 
 export type AccountUsersWithInvites =
   | {

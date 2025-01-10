@@ -24,7 +24,6 @@ import { User } from "next-auth"
 
 export default async function TeamPage() {
   const session = await auth()
-
   const accountId = session?.user?.accountId
 
   if (!accountId) {
