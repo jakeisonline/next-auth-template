@@ -78,7 +78,7 @@ export default async function InvitePage({
             <p className="bg-card inline-block -translate-y-3 px-3">or</p>
           </div>
           <Button variant="outline" className="w-full">
-            <Link href="/signup">Create your own account</Link>
+            <Link href="/welcome">Create your own account</Link>
           </Button>
           <Alert className="bg-muted mt-3 border-0">
             <Sparkles className="stroke-muted-foreground h-4 w-4" />

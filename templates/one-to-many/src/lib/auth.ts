@@ -10,12 +10,14 @@ import Resend from "next-auth/providers/resend"
 import { NextRequest } from "next/server"
 import { eq } from "drizzle-orm"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
+import { fetchInvite } from "@/actions/invite/fetch-invite"
 
 declare module "next-auth" {
   interface Session {
     user: {
       id: string
       name: string
+      email: string
       image: string
       accountId: string
     }
@@ -87,6 +89,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         !requestedPath.includes("/welcome") &&
         !requestedPath.includes("/invite")
       ) {
+        // Check if the user has an invite pending via their email address
+        const invite = await fetchInvite(undefined, userSession.user.email)
+
+        if (invite) {
+          return Response.redirect(
+            new URL(`/invite/${invite.token}`, request.nextUrl),
+          )
+        }
+
         return Response.redirect(new URL("/welcome", request.nextUrl))
       }
 

@@ -5,8 +5,12 @@ import { withQueryProtection } from "../action-middleware"
 import { accountsTable } from "@/db/schema/accounts"
 
 export const fetchInvite = withQueryProtection(
-  async (inviteToken: string) => {
-    const rawResults = await db
+  async (inviteToken?: string, recipient?: string) => {
+    if (!inviteToken && !recipient) {
+      throw new Error("Either inviteToken or recipient must be provided.")
+    }
+
+    const query = db
       .select({
         token: inviteTokensTable.token,
         recipient: inviteTokensTable.recipient,
@@ -20,8 +24,14 @@ export const fetchInvite = withQueryProtection(
         accountsTable,
         eq(inviteTokensTable.accountId, accountsTable.id),
       )
-      .where(eq(inviteTokensTable.token, inviteToken))
-      .limit(1)
+
+    if (inviteToken) {
+      query.where(eq(inviteTokensTable.token, inviteToken))
+    } else if (recipient) {
+      query.where(eq(inviteTokensTable.recipient, recipient))
+    }
+
+    const rawResults = await query.limit(1)
 
     const invite = rawResults.reduce(
       (acc, row) => {
