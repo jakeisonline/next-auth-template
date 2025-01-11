@@ -92,7 +92,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         // Check if the user has an invite pending via their email address
         const invite = await fetchInvite(undefined, userSession.user.email)
 
-        if (invite) {
+        if (Object.keys(invite).length > 0) {
           return Response.redirect(
             new URL(`/invite/${invite.token}`, request.nextUrl),
           )
