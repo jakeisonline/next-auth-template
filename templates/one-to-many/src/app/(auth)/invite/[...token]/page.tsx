@@ -1,5 +1,6 @@
 import { fetchInvite } from "@/actions/invite/fetch-invite"
 import { fetchInviteFull } from "@/actions/invite/fetch-invite-full"
+import { AcceptInviteButton } from "@/components/accept-invite-button"
 import { AccountSignInForm } from "@/components/account-signin-form"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -71,9 +72,7 @@ export default async function InvitePage({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Button className="w-full">
-            <Link href="/signup">Join this account</Link>
-          </Button>
+          <AcceptInviteButton inviteToken={invite.token} />
           <div className="mt-6 w-full border-t border-gray-200 text-center">
             <p className="bg-card inline-block -translate-y-3 px-3">or</p>
           </div>
