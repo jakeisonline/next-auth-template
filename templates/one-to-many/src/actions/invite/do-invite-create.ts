@@ -11,6 +11,7 @@ import { usersTable } from "@/db/schema/users"
 import { eq } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 import { withFormProtection } from "@/actions/action-middleware"
+import { usersAccountsTable } from "@/db/schema/users_accounts"
 
 /**
  * Creates and sends an invitation to join a team/account
@@ -69,13 +70,30 @@ export const doInviteCreate = withFormProtection(
       }
     }
 
-    const existingUser = await db
+    // Check if the user already has an account in users_accounts join with the user's table
+    const existingUserAccount = await db
       .select()
-      .from(usersTable)
+      .from(usersAccountsTable)
+      .innerJoin(usersTable, eq(usersAccountsTable.userId, usersTable.id))
       .where(eq(usersTable.email, validatedEmail.data))
       .limit(1)
 
-    if (existingUser.length > 0) {
+    if (existingUserAccount.length > 0) {
+      if (existingUserAccount[0].users_accounts.accountId === accountId) {
+        return {
+          status: "error",
+          data: {
+            email: validatedEmail.data,
+          },
+          messages: [
+            {
+              title: "Invite was not created",
+              body: "A user with this email address already belongs to this account.",
+            },
+          ],
+        }
+      }
+
       return {
         status: "error",
         data: {
@@ -84,7 +102,7 @@ export const doInviteCreate = withFormProtection(
         messages: [
           {
             title: "Invite was not created",
-            body: "A user already exists with this email address.",
+            body: "A user with this email address already belongs to another account.",
           },
         ],
       }

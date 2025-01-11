@@ -13,6 +13,7 @@ export const inviteTokensTable = table(
   {
     id: text("id")
       .unique()
+      .notNull()
       .$defaultFn(() => crypto.randomUUID()),
     token: text("token")
       .$defaultFn(() => crypto.randomBytes(12).toString("hex"))

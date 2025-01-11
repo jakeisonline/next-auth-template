@@ -53,10 +53,12 @@ export async function doMagicAuth(
 
   try {
     const email = validatedEmail.data
+    const callbackUrl = formData.get("callbackUrl")
 
     await signIn("resend", {
       email,
       redirect: false,
+      callbackUrl,
     })
 
     return {

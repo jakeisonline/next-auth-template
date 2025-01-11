@@ -9,11 +9,13 @@ import { useFormGroupIsSubmitting } from "@/hooks/use-form-group-is-submitting"
 
 export function SocialSignInButton({
   providerName,
+  callbackUrl,
   className,
   children,
   ...props
 }: {
   providerName: "google"
+  callbackUrl?: string
   className?: string
   children: React.ReactNode
 }) {
@@ -31,6 +33,7 @@ export function SocialSignInButton({
   return (
     <form action={formAction}>
       <input type="hidden" name="provider" value={providerName} />
+      <input type="hidden" name="callbackUrl" value={callbackUrl} />
       <Button
         type="submit"
         className={cn("w-full", className)}

@@ -8,23 +8,25 @@ import { cn } from "@/lib/utils"
 
 type AccountSignInFormProps = {
   showMagicSignIn?: boolean
+  callbackUrl?: string
   className?: string
 }
 
 export function AccountSignInForm({
   showMagicSignIn = false,
+  callbackUrl,
   className,
   ...props
 }: AccountSignInFormProps) {
   return (
     <FormGroupContextProvider>
       <div className={cn("grid gap-4", className)} {...props}>
-        <SocialSignInButton providerName="google">
+        <SocialSignInButton providerName="google" callbackUrl={callbackUrl}>
           <GoogleLogo className="mr-2.5" />
           Sign in with Google
         </SocialSignInButton>
       </div>
-      {showMagicSignIn && <MagicSignInButton />}
+      {showMagicSignIn && <MagicSignInButton callbackUrl={callbackUrl} />}
     </FormGroupContextProvider>
   )
 }

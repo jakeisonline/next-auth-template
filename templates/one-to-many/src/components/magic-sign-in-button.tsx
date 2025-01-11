@@ -11,7 +11,7 @@ import { doMagicAuth } from "@/actions/auth/do-magic-auth"
 import { serverActionResponseSchema } from "@/lib/schemas"
 import { useFormGroupIsSubmitting } from "@/hooks/use-form-group-is-submitting"
 
-export function MagicSignInButton() {
+export function MagicSignInButton({ callbackUrl }: { callbackUrl?: string }) {
   const [state, formAction, isPending] = useActionState(doMagicAuth, undefined)
   const [email, setEmail] = useState("")
   const router = useRouter()
@@ -51,6 +51,7 @@ export function MagicSignInButton() {
       </div>
       <div className="w-full">
         <form className="flex flex-col gap-3" action={formAction}>
+          <input type="hidden" name="callbackUrl" value={callbackUrl} />
           <Label htmlFor="email" className="sr-only">
             Email
           </Label>

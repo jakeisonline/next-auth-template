@@ -69,6 +69,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           "/signup",
           "/verify",
           "/signout",
+          "/invite",
         ]
 
         if (nonSessionAllowedPaths.some((m) => requestedPath.includes(m))) {
@@ -81,7 +82,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       const userAccountId = userSession.user.accountId
 
       // No account ID means they have not finished onboarding
-      if (!userAccountId && !requestedPath.includes("/welcome")) {
+      if (
+        !userAccountId &&
+        !requestedPath.includes("/welcome") &&
+        !requestedPath.includes("/invite")
+      ) {
         return Response.redirect(new URL("/welcome", request.nextUrl))
       }
 

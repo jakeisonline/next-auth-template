@@ -44,6 +44,8 @@ export async function doSocialAuth(
     throw new Error("[Form Error] Invalid provider was provided")
   }
 
+  const callbackUrl = formData.get("callbackUrl")
+
   // Sign in with the provider
-  await signIn(String(provider))
+  await signIn(String(provider), { callbackUrl })
 }
