@@ -121,7 +121,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (!session.user.accountId) {
         // Direct, clear database query
         const userAccounts = await db
-          .select()
+          .select({ accountId: usersAccountsTable.accountId })
           .from(usersAccountsTable)
           .where(eq(usersAccountsTable.userId, user.id))
 
