@@ -12,6 +12,7 @@ export const fetchInvite = withQueryProtection(
         recipient: inviteTokensTable.recipient,
         accountId: accountsTable.id,
         accountName: accountsTable.name,
+        expiresAt: inviteTokensTable.expiresAt,
         inviterId: inviteTokensTable.inviterId,
       })
       .from(inviteTokensTable)
@@ -28,6 +29,7 @@ export const fetchInvite = withQueryProtection(
           acc = {
             token: row.token,
             recipient: row.recipient,
+            expiresAt: row.expiresAt,
             account: {},
             inviterId: row.inviterId,
           }
@@ -45,6 +47,7 @@ export const fetchInvite = withQueryProtection(
       {} as {
         token: string
         recipient: string
+        expiresAt: Date
         account: {
           id?: string
           name?: string | null

@@ -4,15 +4,9 @@ import { AccountSignInForm } from "@/components/account-signin-form"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { auth } from "@/lib/auth"
-import { CircleUser, Sparkles } from "lucide-react"
+import { Ban, CircleUser, Sparkles } from "lucide-react"
 import Link from "next/link"
 export default async function InvitePage({
   params,
@@ -24,6 +18,44 @@ export default async function InvitePage({
 
   if (session) {
     const invite = await fetchInviteFull(inviteToken)
+
+    // If invite is past expiry date
+    if (invite.expiresAt < new Date()) {
+      return (
+        <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
+          <CardHeader className="flex flex-col items-center gap-3 text-center">
+            <Avatar className="size-32">
+              <AvatarFallback>
+                <Ban className="size-16 stroke-1" />
+              </AvatarFallback>
+            </Avatar>
+            <CardTitle className="text-xl">
+              This invitation has expired.
+            </CardTitle>
+          </CardHeader>
+          <CardContent></CardContent>
+        </Card>
+      )
+    }
+
+    // If user is already part of an account
+    if (session.user.accountId !== undefined) {
+      return (
+        <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
+          <CardHeader className="flex flex-col items-center gap-3 text-center">
+            <Avatar className="size-32">
+              <AvatarFallback>
+                <Ban className="size-16 stroke-1" />
+              </AvatarFallback>
+            </Avatar>
+            <CardTitle className="text-xl">
+              You cannot be part of more than one account.
+            </CardTitle>
+          </CardHeader>
+          <CardContent></CardContent>
+        </Card>
+      )
+    }
 
     return (
       <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
@@ -61,6 +93,25 @@ export default async function InvitePage({
   }
 
   const invite = await fetchInvite(inviteToken)
+
+  // If invite is past expiry date
+  if (invite.expiresAt < new Date()) {
+    return (
+      <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
+        <CardHeader className="flex flex-col items-center gap-3 text-center">
+          <Avatar className="size-32">
+            <AvatarFallback>
+              <Ban className="size-16 stroke-1" />
+            </AvatarFallback>
+          </Avatar>
+          <CardTitle className="text-xl">
+            This invitation has expired.
+          </CardTitle>
+        </CardHeader>
+        <CardContent></CardContent>
+      </Card>
+    )
+  }
 
   return (
     <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">

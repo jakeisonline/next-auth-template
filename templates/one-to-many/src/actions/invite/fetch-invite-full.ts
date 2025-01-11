@@ -11,6 +11,7 @@ export const fetchInviteFull = withQueryProtection(
       .select({
         id: inviteTokensTable.id,
         token: inviteTokensTable.token,
+        expiresAt: inviteTokensTable.expiresAt,
         accountId: accountsTable.id,
         accountName: accountsTable.name,
         inviterId: usersTable.id,
@@ -33,6 +34,7 @@ export const fetchInviteFull = withQueryProtection(
           acc = {
             id: row.id,
             token: row.token,
+            expiresAt: row.expiresAt,
             account: {},
             inviter: {},
           }
@@ -59,6 +61,7 @@ export const fetchInviteFull = withQueryProtection(
       {} as {
         id: string
         token: string
+        expiresAt: Date
         account: {
           id?: string
           name?: string | null
