@@ -2,15 +2,23 @@
 
 import { doInviteAccept } from "@/actions/invite/do-invite-accept"
 import { Button } from "@/components/ui/button"
-import { useActionState } from "react"
+import { useActionState, useEffect } from "react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function AcceptInviteButton({ inviteToken }: { inviteToken: string }) {
+  const router = useRouter()
   const [state, formAction, isPending] = useActionState(
     doInviteAccept,
     undefined,
   )
+
+  useEffect(() => {
+    if (state?.status === "success") {
+      router.push("/welcome")
+    }
+  }, [state])
 
   return (
     <form action={formAction} className="flex flex-col gap-2">
