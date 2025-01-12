@@ -11,6 +11,7 @@ import { NextRequest } from "next/server"
 import { eq } from "drizzle-orm"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
 import { fetchInvite } from "@/actions/invite/fetch-invite"
+import { doSendMagicLink } from "@/actions/auth/do-send-magic-link"
 
 declare module "next-auth" {
   interface Session {
@@ -39,6 +40,13 @@ export const authConfig = {
     Resend({
       apiKey: process.env.RESEND_KEY,
       from: process.env.RESEND_EMAIL_FROM,
+      sendVerificationRequest: async ({
+        identifier: email,
+        url,
+        provider: { server, from },
+      }) => {
+        doSendMagicLink(email, url)
+      },
     }),
   ],
 } satisfies NextAuthConfig
