@@ -188,7 +188,7 @@ export const doInviteCreate = withFormProtection(
       from: "next-multi-auth-template <me@jakeisonline.com>",
       to: validatedEmail.data,
       subject: "Invite to join the team",
-      html: `<p>Click <a href="${process.env.NEXT_PUBLIC_APP_URL}/invite/${invite[0].token}">here</a> to join the team.</p>`,
+      html: `<p>Click <a href="${process.env.BASE_URL}/invite/${invite[0].token}">here</a> to join the team.</p>`,
     })
 
     if (error) {
