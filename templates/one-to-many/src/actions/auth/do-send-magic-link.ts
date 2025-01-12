@@ -2,7 +2,7 @@
 
 import { Resend } from "resend"
 
-export const doSendMagicLink = async (email: any, url: any) => {
+export const doSendMagicLink = async (email: string, url: string) => {
   const EmailClient = new Resend(process.env.RESEND_KEY)
 
   const { error } = await EmailClient.emails.send({
@@ -23,7 +23,7 @@ function EmailMagicLink({
   context,
 }: {
   type: "html" | "text"
-  context: { url: any }
+  context: { url: string }
 }) {
   if (type === "html") {
     return `
