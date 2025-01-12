@@ -2,12 +2,13 @@
 
 import { db } from "@/db"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
-import { ServerActionResponse, UUID } from "@/lib/types"
+import { ServerActionResponse } from "@/lib/types"
 import { eq } from "drizzle-orm"
 import { withFormProtection } from "@/actions/action-middleware"
 import { userAccountsRoles } from "@/db/schema/users_accounts"
 import { z } from "zod"
 import { revalidatePath } from "next/cache"
+
 export const doChangeUserRole = withFormProtection(
   async (
     prevState: ServerActionResponse | undefined,

@@ -2,7 +2,6 @@
 
 import { doInviteAccept } from "@/actions/invite/do-invite-accept"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import { useActionState } from "react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"

@@ -73,8 +73,8 @@ export default function RemoveInvite({ inviteId }: { inviteId: UUID }) {
             <AlertDialogTitle>Remove this invite?</AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogDescription id="remove-user-from-team-description">
-            This invite will be immediately removed, and won't be able to be
-            used to join the team.
+            This invite will be immediately removed, and won&apos;t be able to
+            be used to join the team.
           </AlertDialogDescription>
           {error && !isPending && (
             <Alert variant="destructive" className="mb-4 mt-2">

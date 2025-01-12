@@ -1,5 +1,6 @@
 "use client"
 
+import { type AccountUsersWithInvites } from "@/actions/account/fetch-account-users-with-invites"
 import { doChangeUserRole } from "@/actions/user/do-change-user-role"
 import {
   Select,
@@ -11,11 +12,11 @@ import {
 import { userAccountsRoles } from "@/db/schema/users_accounts"
 import { capitalize } from "@/lib/utils"
 import { Loader2 } from "lucide-react"
-import { useState, useRef, useActionState, useMemo } from "react"
+import { useState, useRef, useActionState } from "react"
 
-export function UserRoleSelect({ user }: { user: any }) {
+export function UserRoleSelect({ user }: { user: AccountUsersWithInvites }) {
   const [role, setRole] = useState(user.role)
-  const [_, formAction, isPending] = useActionState(doChangeUserRole, undefined)
+  const [, formAction, isPending] = useActionState(doChangeUserRole, undefined)
   const formRef = useRef<HTMLFormElement>(null)
 
   const handleValueChange = (value: string) => {
@@ -40,7 +41,6 @@ export function UserRoleSelect({ user }: { user: any }) {
   return (
     <form ref={formRef} action={formAction}>
       <input type="hidden" name="userId" value={user.id} />
-      <input type="hidden" name="accountId" value={user.accountId} />
       <input type="hidden" name="role" value={role} />
       <Select name="role" value={role} onValueChange={handleValueChange}>
         <SelectTrigger disabled={isPending}>
