@@ -30,7 +30,6 @@ export const fetchAccountUsersWithInvites = withQueryProtection(
           name: usersTable.name,
           email: usersTable.email,
           image: usersTable.image,
-          status: usersAccountsTable.status,
           role: usersAccountsTable.role,
         })
         .from(usersAccountsTable)

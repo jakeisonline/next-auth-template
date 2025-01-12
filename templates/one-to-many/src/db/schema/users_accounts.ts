@@ -9,11 +9,6 @@ import {
 } from "drizzle-orm/pg-core"
 import { eq, sql } from "drizzle-orm"
 
-export const usersAccountStatuses = pgEnum("user_account_statuses", [
-  "pending",
-  "active",
-])
-
 export const userAccountsRoles = pgEnum("user_account_roles", [
   "owner",
   "admin",
@@ -30,7 +25,6 @@ export const usersAccountsTable = table(
       .unique()
       .references(() => usersTable.id),
     accountId: text("account_id").references(() => accountsTable.id),
-    status: usersAccountStatuses("status").notNull().default("pending"),
     role: userAccountsRoles("role").notNull().default("user"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },
