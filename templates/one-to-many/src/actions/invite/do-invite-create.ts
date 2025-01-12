@@ -51,8 +51,8 @@ export const doInviteCreate = withFormProtection(
         data: { email: validatedEmail.data },
         messages: [
           {
-            title: "Invite was not created",
-            body: "The email address is not valid.",
+            title: "Email address is not valid",
+            body: "Please check for typos and try again.",
           },
         ],
       }
@@ -89,7 +89,7 @@ export const doInviteCreate = withFormProtection(
           },
           messages: [
             {
-              title: "Invite was not created",
+              title: "Already a team member",
               body: "A user with this email address already belongs to this account.",
             },
           ],
@@ -103,7 +103,7 @@ export const doInviteCreate = withFormProtection(
         },
         messages: [
           {
-            title: "Invite was not created",
+            title: "Already part of another team",
             body: "A user with this email address already belongs to another account.",
           },
         ],
@@ -125,8 +125,8 @@ export const doInviteCreate = withFormProtection(
         },
         messages: [
           {
-            title: "Invite was not created",
-            body: "The account does not exist.",
+            title: "Account does not exist",
+            body: "The account you are trying to invite to does not exist.",
           },
         ],
       }
@@ -153,8 +153,8 @@ export const doInviteCreate = withFormProtection(
           },
           messages: [
             {
-              title: "Invite was not created",
-              body: "An error occurred while creating the invite.",
+              title: "An expected error occurred",
+              body: "An error occurred when attempting to create the invite.",
             },
           ],
         }
@@ -170,12 +170,14 @@ export const doInviteCreate = withFormProtection(
           },
           messages: [
             {
-              title: "Invite was not created",
-              body: "An invite has already been sent to this email address.",
+              title: "Invite already sent",
+              body: "A valid invite has already been sent to this email address.",
             },
           ],
         }
       }
+
+      console.error(error)
 
       return {
         status: "error",
@@ -184,8 +186,8 @@ export const doInviteCreate = withFormProtection(
         },
         messages: [
           {
-            title: "Invite was not created",
-            body: "An error occurred while creating the invite.",
+            title: "An unexpected error occurred",
+            body: "An error occurred when attempting to create the invite.",
           },
         ],
       }
@@ -223,6 +225,8 @@ export const doInviteCreate = withFormProtection(
     })
 
     if (error) {
+      console.error(error)
+
       return {
         status: "error",
         data: {
