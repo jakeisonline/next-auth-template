@@ -4,6 +4,30 @@ import { inviteTokensTable } from "@/db/schema/invite_tokens"
 import { withQueryProtection } from "../action-middleware"
 import { accountsTable } from "@/db/schema/accounts"
 
+/**
+ * Fetches invite details based on the provided invite token or recipient.
+ *
+ * This function queries the database to retrieve invite information, including
+ * the associated account details, using either an invite token or a recipient identifier.
+ *
+ * @param {string} [inviteToken] - The token of the invite to fetch details for.
+ * @param {string} [recipient] - The recipient identifier to fetch invite details for.
+ * @returns {Promise<{
+ *   token: string,
+ *   recipient: string,
+ *   expiresAt: Date,
+ *   account: {
+ *     id?: string,
+ *     name?: string | null
+ *   },
+ *   inviterId: string
+ * }>} A promise that resolves to an object containing the invite details.
+ *
+ * @throws {Error} Throws an error if neither inviteToken nor recipient is provided.
+ * @throws {Error} Throws an error if authentication or authorization fails.
+ * @throws {Error} Throws an error if the database query fails.
+ */
+
 export const fetchInvite = withQueryProtection(
   async (inviteToken?: string, recipient?: string) => {
     if (!inviteToken && !recipient) {

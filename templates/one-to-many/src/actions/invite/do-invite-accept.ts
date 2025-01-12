@@ -9,6 +9,24 @@ import { usersAccountsTable } from "@/db/schema/users_accounts"
 import { inviteTokensTable } from "@/db/schema/invite_tokens"
 import { eq } from "drizzle-orm"
 
+/**
+ * Accepts an invite by validating the invite token, ensuring the invite is not expired,
+ * and confirming the invite is intended for the current user. If valid, the user is added
+ * to the account and the invite is deleted.
+ *
+ * @param {ServerActionResponse | undefined} prevState - The previous state of the server action.
+ * @param {FormData} [formData] - The form data containing the invite token.
+ * @returns {Promise<ServerActionResponse>} A promise that resolves to the server action response.
+ *
+ * @throws Will return an error response if:
+ * - The invite token is not provided.
+ * - The invite does not exist.
+ * - The invite has expired.
+ * - The invite is not intended for the current user.
+ * - There is an error adding the user to the account.
+ * - There is an error deleting the invite.
+ */
+
 export const doInviteAccept = withFormProtection(
   async (
     prevState: ServerActionResponse | undefined,

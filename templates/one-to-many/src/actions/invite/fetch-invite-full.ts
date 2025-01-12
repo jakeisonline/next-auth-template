@@ -5,6 +5,33 @@ import { withQueryProtection } from "../action-middleware"
 import { usersTable } from "@/db/schema/users"
 import { accountsTable } from "@/db/schema/accounts"
 
+/**
+ * Fetches the full details of an invite using the provided invite token.
+ *
+ * This function retrieves information about the invite, including the associated
+ * account and inviter details, by joining the invite tokens, accounts, and users tables.
+ *
+ * @param {string} inviteToken - The token of the invite to fetch details for.
+ * @returns {Promise<{
+ *   id: string,
+ *   token: string,
+ *   expiresAt: Date,
+ *   account: {
+ *     id?: string,
+ *     name?: string | null
+ *   },
+ *   inviter: {
+ *     id?: string,
+ *     name?: string | null,
+ *     email?: string | null,
+ *     image?: string | null
+ *   }
+ * }>} A promise that resolves to an object containing the invite details.
+ *
+ * @throws {Error} Throws an error if authentication or authorization fails.
+ * @throws {Error} Throws an error if the database query fails.
+ */
+
 export const fetchInviteFull = withQueryProtection(
   async (inviteToken: string) => {
     const rawResults = await db
