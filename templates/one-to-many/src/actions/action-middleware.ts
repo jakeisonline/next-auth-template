@@ -8,14 +8,14 @@ import { fetchAccountUsers } from "@/actions/account/fetch-account-users"
  * @template Args - Array type containing the function arguments
  */
 
-type ActionFunction<T, Args extends any[]> = (...args: Args) => Promise<T>
+type ActionFunction<T, Args extends unknown[]> = (...args: Args) => Promise<T>
 
 /**
  * Type definition for server action functions that handle form submissions
  * @template Args - Array type containing additional function arguments
  */
 
-type ActionFunctionWithState<Args extends any[]> = (
+type ActionFunctionWithState<Args extends unknown[]> = (
   prevState: ServerActionResponse | undefined,
   formData: FormData,
   ...args: Args
@@ -82,7 +82,7 @@ async function validateAuth(requireAuth: boolean, requireAdmin?: boolean) {
  * @throws {Error} When authentication or authorization fails
  */
 
-export function withQueryProtection<T, Args extends any[]>(
+export function withQueryProtection<T, Args extends unknown[]>(
   action: ActionFunction<T, Args>,
   options: Omit<MiddlewareOptions, "type" | "validateFormData"> = {
     requireAuth: true,
@@ -108,7 +108,7 @@ export function withQueryProtection<T, Args extends any[]>(
  * @returns {Promise<ServerActionResponse>} Protected form action function
  */
 
-export function withFormProtection<Args extends any[]>(
+export function withFormProtection<Args extends unknown[]>(
   action: ActionFunctionWithState<Args>,
   options: Omit<MiddlewareOptions, "type"> = {
     requireAuth: true,
@@ -129,6 +129,19 @@ export function withFormProtection<Args extends any[]>(
       }
 
       const [prevState, formData, ...restArgs] = args
+
+      if (prevState && typeof prevState !== "object") {
+        return {
+          status: "error",
+          messages: [
+            {
+              title: "State Error",
+              body: "Previous state is not of the expected type",
+            },
+          ],
+        }
+      }
+
       if (options.validateFormData && !(formData instanceof FormData)) {
         return {
           status: "error",
@@ -141,7 +154,11 @@ export function withFormProtection<Args extends any[]>(
         }
       }
 
-      return await action(prevState, formData, ...(restArgs as Args))
+      return await action(
+        prevState as ServerActionResponse,
+        formData as FormData,
+        ...(restArgs as Args),
+      )
     } catch (error) {
       return {
         status: "error",
