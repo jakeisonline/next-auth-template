@@ -39,7 +39,6 @@ export const fetchCurrentUser = withQueryProtection(
         accountId: accountsTable.id,
         accountName: accountsTable.name,
         accountRole: usersAccountsTable.role,
-        accountStatus: usersAccountsTable.status,
       })
       .from(usersTable)
       .leftJoin(
@@ -69,7 +68,6 @@ export const fetchCurrentUser = withQueryProtection(
             id: row.accountId,
             name: row.accountName,
             role: row.accountRole,
-            status: row.accountStatus,
           }
         }
 
@@ -84,7 +82,6 @@ export const fetchCurrentUser = withQueryProtection(
           id?: string
           name?: string | null
           role?: string | null
-          status?: string | null
         }
       },
     )
