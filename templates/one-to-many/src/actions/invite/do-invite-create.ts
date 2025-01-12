@@ -13,6 +13,7 @@ import { revalidatePath } from "next/cache"
 import { withFormProtection } from "@/actions/action-middleware"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
 import { EmailInvite } from "@/components/layout/email-invite"
+import { accountsTable } from "@/db/schema/accounts"
 
 /**
  * Creates and sends an invitation to join a team/account
@@ -109,6 +110,28 @@ export const doInviteCreate = withFormProtection(
       }
     }
 
+    // Get the account name, to use in the email and check it exists
+    const account = await db
+      .select({ name: accountsTable.name })
+      .from(accountsTable)
+      .where(eq(accountsTable.id, accountId))
+      .limit(1)
+
+    if (!account) {
+      return {
+        status: "error",
+        data: {
+          email: validatedEmail.data,
+        },
+        messages: [
+          {
+            title: "Invite was not created",
+            body: "The account does not exist.",
+          },
+        ],
+      }
+    }
+
     let invite: InviteToken[] | undefined
 
     try {
@@ -188,15 +211,15 @@ export const doInviteCreate = withFormProtection(
     const { error } = await EmailClient.emails.send({
       from: "next-multi-auth-template <me@jakeisonline.com>",
       to: validatedEmail.data,
-      subject: `${session.user.name} invited you to join them`,
+      subject: `${session.user.name} invited you to join ${account[0].name}`,
       react: EmailInvite({
         context: {
           token: invite[0].token,
-          sender: {
-            name: session.user.name,
+          account: {
+            name: account[0].name,
           },
         },
-      }),
+      }) as React.ReactElement,
     })
 
     if (error) {
