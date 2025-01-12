@@ -12,6 +12,7 @@ import { eq } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 import { withFormProtection } from "@/actions/action-middleware"
 import { usersAccountsTable } from "@/db/schema/users_accounts"
+import { EmailInvite } from "@/components/layout/email-invite"
 
 /**
  * Creates and sends an invitation to join a team/account
@@ -187,8 +188,15 @@ export const doInviteCreate = withFormProtection(
     const { error } = await EmailClient.emails.send({
       from: "next-multi-auth-template <me@jakeisonline.com>",
       to: validatedEmail.data,
-      subject: "Invite to join the team",
-      html: `<p>Click <a href="${process.env.BASE_URL}/invite/${invite[0].token}">here</a> to join the team.</p>`,
+      subject: `${session.user.name} invited you to join them`,
+      react: EmailInvite({
+        context: {
+          token: invite[0].token,
+          sender: {
+            name: session.user.name,
+          },
+        },
+      }),
     })
 
     if (error) {
