@@ -60,7 +60,11 @@ export default function RemoveUser({
         <Tooltip>
           <TooltipTrigger asChild>
             <AlertDialogTrigger asChild>
-              <Button size="icon" variant="ghost" className="w-11">
+              <Button
+                size="icon"
+                variant="ghost"
+                className="hover:bg-destructive/10 w-11"
+              >
                 <Trash className="h-4 w-4" />
               </Button>
             </AlertDialogTrigger>

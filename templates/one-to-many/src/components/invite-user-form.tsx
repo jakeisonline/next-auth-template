@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { AlertCircle, Loader2 } from "lucide-react"
+import { AlertCircle, CirclePlus, Loader2 } from "lucide-react"
 import { doInviteCreate } from "@/actions/invite/do-invite-create"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import type { UUID } from "@/lib/types"
@@ -53,7 +53,10 @@ export default function InviteUserForm({ accountId }: { accountId: UUID }) {
     <>
       <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogTrigger asChild>
-          <Button>Invite new member</Button>
+          <Button>
+            <CirclePlus className="mr-2 h-4 w-4" />
+            Invite new member
+          </Button>
         </DialogTrigger>
 
         <DialogContent>

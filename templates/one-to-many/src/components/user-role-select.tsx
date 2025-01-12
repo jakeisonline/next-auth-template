@@ -39,16 +39,16 @@ export function UserRoleSelect({ user }: { user: AccountUsersWithInvites }) {
   const roleEnumValues = userAccountsRoles.enumValues
 
   return (
-    <form ref={formRef} action={formAction}>
+    <form ref={formRef} action={formAction} className="w-full">
       <input type="hidden" name="userId" value={user.id} />
       <input type="hidden" name="role" value={role} />
       <Select name="role" value={role} onValueChange={handleValueChange}>
         <SelectTrigger disabled={isPending}>
           <SelectValue>
-            {isPending && (
-              <Loader2 className="mr-2 inline-flex h-4 w-4 animate-spin" />
-            )}
-            {capitalize(role)}
+            <div className="flex flex-row items-center justify-center">
+              {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {capitalize(role)}
+            </div>
           </SelectValue>
         </SelectTrigger>
         <SelectContent>

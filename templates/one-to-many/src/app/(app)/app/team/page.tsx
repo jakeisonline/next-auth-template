@@ -30,17 +30,21 @@ export default async function TeamPage() {
 
   return (
     <div>
-      <h1>Team</h1>
+      <h1 className="text-3xl font-bold tracking-tight">Team</h1>
+      <p className="text-muted-foreground">
+        Manage your team members and their roles.
+      </p>
       <div className="max-w-4xl">
-        <InviteUserForm accountId={accountId} />
         <div className="mt-4">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[100px]"></TableHead>
+                <TableHead className="w-[70px]"></TableHead>
                 <TableHead>Name</TableHead>
                 <TableHead>Email</TableHead>
-                <TableHead className="text-right"></TableHead>
+                <TableHead className="w-[200px] text-right">
+                  <InviteUserForm accountId={accountId} />
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -60,7 +64,7 @@ export default async function TeamPage() {
                         {user.name || "-"}
                       </TableCell>
                       <TableCell>{user.email}</TableCell>
-                      <TableCell className="flex flex-row gap-1 text-right">
+                      <TableCell className="flex flex-row items-center justify-end gap-1">
                         <UserRoleSelect
                           user={user as AccountUsersWithInvites}
                         />
@@ -85,9 +89,9 @@ export default async function TeamPage() {
                       </TableCell>
                       <TableCell className="font-medium">-</TableCell>
                       <TableCell>{user.email}</TableCell>
-                      <TableCell>
-                        <p className="text-sm text-gray-500">
-                          Invite pending...
+                      <TableCell className="flex flex-row items-center justify-end gap-1">
+                        <p className="text-muted-foreground text-sm">
+                          <em>Invite pending...</em>
                         </p>
                         <RemoveInvite inviteId={user.id ?? ""} />
                       </TableCell>
