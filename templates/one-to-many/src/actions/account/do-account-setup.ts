@@ -75,7 +75,6 @@ export const doAccountSetup = withFormProtection(
           userId: formData!.get("sessionUserId") as string,
           accountId: createdAccount[0].id,
           role: "owner",
-          status: "active",
         })
         .returning()
 
