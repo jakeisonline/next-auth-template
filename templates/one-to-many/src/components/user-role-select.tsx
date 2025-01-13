@@ -69,7 +69,12 @@ export function UserRoleSelect({
     <form ref={formRef} action={formAction} className="w-full">
       <input type="hidden" name="userId" value={user.id} />
       <input type="hidden" name="role" value={role} />
-      <Select name="role" value={role} onValueChange={handleValueChange}>
+      <Select
+        name="role"
+        value={role}
+        onValueChange={handleValueChange}
+        disabled={currentUserRole === "user"}
+      >
         <SelectTrigger disabled={isPending}>
           <SelectValue>
             <div className="flex flex-row items-center justify-center">
