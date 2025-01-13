@@ -84,7 +84,7 @@ export const doInviteAccept = withFormProtection(
         messages: [
           {
             title: "Invite not for you",
-            body: `The invite you are trying to accept is not for you. ${invite.recipient} vs ${userSession?.user.email}`,
+            body: `The invite you are trying to accept is not for you.`,
           },
         ],
       }
