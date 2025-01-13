@@ -12,9 +12,16 @@ import {
 import { userAccountsRoles } from "@/db/schema/users_accounts"
 import { capitalize } from "@/lib/utils"
 import { Loader2 } from "lucide-react"
+import { User } from "next-auth"
 import { useState, useRef, useActionState } from "react"
 
-export function UserRoleSelect({ user }: { user: AccountUsersWithInvites }) {
+export function UserRoleSelect({
+  user,
+  currentUserRole,
+}: {
+  user: AccountUsersWithInvites
+  currentUserRole: string
+}) {
   const [role, setRole] = useState(user.role)
   const [, formAction, isPending] = useActionState(doChangeUserRole, undefined)
   const formRef = useRef<HTMLFormElement>(null)
@@ -33,6 +40,27 @@ export function UserRoleSelect({ user }: { user: AccountUsersWithInvites }) {
       roleInput.value = value
       form.requestSubmit()
     }
+  }
+
+  const canChangeRole = (role: string) => {
+    // If the current user is the owner and the user's role is also owner, no changes allowed
+    if (currentUserRole === "owner" && user.role === "owner") return false
+
+    // If the current user is the owner
+    if (currentUserRole === "admin") {
+      // Admins can't change the role of other admins
+      if (user.role === "admin") return false
+
+      // Admins can't promote other users to owner
+      if (role === "owner") return
+    }
+
+    if (currentUserRole === "user") {
+      // Users can't do anything
+      return false
+    }
+
+    return true
   }
 
   // Get role values from db schema
@@ -54,7 +82,11 @@ export function UserRoleSelect({ user }: { user: AccountUsersWithInvites }) {
         <SelectContent>
           {roleEnumValues.map((role) => {
             return (
-              <SelectItem key={role} value={role}>
+              <SelectItem
+                key={role}
+                value={role}
+                disabled={!canChangeRole(role)}
+              >
                 {capitalize(role)}
               </SelectItem>
             )

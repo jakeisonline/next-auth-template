@@ -26,7 +26,14 @@ export default async function TeamPage() {
     throw new Error("No account found")
   }
 
-  const users = await fetchAccountUsersWithInvites(accountId)
+  const usersWithRoles = await fetchAccountUsersWithInvites(accountId)
+  const currentUserRole = usersWithRoles.find(
+    (user) => user.id === session?.user?.id,
+  )?.role
+
+  if (!currentUserRole) {
+    throw new Error("No current user role found")
+  }
 
   return (
     <div>
@@ -43,12 +50,15 @@ export default async function TeamPage() {
                 <TableHead>Name</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead className="w-[200px] text-right">
-                  <InviteUserForm accountId={accountId} />
+                  {(currentUserRole === "owner" ||
+                    currentUserRole === "admin") && (
+                    <InviteUserForm accountId={accountId} />
+                  )}
                 </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {users.map((user) => {
+              {usersWithRoles.map((user) => {
                 if (user.type === "user") {
                   return (
                     <TableRow key={user.id}>
@@ -66,11 +76,17 @@ export default async function TeamPage() {
                       <TableCell>{user.email}</TableCell>
                       <TableCell className="flex flex-row items-center justify-end gap-1">
                         <UserRoleSelect
-                          user={user as AccountUsersWithInvites}
+                          user={
+                            user as AccountUsersWithInvites & { type: "user" }
+                          }
+                          currentUserRole={currentUserRole}
                         />
                         <RemoveUser
-                          user={user as AccountUsersWithInvites}
+                          user={
+                            user as AccountUsersWithInvites & { type: "user" }
+                          }
                           accountId={accountId}
+                          currentUserRole={currentUserRole}
                         />
                       </TableCell>
                     </TableRow>
@@ -90,10 +106,13 @@ export default async function TeamPage() {
                       <TableCell className="font-medium">-</TableCell>
                       <TableCell>{user.email}</TableCell>
                       <TableCell className="flex flex-row items-center justify-end gap-1">
-                        <p className="text-muted-foreground text-sm">
+                        <p className="text-muted-foreground w-full text-right text-sm">
                           <em>Invite pending...</em>
                         </p>
-                        <RemoveInvite inviteId={user.id ?? ""} />
+                        <RemoveInvite
+                          inviteId={user.id ?? ""}
+                          currentUserRole={currentUserRole}
+                        />
                       </TableCell>
                     </TableRow>
                   )

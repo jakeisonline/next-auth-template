@@ -23,7 +23,13 @@ import { doRemoveInvite } from "@/actions/invite/do-remove-invite"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import type { UUID } from "@/lib/types"
 
-export default function RemoveInvite({ inviteId }: { inviteId: UUID }) {
+export default function RemoveInvite({
+  inviteId,
+  currentUserRole,
+}: {
+  inviteId: UUID
+  currentUserRole: string
+}) {
   const [state, formAction, isPending] = useActionState(
     doRemoveInvite,
     undefined,
@@ -38,6 +44,12 @@ export default function RemoveInvite({ inviteId }: { inviteId: UUID }) {
     }
 
     setOpen(isOpening)
+  }
+
+  const canRemoveInvite = () => {
+    if (currentUserRole === "owner") return true
+    if (currentUserRole === "admin") return true
+    if (currentUserRole === "user") return false
   }
 
   useEffect(() => {
@@ -56,7 +68,12 @@ export default function RemoveInvite({ inviteId }: { inviteId: UUID }) {
         <Tooltip>
           <TooltipTrigger asChild>
             <AlertDialogTrigger asChild>
-              <Button size="icon" variant="ghost" className="w-11">
+              <Button
+                size="icon"
+                variant="ghost"
+                className="hover:bg-destructive/10 w-11"
+                disabled={!canRemoveInvite()}
+              >
                 <Trash className="h-4 w-4" />
               </Button>
             </AlertDialogTrigger>

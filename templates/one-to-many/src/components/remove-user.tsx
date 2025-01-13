@@ -22,14 +22,16 @@ import { AlertCircle, Loader2, Trash } from "lucide-react"
 import { doRemoveUser } from "@/actions/account/do-remove-user"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import type { UUID } from "@/lib/types"
-import type { User } from "next-auth"
+import { type AccountUsersWithInvites } from "@/actions/account/fetch-account-users-with-invites"
 
 export default function RemoveUser({
   user,
   accountId,
+  currentUserRole,
 }: {
-  user: User
+  user: AccountUsersWithInvites & { type: "user" }
   accountId: UUID
+  currentUserRole: string
 }) {
   const [state, formAction, isPending] = useActionState(doRemoveUser, undefined)
   const [open, setOpen] = useState(false)
@@ -42,6 +44,13 @@ export default function RemoveUser({
     }
 
     setOpen(isOpening)
+  }
+
+  const canRemoveUser = () => {
+    if (user.role === "owner") return false
+    if (currentUserRole === "owner") return true
+    if (currentUserRole === "admin" && user.role !== "admin") return true
+    if (currentUserRole === "user") return false
   }
 
   useEffect(() => {
@@ -64,6 +73,7 @@ export default function RemoveUser({
                 size="icon"
                 variant="ghost"
                 className="hover:bg-destructive/10 w-11"
+                disabled={!canRemoveUser()}
               >
                 <Trash className="h-4 w-4" />
               </Button>
