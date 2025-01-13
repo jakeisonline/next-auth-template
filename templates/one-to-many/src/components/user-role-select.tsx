@@ -12,7 +12,6 @@ import {
 import { userAccountsRoles } from "@/db/schema/users_accounts"
 import { capitalize } from "@/lib/utils"
 import { Loader2 } from "lucide-react"
-import { User } from "next-auth"
 import { useState, useRef, useActionState } from "react"
 
 export function UserRoleSelect({
