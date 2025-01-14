@@ -54,57 +54,29 @@ export const fetchInviteFull = withQueryProtection(
       .innerJoin(usersTable, eq(inviteTokensTable.inviterId, usersTable.id))
       .where(eq(inviteTokensTable.token, inviteToken))
       .limit(1)
+      .then((rows) => rows[0])
 
-    const inviteFull = rawResults.reduce(
-      (acc, row) => {
-        if (!acc.id) {
-          acc = {
-            id: row.id,
-            token: row.token,
-            expiresAt: row.expiresAt,
-            account: {},
-            inviter: {},
-          }
+    const inviteFull = rawResults
+      ? {
+          id: rawResults.id,
+          token: rawResults.token,
+          expiresAt: rawResults.expiresAt,
+          account: {
+            id: rawResults.accountId,
+            name: rawResults.accountName,
+          },
+          inviter: {
+            id: rawResults.inviterId,
+            name: rawResults.inviterName,
+            email: rawResults.inviterEmail,
+            image: rawResults.inviterImage,
+          },
         }
-
-        if (row.accountId) {
-          acc.account = {
-            id: row.accountId,
-            name: row.accountName,
-          }
-        }
-
-        if (row.inviterId) {
-          acc.inviter = {
-            id: row.inviterId,
-            name: row.inviterName,
-            email: row.inviterEmail,
-            image: row.inviterImage,
-          }
-        }
-
-        return acc
-      },
-      {} as {
-        id: string
-        token: string
-        expiresAt: Date
-        account: {
-          id?: string
-          name?: string | null
-        }
-        inviter: {
-          id?: string
-          name?: string | null
-          email?: string | null
-          image?: string | null
-        }
-      },
-    )
+      : null
 
     return inviteFull
   },
   {
-    requireAuth: true,
+    requireAuth: false,
   },
 )

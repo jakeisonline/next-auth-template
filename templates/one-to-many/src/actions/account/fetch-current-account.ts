@@ -37,12 +37,12 @@ export const fetchCurrentAccount = withQueryProtection(
     }
 
     // Get the account from the database
-    const accountQuery = await db
+    const account = await db
       .select()
       .from(accountsTable)
       .where(eq(accountsTable.id, currentAccountId))
-
-    const account = accountQuery[0]
+      .limit(1)
+      .then((rows) => rows[0])
 
     // If the account was not found, throw an error
     if (!account) {

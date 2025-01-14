@@ -55,40 +55,22 @@ export const fetchInvite = withQueryProtection(
       query.where(eq(inviteTokensTable.recipient, recipient))
     }
 
-    const rawResults = await query.limit(1)
+    const rawResults = await query.limit(1).then((rows) => rows[0])
 
-    const invite = rawResults.reduce(
-      (acc, row) => {
-        if (!acc.token) {
-          acc = {
-            token: row.token,
-            recipient: row.recipient,
-            expiresAt: row.expiresAt,
-            account: {},
-            inviterId: row.inviterId,
-          }
+    const invite = rawResults
+      ? {
+          token: rawResults.token,
+          recipient: rawResults.recipient,
+          expiresAt: rawResults.expiresAt,
+          account: rawResults.accountId
+            ? {
+                id: rawResults.accountId,
+                name: rawResults.accountName,
+              }
+            : {},
+          inviterId: rawResults.inviterId,
         }
-
-        if (row.accountId) {
-          acc.account = {
-            id: row.accountId,
-            name: row.accountName,
-          }
-        }
-
-        return acc
-      },
-      {} as {
-        token: string
-        recipient: string
-        expiresAt: Date
-        account: {
-          id?: string
-          name?: string | null
-        }
-        inviterId: string
-      },
-    )
+      : null
 
     return invite
   },

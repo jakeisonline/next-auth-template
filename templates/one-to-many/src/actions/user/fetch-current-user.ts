@@ -50,41 +50,24 @@ export const fetchCurrentUser = withQueryProtection(
         eq(usersAccountsTable.accountId, accountsTable.id),
       )
       .where(eq(usersTable.id, session.user.id))
+      .limit(1)
+      .then((rows) => rows[0])
 
-    const userWithAccount = rawResults.reduce(
-      (acc, row) => {
-        if (!acc.id) {
-          acc = {
-            id: row.id,
-            name: row.name,
-            email: row.email,
-            image: row.image,
-            account: {},
-          }
+    const userWithAccount = rawResults
+      ? {
+          id: rawResults.id,
+          name: rawResults.name,
+          email: rawResults.email,
+          image: rawResults.image,
+          account: rawResults.accountId
+            ? {
+                id: rawResults.accountId,
+                name: rawResults.accountName,
+                role: rawResults.accountRole,
+              }
+            : {},
         }
-
-        if (row.accountId) {
-          acc.account = {
-            id: row.accountId,
-            name: row.accountName,
-            role: row.accountRole,
-          }
-        }
-
-        return acc
-      },
-      {} as {
-        id: string
-        name: string | null
-        email: string | null
-        image: string | null
-        account: {
-          id?: string
-          name?: string | null
-          role?: string | null
-        }
-      },
-    )
+      : null
 
     return userWithAccount
   },

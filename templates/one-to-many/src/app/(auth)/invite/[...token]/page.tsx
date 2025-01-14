@@ -9,6 +9,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { auth } from "@/lib/auth"
 import { Ban, CircleUser, Sparkles } from "lucide-react"
 import Link from "next/link"
+import { notFound } from "next/navigation"
+
 export default async function InvitePage({
   params,
 }: {
@@ -19,6 +21,11 @@ export default async function InvitePage({
 
   if (session) {
     const invite = await fetchInviteFull(inviteToken)
+
+    // If invite is not found
+    if (!invite) {
+      return notFound()
+    }
 
     // If invite is past expiry date
     if (invite.expiresAt < new Date()) {
@@ -92,6 +99,11 @@ export default async function InvitePage({
   }
 
   const invite = await fetchInvite(inviteToken)
+
+  // If invite is not found
+  if (!invite) {
+    return notFound()
+  }
 
   // If invite is past expiry date
   if (invite.expiresAt < new Date()) {

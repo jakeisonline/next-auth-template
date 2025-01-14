@@ -50,7 +50,7 @@ export const doInviteAccept = withFormProtection(
     // Get the invite
     const invite = await fetchInvite(inviteToken)
 
-    if (Object.keys(invite).length === 0) {
+    if (!invite) {
       return {
         status: "error",
         messages: [
