@@ -65,34 +65,34 @@ export default function InviteUserForm({ accountId }: { accountId: UUID }) {
             <input type="hidden" name="type" value="one_time" />
             <DialogHeader>
               <DialogTitle>Invite a new user to the team</DialogTitle>
+              <DialogDescription>
+                Entering an email address will send an invite to the user to
+                join this account.
+              </DialogDescription>
             </DialogHeader>
-            <DialogDescription>
-              Entering an email address will send an invite to the user to join
-              this account.
-              {error && !isPending && (
-                <Alert variant="destructive" className="mb-4 mt-2">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertTitle className="font-semibold">
-                    {state?.messages?.[0]?.title}
-                  </AlertTitle>
-                  <AlertDescription>
-                    {state?.messages?.[0]?.body}
-                  </AlertDescription>
-                </Alert>
-              )}
-              <div className="mt-4 flex flex-col gap-2">
-                <Label htmlFor="email" className="sr-only">
-                  Email address of new user
-                </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={isPending}
-                />
-              </div>
-            </DialogDescription>
+            {error && !isPending && (
+              <Alert variant="destructive" className="mb-4 mt-2">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle className="font-semibold">
+                  {state?.messages?.[0]?.title}
+                </AlertTitle>
+                <AlertDescription>
+                  {state?.messages?.[0]?.body}
+                </AlertDescription>
+              </Alert>
+            )}
+            <div className="mt-4 flex flex-col gap-2">
+              <Label htmlFor="email" className="sr-only">
+                Email address of new user
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                value={email ?? ""}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isPending}
+              />
+            </div>
             <DialogFooter className="mt-4">
               <DialogClose asChild>
                 <Button variant="secondary" disabled={isPending}>
