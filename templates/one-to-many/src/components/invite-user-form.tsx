@@ -88,7 +88,7 @@ export default function InviteUserForm({ accountId }: { accountId: UUID }) {
               <Input
                 id="email"
                 name="email"
-                value={email ?? ""}
+                value={email ?? state?.data?.email ?? ""}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isPending}
               />

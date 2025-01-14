@@ -42,13 +42,14 @@ export const doInviteCreate = withFormProtection(
     formData?: FormData,
   ): Promise<ServerActionResponse> => {
     const accountId = formData!.get("accountId") as UUID
-    const validatedEmail = z.string().email().safeParse(formData!.get("email"))
+    const unvalidatedEmail = formData!.get("email")
+    const validatedEmail = z.string().email().safeParse(unvalidatedEmail)
 
     // Check the email address is valid using zod
     if (!validatedEmail.success) {
       return {
         status: "error",
-        data: { email: validatedEmail.data },
+        data: { email: unvalidatedEmail },
         messages: [
           {
             title: "Email address is not valid",
@@ -63,6 +64,7 @@ export const doInviteCreate = withFormProtection(
     if (!session) {
       return {
         status: "error",
+        data: { email: validatedEmail.data },
         messages: [
           {
             title: "Unauthorized",
