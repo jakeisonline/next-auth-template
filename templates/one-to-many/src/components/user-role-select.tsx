@@ -1,7 +1,7 @@
 "use client"
 
 import { type AccountUsersWithInvites } from "@/actions/account/fetch-account-users-with-invites"
-import { doChangeUserRole } from "@/actions/user/do-change-user-role"
+import { doChangeUserRole } from "@/actions/account/do-change-user-role"
 import {
   Select,
   SelectContent,
