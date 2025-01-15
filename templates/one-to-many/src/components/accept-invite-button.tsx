@@ -4,8 +4,9 @@ import { doInviteAccept } from "@/actions/invite/do-invite-accept"
 import { Button } from "@/components/ui/button"
 import { useActionState, useEffect } from "react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { AlertCircle } from "lucide-react"
+import { AlertCircle, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { useFormGroupIsSubmitting } from "@/hooks/use-form-group-is-submitting"
 
 export function AcceptInviteButton({ inviteToken }: { inviteToken: string }) {
   const router = useRouter()
@@ -14,11 +15,21 @@ export function AcceptInviteButton({ inviteToken }: { inviteToken: string }) {
     undefined,
   )
 
+  const { formGroupIsSubmitting, setFormGroupIsSubmitting } =
+    useFormGroupIsSubmitting()
+
   useEffect(() => {
     if (state?.status === "success") {
       router.push("/welcome")
     }
-  }, [state])
+
+    if (isPending) {
+      setFormGroupIsSubmitting(isPending)
+    }
+  }, [state, isPending])
+
+  // We want to keep the form disabled if the action is successful, because we're going to redirect the user and the form is not reusable.
+  const isDisabled = isPending || state?.status === "success"
 
   return (
     <form action={formAction} className="flex flex-col gap-2">
@@ -32,7 +43,8 @@ export function AcceptInviteButton({ inviteToken }: { inviteToken: string }) {
           <AlertDescription>{state?.messages?.[0]?.body}</AlertDescription>
         </Alert>
       )}
-      <Button className="w-full" type="submit" disabled={isPending}>
+      <Button className="w-full" type="submit" disabled={isDisabled}>
+        {isDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         Join this account
       </Button>
     </form>
