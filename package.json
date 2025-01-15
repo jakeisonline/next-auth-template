@@ -19,7 +19,15 @@
     "121:dev": "pnpm --filter next-auth-template-one-to-one run dev",
     "121:build": "pnpm --filter next-auth-template-one-to-one run build",
     "121:start": "pnpm --filter next-auth-template-one-to-one run start",
-    "121:lint": "pnpm --filter next-auth-template-one-to-one run lint"
+    "121:lint": "pnpm --filter next-auth-template-one-to-one run lint",
+    "12m:db:push": "pnpm --filter next-auth-template-one-to-many run db:push",
+    "12m:db:studio": "pnpm --filter next-auth-template-one-to-many run db:studio",
+    "12m:db:migrate": "pnpm --filter next-auth-template-one-to-many run db:migrate",
+    "12m:db:generate": "pnpm --filter next-auth-template-one-to-many run db:generate",
+    "12m:dev": "pnpm --filter next-auth-template-one-to-many run dev",
+    "12m:build": "pnpm --filter next-auth-template-one-to-many run build",
+    "12m:start": "pnpm --filter next-auth-template-one-to-many run start",
+    "12m:lint": "pnpm --filter next-auth-template-one-to-many run lint"
   },
   "bin": "./dist/index.js",
   "files": [
@@ -54,12 +62,12 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.10.3",
+    "@types/node": "^22.10.5",
     "@types/prompts": "^2.4.9",
-    "eslint": "^8",
+    "eslint": "^8.57.1",
     "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.8",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   }
 }
