@@ -20,7 +20,13 @@ export default function Page() {
             <strong>While you&apos;re here</strong>, here&apos;s some things to
             try:
           </p>
-          <ul className="space-y-2 list-disc w-10/12 ml-8">
+          <ul className="ml-8 w-10/12 list-disc space-y-2">
+            <li>
+              <Link href="/app/team" className="text-blue-500 underline">
+                Invite a new user to your account
+              </Link>
+              , manage your team and roles.
+            </li>
             <li>
               You can sign out using the user box at the bottom of the sidebar.
             </li>
@@ -28,16 +34,16 @@ export default function Page() {
               After logging out, try signing in again with a different method.
             </li>
           </ul>
-          <div className="pt-3 flex flex-row gap-2">
+          <div className="flex flex-row gap-2 pt-3">
             <Button variant="outline" asChild>
               <Link href="https://jakeisonline.com/playground/tools/next-auth-template">
-                <BookHeart className="size-4 mr-2" />
+                <BookHeart className="mr-2 size-4" />
                 Documentation
               </Link>
             </Button>
             <Button variant="outline" asChild>
               <Link href="https://github.com/jakeisonline/next-auth-template">
-                <Github className="size-4 mr-2" />
+                <Github className="mr-2 size-4" />
                 Source
               </Link>
             </Button>
