@@ -29,7 +29,7 @@ export function AcceptInviteButton({ inviteToken }: { inviteToken: string }) {
   }, [state, isPending])
 
   // We want to keep the form disabled if the action is successful, because we're going to redirect the user and the form is not reusable.
-  const isDisabled = isPending || state?.status === "success"
+  const isDisabled = formGroupIsSubmitting || state?.status === "success"
 
   return (
     <form action={formAction} className="flex flex-col gap-2">

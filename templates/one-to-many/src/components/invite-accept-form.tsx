@@ -5,10 +5,7 @@ import { Button } from "./ui/button"
 import Link from "next/link"
 import { Alert, AlertDescription } from "./ui/alert"
 import { Sparkles } from "lucide-react"
-import {
-  FormGroupContextProvider,
-  useFormGroupIsSubmitting,
-} from "@/hooks/use-form-group-is-submitting"
+import { useFormGroupIsSubmitting } from "@/hooks/use-form-group-is-submitting"
 
 export function InviteAcceptForm({ inviteToken }: { inviteToken: string }) {
   const { formGroupIsSubmitting } = useFormGroupIsSubmitting()
