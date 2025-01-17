@@ -9,13 +9,17 @@ export const TEMPLATE_CHOICES = [
     value: "one-to-one",
   },
   {
-    title: "One-to-many (coming soon)",
+    title: "One-to-many",
     description:
       "Allows one account to have multiple users, but a single user can only belong to a single account",
     value: "one-to-many",
-    disabled: true,
   },
-]
+] as {
+  title: string
+  description: string
+  value: string
+  disabled?: boolean
+}[]
 
 export const VALIDATION_SCHEMAS = {
   template: z.enum(
