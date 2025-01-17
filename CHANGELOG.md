@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.3.1
+
+### Patch Changes
+
+- [#17](https://github.com/jakeisonline/next-auth-template/pull/17) [`fd172eb`](https://github.com/jakeisonline/next-auth-template/commit/fd172eb5ae9f417e4898204fba38c2691ca47978) Thanks [@jakeisonline](https://github.com/jakeisonline)! - fix(cli): allow install of one-to-many template
+
 ## 0.3.0
 
 ### Minor Changes
