@@ -1,5 +1,11 @@
 # next-auth-template-one-to-one
 
+## 0.7.1
+
+### Patch Changes
+
+- [#21](https://github.com/jakeisonline/next-auth-template/pull/21) [`def4655`](https://github.com/jakeisonline/next-auth-template/commit/def4655658cab28566ec656801ab426862dcbada) Thanks [@jakeisonline](https://github.com/jakeisonline)! - update dependencies
+
 ## 0.7.0
 
 ### Minor Changes
