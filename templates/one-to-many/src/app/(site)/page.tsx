@@ -59,38 +59,32 @@ export default function AppPage() {
   const packageDependencies = [
     {
       name: "next",
-      shieldsUrl:
-        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next?filename=${packageDepedenciesFilename}`,
+      shieldsUrl: `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "next-auth",
-      shieldsUrl:
-        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next-auth?filename=${packageDepedenciesFilename}`,
+      shieldsUrl: `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/next-auth?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "react",
-      shieldsUrl:
-        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/react?filename=${packageDepedenciesFilename}`,
+      shieldsUrl: `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/react?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "drizzle-orm",
-      shieldsUrl:
-        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/drizzle-orm?filename=${packageDepedenciesFilename}`,
+      shieldsUrl: `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/drizzle-orm?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "zod",
-      shieldsUrl:
-        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/zod?filename=${packageDepedenciesFilename}`,
+      shieldsUrl: `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/zod?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
       name: "@neondatabase/serverless",
-      shieldsUrl:
-        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/@neondatabase%2Fserverless?filename=${packageDepedenciesFilename}`,
+      shieldsUrl: `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/@neondatabase%2Fserverless?filename=${packageDepedenciesFilename}`,
       isCore: true,
     },
     {
@@ -99,8 +93,7 @@ export default function AppPage() {
     },
     {
       name: "tailwindcss",
-      shieldsUrl:
-        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/dev/tailwindcss?filename=${packageDepedenciesFilename}`,
+      shieldsUrl: `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/dev/tailwindcss?filename=${packageDepedenciesFilename}`,
     },
     {
       name: "@radix-ui",
@@ -108,29 +101,20 @@ export default function AppPage() {
     },
     {
       name: "lucide-react",
-      shieldsUrl:
-        `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/lucide-react?filename=${packageDepedenciesFilename}`,
+      shieldsUrl: `https://img.shields.io/github/package-json/dependency-version/jakeisonline/next-auth-template/lucide-react?filename=${packageDepedenciesFilename}`,
     },
   ]
 
   return (
     <>
-      <div className="absolute -z-10 flex-shrink-0">
-        <Image
-          src="/images/header-bg.png"
-          width="1398"
-          height="555"
-          alt="A decorative background image"
-          className="w-full"
-          priority
-        />
-      </div>
-      <header className="lg:top-0 w-full max-w-screen-2xl px-3 md:px-4 2xl:px-0">
+      <header className="relative w-full max-w-screen-2xl px-3 md:px-4 lg:top-0 2xl:px-0">
+        <div className="absolute -top-28 bottom-auto left-auto right-20 -z-10 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]" />
+        <div className="absolute -top-52 bottom-auto left-72 right-auto -z-10 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(198,229,255,1)] opacity-50 blur-[80px]" />
         <div className="flex h-14 items-center">
           <div>
             <span>next-auth-template</span>
           </div>
-          <div className="justify-end flex flex-1 gap-2">
+          <div className="flex flex-1 justify-end gap-2">
             <Button variant="outline" asChild>
               <Link
                 href="https://jakeisonline.com/playground/tools/next-auth-template"
@@ -146,15 +130,15 @@ export default function AppPage() {
           </div>
         </div>
       </header>
-      <main className="w-full flex flex-col items-center justify-center max-w-screen-2xl px-2 md:px-4 2xl:px-0">
-        <section className="mt-20 w-5/6 lg:w-full flex flex-col gap-2 text-center items-center">
-          <h1 className="text-4xl lg:text-6xl font-bold leading-tight tracking-tighter">
+      <main className="flex w-full max-w-screen-2xl flex-col items-center justify-center px-2 md:px-4 2xl:px-0">
+        <section className="mt-20 flex w-5/6 flex-col items-center gap-2 text-center lg:w-full">
+          <h1 className="text-4xl font-bold leading-tight tracking-tighter lg:text-6xl">
             Sign up and auth, super quick
           </h1>
-          <p className="text-lg font-light w-5/6 lg:w-full">
+          <p className="w-5/6 text-lg font-light lg:w-full">
             With database-backed sessions, social sign in, and magic links.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-3 mt-4 justify-center w-full sm:w-auto">
+          <div className="mt-4 flex w-full flex-col justify-center gap-6 sm:w-auto sm:flex-row sm:gap-3">
             <Button
               size="xl"
               variant="outline"
@@ -167,7 +151,7 @@ export default function AppPage() {
               <Link href="/signup">Sign up</Link>
             </Button>
           </div>
-          <div className="mt-4 flex flex-row gap-3 lg:gap-4 w-full items-center justify-center">
+          <div className="mt-4 flex w-full flex-row items-center justify-center gap-3 lg:gap-4">
             <Link
               target="_blank"
               rel="noopener noreferrer"
@@ -185,8 +169,8 @@ export default function AppPage() {
             </Link>
           </div>
         </section>
-        <section className="w-full md:w-3/5 lg:w-4/5 grid lg:grid-cols-2 grid-cols-1 gap-8 mt-16 auto-rows-max">
-          <Card className="mx-auto w-full bg-white bg-opacity-35 border-border/70">
+        <section className="mt-16 grid w-full auto-rows-max grid-cols-1 gap-8 md:w-3/5 lg:w-4/5 lg:grid-cols-2">
+          <Card className="border-border/70 mx-auto w-full bg-white bg-opacity-35">
             <CardHeader>
               <CardTitle className="text-2xl">Features</CardTitle>
             </CardHeader>
@@ -198,13 +182,13 @@ export default function AppPage() {
                       <feature.icon className="h-5 w-5" />
                       {feature.name}
                     </dt>
-                    <dd className="block lg:text-sm text-muted-foreground">
+                    <dd className="text-muted-foreground block lg:text-sm">
                       {feature.description}
                     </dd>
                   </Fragment>
                 ))}
               </dl>
-              <p className="mt-5 text-sm text-muted-foreground">
+              <p className="text-muted-foreground mt-5 text-sm">
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
@@ -216,7 +200,7 @@ export default function AppPage() {
             </CardContent>
           </Card>
 
-          <Card className="mx-auto w-full bg-white bg-opacity-35 border-border/70">
+          <Card className="border-border/70 mx-auto w-full bg-white bg-opacity-35">
             <CardHeader>
               <CardTitle className="text-2xl">Core Dependencies</CardTitle>
               <CardDescription className="text-base lg:text-sm">
@@ -236,13 +220,13 @@ export default function AppPage() {
                   )
                 })}
               </ul>
-              <h3 className="font-semibold tracking-tight text-2xl mt-10">
+              <h3 className="mt-10 text-2xl font-semibold tracking-tight">
                 Other Dependencies
               </h3>
               <p className="text-muted-foreground mt-1.5">
                 Adds a bit of style or utility, could easily be replaced.
               </p>
-              <ul className="grid grid-cols-2 gap-4 mt-5">
+              <ul className="mt-5 grid grid-cols-2 gap-4">
                 {packageDependencies.map((dependency) => {
                   if (dependency.isCore) return null
 
@@ -253,7 +237,7 @@ export default function AppPage() {
                   )
                 })}
               </ul>
-              <p className="mt-8 text-sm text-muted-foreground">
+              <p className="text-muted-foreground mt-8 text-sm">
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
@@ -266,8 +250,8 @@ export default function AppPage() {
           </Card>
         </section>
       </main>
-      <footer className="mt-auto grid w-full mb-6 pt-10 lg:text-sm text-xs max-w-screen-2xl px-2 md:px-4 2xl:px-0">
-        <div className="text-lg text-center">
+      <footer className="mb-6 mt-auto grid w-full max-w-screen-2xl px-2 pt-10 text-xs md:px-4 lg:text-sm 2xl:px-0">
+        <div className="text-center text-lg">
           <Link href="https://www.jakeisonline.com">👋 a template by Jake</Link>
         </div>
       </footer>
