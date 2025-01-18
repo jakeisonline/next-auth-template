@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.3.2
+
+### Patch Changes
+
+- [#19](https://github.com/jakeisonline/next-auth-template/pull/19) [`fe92f72`](https://github.com/jakeisonline/next-auth-template/commit/fe92f72ab2c650582d637c2ae960a2c904bf51b0) Thanks [@jakeisonline](https://github.com/jakeisonline)! - Use css for bg instead of an image
+
 ## 0.3.1
 
 ### Patch Changes
