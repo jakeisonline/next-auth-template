@@ -11,7 +11,7 @@ export function TemplateCard({
   return (
     <div
       className={cn(
-        "flex flex-col rounded-xl bg-accent p-4 border text-card-foreground shadow-sm mx-auto w-full bg-white bg-opacity-35 border-border/70",
+        "flex flex-col rounded-xl p-4 border text-card-foreground shadow-sm mx-auto w-full bg-background border-border/70",
         className,
       )}
     >
@@ -28,7 +28,7 @@ export function TemplateCardTitle({
   children: React.ReactNode
 }) {
   return (
-    <h2 className={cn("text-2xl font-bold flex", className)}>{children}</h2>
+    <h3 className={cn("text-3xl font-bold flex", className)}>{children}</h3>
   )
 }
 

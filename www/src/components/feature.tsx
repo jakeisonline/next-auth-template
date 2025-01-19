@@ -6,6 +6,7 @@ import {
   KeyRound,
   LayoutTemplate,
   LockKeyhole,
+  Plus,
   WandSparkles,
 } from "lucide-react"
 
@@ -16,6 +17,7 @@ const icons = {
   KeyRound,
   LayoutTemplate,
   LockKeyhole,
+  Plus,
   WandSparkles,
 }
 

@@ -39,7 +39,7 @@ export default function Home() {
           <h1 className="text-4xl font-bold leading-tight tracking-tighter lg:text-6xl xl:text-7xl">
             Sign up and auth,
             <br />
-            <span className="animate-text bg-gradient-to-r from-[#55b0fa] to-[#ad6df4]  bg-clip-text text-transparent">
+            <span className="animate-bg bg-gradient-to-r from-[#55b0fa] to-[#ad6df4]  bg-clip-text text-transparent">
               super quick
             </span>
           </h1>
@@ -86,7 +86,12 @@ export default function Home() {
             </Feature>
           </ul>
         </section>
-        <section className="grid w-full auto-rows-max grid-cols-1 lg:grid-cols-3 gap-3 mt-12">
+        <section className="grid w-full auto-rows-max grid-cols-1 lg:grid-cols-3 gap-3 mt-16">
+          <div className="col-span-3 text-center">
+            <p className="text-base text-muted-foreground/70 md:text-lg md:w-3/4 lg:w-1/2 font-light m-auto mb-5">
+              Choose the model that best suits your app:
+            </p>
+          </div>
           <TemplateCard className="mt-3">
             <TemplateCardTitle>One to One</TemplateCardTitle>
             <TemplateCardDescription>
@@ -107,39 +112,41 @@ export default function Home() {
                 <ul className="flex flex-col gap-2 mt-2">
                   <Feature>Super simple user and account model</Feature>
                   <Feature>No need for any user management UI</Feature>
-                  <Feature>Simplified account registration</Feature>
                 </ul>
               </div>
             </TemplateCardContent>
           </TemplateCard>
-          <TemplateCard>
-            <TemplateCardTitle>
-              One to Many
-              <TemplateCardBadge>Recommended</TemplateCardBadge>
-            </TemplateCardTitle>
-            <TemplateCardDescription>
-              An account can have many users, but each user belongs to only 1
-              account.
-            </TemplateCardDescription>
-            <TemplateCardContent>
-              <div className="flex flex-row gap-2 mt-auto w-full">
-                <Button variant="outline" className="mt-auto w-full">
-                  <ExternalLink className="h-4 w-4" />
-                  Demo
-                </Button>
-                <Button variant="outline" className="mt-auto w-full">
-                  Docs
-                </Button>
-              </div>
-              <div className="mt-4">
-                <ul className="flex flex-col gap-2 mt-2">
-                  <Feature>Users can be invited to an account</Feature>
-                  <Feature>Simple role based permission management</Feature>
-                  <Feature>Simple user management UI</Feature>
-                </ul>
-              </div>
-            </TemplateCardContent>
-          </TemplateCard>
+          <div className="relative">
+            <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-[#55b0fa] to-[#ad6df4] opacity-60 blur"></div>
+            <TemplateCard className="relative">
+              <TemplateCardTitle>
+                One to Many
+                <TemplateCardBadge>Recommended</TemplateCardBadge>
+              </TemplateCardTitle>
+              <TemplateCardDescription>
+                An account can have many users, but each user belongs to only 1
+                account.
+              </TemplateCardDescription>
+              <TemplateCardContent>
+                <div className="flex flex-row gap-2 mt-auto w-full">
+                  <Button className="mt-auto w-full">
+                    <ExternalLink className="h-4 w-4" />
+                    Demo
+                  </Button>
+                  <Button variant="outline" className="mt-auto w-full">
+                    Docs
+                  </Button>
+                </div>
+                <div className="mt-4">
+                  <ul className="flex flex-col gap-2 mt-2">
+                    <Feature>Users can be invited to an account</Feature>
+                    <Feature>Simple role based permission management</Feature>
+                    <Feature>Simple user management UI</Feature>
+                  </ul>
+                </div>
+              </TemplateCardContent>
+            </TemplateCard>
+          </div>
           <TemplateCard className="mt-3">
             <TemplateCardTitle>
               Many to Many
@@ -161,9 +168,8 @@ export default function Home() {
               </div>
               <div className="mt-4">
                 <ul className="flex flex-col gap-2 mt-2">
-                  <Feature>Everything from One to Many</Feature>
+                  <Feature icon="Plus">Everything from One to Many</Feature>
                   <Feature>Users can switch between accounts</Feature>
-                  <Feature>Users can manage their own memberships</Feature>
                 </ul>
               </div>
             </TemplateCardContent>

@@ -11,10 +11,10 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
-        text: "text 5s ease infinite",
+        bg: "bg-animate 5s ease infinite",
       },
       keyframes: {
-        text: {
+        "bg-animate": {
           "0%, 100%": {
             "background-size": "200% 200%",
             "background-position": "left center",
