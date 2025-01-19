@@ -100,12 +100,16 @@ export default function Home() {
             </TemplateCardDescription>
             <TemplateCardContent>
               <div className="flex flex-row gap-2 mt-auto w-full">
-                <Button variant="outline" className="mt-auto w-full">
-                  <ExternalLink className="h-4 w-4" />
-                  Demo
+                <Button variant="outline" className="mt-auto w-full" asChild>
+                  <Link href="https://next-auth-template-one-to-one.vercel.app">
+                    <ExternalLink className="h-4 w-4" />
+                    Live Demo
+                  </Link>
                 </Button>
-                <Button variant="outline" className="mt-auto w-full">
-                  Docs
+                <Button variant="outline" className="mt-auto w-full" asChild>
+                  <Link href="https://jakeisonline.com/playground/tools/next-auth-template">
+                    Docs
+                  </Link>
                 </Button>
               </div>
               <div className="mt-4">
@@ -129,12 +133,16 @@ export default function Home() {
               </TemplateCardDescription>
               <TemplateCardContent>
                 <div className="flex flex-row gap-2 mt-auto w-full">
-                  <Button className="mt-auto w-full">
-                    <ExternalLink className="h-4 w-4" />
-                    Demo
+                  <Button className="mt-auto w-full" asChild>
+                    <Link href="https://next-auth-template-one-to-many.vercel.app">
+                      <ExternalLink className="h-4 w-4" />
+                      Live Demo
+                    </Link>
                   </Button>
-                  <Button variant="outline" className="mt-auto w-full">
-                    Docs
+                  <Button variant="outline" className="mt-auto w-full" asChild>
+                    <Link href="https://jakeisonline.com/playground/tools/next-auth-template">
+                      Docs
+                    </Link>
                   </Button>
                 </div>
                 <div className="mt-4">
@@ -160,7 +168,7 @@ export default function Home() {
               <div className="flex flex-row gap-2 mt-auto w-full">
                 <Button variant="outline" className="mt-auto w-full" disabled>
                   <ExternalLink className="h-4 w-4" />
-                  Demo
+                  Live Demo
                 </Button>
                 <Button variant="outline" className="mt-auto w-full" disabled>
                   Docs
@@ -176,7 +184,7 @@ export default function Home() {
           </TemplateCard>
         </section>
       </main>
-      <footer className="mb-6 mt-auto grid w-full max-w-screen-2xl px-2 pt-10 text-xs md:px-4 lg:text-sm 2xl:px-0">
+      <footer className="mb-6 mt-auto grid w-full max-w-screen-2xl px-2 pt-20 text-xs md:px-4 lg:text-sm 2xl:px-0">
         <div className="text-center">
           <Link href="https://www.jakeisonline.com">👋 a thing by Jake</Link>
         </div>
