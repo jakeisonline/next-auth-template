@@ -1,5 +1,13 @@
+import { Feature } from "@/components/feature"
+import {
+  TemplateCard,
+  TemplateCardBadge,
+  TemplateCardContent,
+  TemplateCardDescription,
+  TemplateCardTitle,
+} from "@/components/template-card"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, ClipboardCopy } from "lucide-react"
+import { ChevronRight, ClipboardCopy, ExternalLink } from "lucide-react"
 import Link from "next/link"
 
 export default function Home() {
@@ -56,7 +64,111 @@ export default function Home() {
             </p>
           </div>
         </section>
-        <section className="mt-16 grid w-full auto-rows-max grid-cols-1 gap-8 md:w-3/5 lg:w-4/5 lg:grid-cols-2"></section>
+        <section className="mt-12 items-center justify-center">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-12">
+            <Feature icon="LayoutTemplate" className="justify-center">
+              Customisable sign in and sign up pages
+            </Feature>
+            <Feature icon="DatabaseZapIcon" className="justify-center">
+              Database-backed sessions
+            </Feature>
+            <Feature icon="KeyRound" className="justify-center">
+              Google sign-in ready for config
+            </Feature>
+            <Feature icon="WandSparkles" className="justify-center">
+              Magic links via email ready for config
+            </Feature>
+            <Feature icon="CircleUser" className="justify-center">
+              Basic account creation and set up
+            </Feature>
+            <Feature icon="LockKeyhole" className="justify-center">
+              Protected paths via middleware
+            </Feature>
+          </ul>
+        </section>
+        <section className="grid w-full auto-rows-max grid-cols-1 lg:grid-cols-3 gap-3 mt-12">
+          <TemplateCard className="mt-3">
+            <TemplateCardTitle>One to One</TemplateCardTitle>
+            <TemplateCardDescription>
+              Each user has their own isolated account, and accounts do not
+              support additional users.
+            </TemplateCardDescription>
+            <TemplateCardContent>
+              <div className="flex flex-row gap-2 mt-auto w-full">
+                <Button variant="outline" className="mt-auto w-full">
+                  <ExternalLink className="h-4 w-4" />
+                  Demo
+                </Button>
+                <Button variant="outline" className="mt-auto w-full">
+                  Docs
+                </Button>
+              </div>
+              <div className="mt-4">
+                <ul className="flex flex-col gap-2 mt-2">
+                  <Feature>Super simple user and account model</Feature>
+                  <Feature>No need for any user management UI</Feature>
+                  <Feature>Simplified account registration</Feature>
+                </ul>
+              </div>
+            </TemplateCardContent>
+          </TemplateCard>
+          <TemplateCard>
+            <TemplateCardTitle>
+              One to Many
+              <TemplateCardBadge>Recommended</TemplateCardBadge>
+            </TemplateCardTitle>
+            <TemplateCardDescription>
+              An account can have many users, but each user belongs to only 1
+              account.
+            </TemplateCardDescription>
+            <TemplateCardContent>
+              <div className="flex flex-row gap-2 mt-auto w-full">
+                <Button variant="outline" className="mt-auto w-full">
+                  <ExternalLink className="h-4 w-4" />
+                  Demo
+                </Button>
+                <Button variant="outline" className="mt-auto w-full">
+                  Docs
+                </Button>
+              </div>
+              <div className="mt-4">
+                <ul className="flex flex-col gap-2 mt-2">
+                  <Feature>Users can be invited to an account</Feature>
+                  <Feature>Simple role based permission management</Feature>
+                  <Feature>Simple user management UI</Feature>
+                </ul>
+              </div>
+            </TemplateCardContent>
+          </TemplateCard>
+          <TemplateCard className="mt-3">
+            <TemplateCardTitle>
+              Many to Many
+              <TemplateCardBadge>Coming Soon</TemplateCardBadge>
+            </TemplateCardTitle>
+            <TemplateCardDescription>
+              An account can have multiple users, and a user can belong to
+              multiple accounts.
+            </TemplateCardDescription>
+            <TemplateCardContent>
+              <div className="flex flex-row gap-2 mt-auto w-full">
+                <Button variant="outline" className="mt-auto w-full" disabled>
+                  <ExternalLink className="h-4 w-4" />
+                  Demo
+                </Button>
+                <Button variant="outline" className="mt-auto w-full" disabled>
+                  Docs
+                </Button>
+              </div>
+              <div className="mt-4">
+                <ul className="flex flex-col gap-2 mt-2">
+                  <Feature>Everything from One to Many</Feature>
+                  <Feature>Users can switch between accounts</Feature>
+                  <Feature>Users can manage their own memberships</Feature>
+                </ul>
+              </div>
+            </TemplateCardContent>
+          </TemplateCard>
+        </section>
       </main>
       <footer className="mb-6 mt-auto grid w-full max-w-screen-2xl px-2 pt-10 text-xs md:px-4 lg:text-sm 2xl:px-0">
         <div className="text-center">
