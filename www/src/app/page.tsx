@@ -86,7 +86,7 @@ export default function Home() {
           </ul>
         </section>
         <section className="grid w-full auto-rows-max grid-cols-1 lg:grid-cols-3 gap-3 mt-16">
-          <div className="col-span-3 text-center">
+          <div className="lg:col-span-3 text-center">
             <p className="text-base text-muted-foreground/70 md:text-lg md:w-3/4 lg:w-1/2 font-light m-auto mb-5">
               Choose the model that best suits your app:
             </p>
@@ -98,7 +98,7 @@ export default function Home() {
               support additional users.
             </TemplateCardDescription>
             <TemplateCardContent>
-              <div className="flex flex-row gap-2 mt-auto w-full">
+              <div className="flex flex-col md:flex-row gap-2 mt-auto w-full">
                 <Button variant="outline" className="mt-auto w-full" asChild>
                   <Link href="https://next-auth-template-one-to-one.vercel.app">
                     <ExternalLink className="h-4 w-4" />
@@ -119,7 +119,7 @@ export default function Home() {
               </div>
             </TemplateCardContent>
           </TemplateCard>
-          <div className="relative">
+          <div className="relative row-start-2 lg:row-start-auto">
             <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-[#55b0fa] to-[#ad6df4] opacity-60 blur"></div>
             <TemplateCard className="relative">
               <TemplateCardTitle>
@@ -131,7 +131,7 @@ export default function Home() {
                 account.
               </TemplateCardDescription>
               <TemplateCardContent>
-                <div className="flex flex-row gap-2 mt-auto w-full">
+                <div className="flex flex-col md:flex-row gap-2 mt-auto w-full">
                   <Button className="mt-auto w-full" asChild>
                     <Link href="https://next-auth-template-one-to-many.vercel.app">
                       <ExternalLink className="h-4 w-4" />
@@ -164,7 +164,7 @@ export default function Home() {
               multiple accounts.
             </TemplateCardDescription>
             <TemplateCardContent>
-              <div className="flex flex-row gap-2 mt-auto w-full">
+              <div className="flex flex-col md:flex-row gap-2 mt-auto w-full">
                 <Button variant="outline" className="mt-auto w-full" disabled>
                   <ExternalLink className="h-4 w-4" />
                   Live Demo
