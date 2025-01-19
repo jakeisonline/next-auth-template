@@ -1,3 +1,4 @@
+import { CopyToClipboardButton } from "@/components/copy-to-clipboard-button"
 import { Feature } from "@/components/feature"
 import {
   TemplateCard,
@@ -7,7 +8,7 @@ import {
   TemplateCardTitle,
 } from "@/components/template-card"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, ClipboardCopy, ExternalLink } from "lucide-react"
+import { ChevronRight, ExternalLink } from "lucide-react"
 import Link from "next/link"
 
 export default function Home() {
@@ -53,9 +54,7 @@ export default function Home() {
               <code className="relative px-[0.3rem] py-[0.2rem] font-mono text-sm">
                 npx next-auth-template
               </code>
-              <Button variant="outline" size="icon" className="ml-auto">
-                <ClipboardCopy className="h-4 w-4" />
-              </Button>
+              <CopyToClipboardButton />
             </pre>
             <p className="text-sm text-center text-muted-foreground/70">
               <Link href="https://jakeisonline.com/playground/tools/next-auth-template">
