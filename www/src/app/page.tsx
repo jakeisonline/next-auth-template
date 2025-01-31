@@ -14,7 +14,7 @@ import Link from "next/link"
 export default function Home() {
   return (
     <>
-      <header className="relative w-full max-w-screen-2xl px-3 md:px-4 lg:top-2 2xl:px-0 text-sm">
+      <header className="relative w-full max-w-screen-2xl px-5 lg:top-2 2xl:px-0 text-sm">
         <div className="flex h-14 items-center">
           <div>
             <span>next-auth-template</span>
@@ -85,13 +85,13 @@ export default function Home() {
             </Feature>
           </ul>
         </section>
-        <section className="grid w-full auto-rows-max grid-cols-1 lg:grid-cols-3 gap-3 mt-16">
-          <div className="lg:col-span-3 text-center">
-            <p className="text-base text-muted-foreground/70 md:text-lg md:w-3/4 lg:w-1/2 font-light m-auto mb-5">
+        <section className="grid w-full auto-rows-max grid-cols-1 xl:grid-cols-3 gap-5 xl:gap-3 mt-16 px-3 md:px-0 max-w-xl xl:max-w-full">
+          <div className="xl:col-span-3 text-center">
+            <p className="text-base text-muted-foreground/70 md:text-lg w-3/4 lg:w-full font-light m-auto xl:mb-4">
               Choose the model that best suits your app:
             </p>
           </div>
-          <TemplateCard className="mt-3">
+          <TemplateCard>
             <TemplateCardTitle>One to One</TemplateCardTitle>
             <TemplateCardDescription>
               Each user has their own isolated account, and accounts do not
@@ -154,7 +154,7 @@ export default function Home() {
               </TemplateCardContent>
             </TemplateCard>
           </div>
-          <TemplateCard className="mt-3">
+          <TemplateCard>
             <TemplateCardTitle>
               Many to Many
               <TemplateCardBadge>Coming Soon</TemplateCardBadge>
