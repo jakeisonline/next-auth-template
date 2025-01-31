@@ -27,7 +27,8 @@
     "12m:dev": "pnpm --filter next-auth-template-one-to-many run dev",
     "12m:build": "pnpm --filter next-auth-template-one-to-many run build",
     "12m:start": "pnpm --filter next-auth-template-one-to-many run start",
-    "12m:lint": "pnpm --filter next-auth-template-one-to-many run lint"
+    "12m:lint": "pnpm --filter next-auth-template-one-to-many run lint",
+    "www:dev": "pnpm --filter www run dev"
   },
   "bin": "./dist/index.js",
   "files": [
