@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "next-auth-template - Sign up and auth, super quick",
   description:
     "A customisable template giving you the best start when building your Next.js app with baked in social sign in, magic links, user management, and more.",
+  openGraph: {
+    siteName: "next-auth-template",
+    title: "Sign up and auth, super quick",
+    type: "website",
+    locale: "en_GB",
+    url: "https://next-auth-template.vercel.app",
+  },
 }
 
 export default function RootLayout({
