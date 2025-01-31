@@ -2,9 +2,9 @@ import "@/app/globals.css"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Next.js + Auth.js Template",
+  title: "next-auth-template - Sign up and auth, super quick",
   description:
-    "Sign up and auth, super quick, with database-backed sessions, social sign in, and magic links.",
+    "A customisable template giving you the best start when building your Next.js app with baked in social sign in, magic links, user management, and more.",
 }
 
 export default function RootLayout({
