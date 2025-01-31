@@ -1,5 +1,7 @@
 # next-auth-template
 
+![A summary of next-auth-template that reads "Sign up and auth, super quick. The best start when building your Next.js app with baked in social sign in, magic links, user management, and more."](./www/src/app/opengraph-image.png)
+
 Sign up and auth, super quick with database-backed sessions, social sign in, magic links, and multiple user models to choose from. This CLI tool enables you to quickly start building a new Next.js application, with auth already set up for you so you can focus on the fun stuff.
 
 ## Usage
