@@ -22,7 +22,7 @@ export async function doMagicAuth(
   formData?: FormData,
 ): Promise<ServerActionResponse> {
   // If the environment variables are not set, throw an error
-  if (!process.env.RESEND_KEY || !process.env.RESEND_EMAIL_FROM) {
+  if (!process.env.RESEND_KEY || !process.env.EMAIL_FROM) {
     throw new Error(
       "[Config Error] Magic link environment variables are not set",
     )

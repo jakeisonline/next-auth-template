@@ -34,7 +34,7 @@ export const authConfig = {
     }),
     Resend({
       apiKey: process.env.RESEND_KEY,
-      from: process.env.AUTH_MAGIC_LINK_EMAIL_FROM,
+      from: process.env.EMAIL_FROM,
     }),
   ],
   callbacks: {

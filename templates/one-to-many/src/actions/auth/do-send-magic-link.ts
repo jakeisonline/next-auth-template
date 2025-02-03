@@ -6,7 +6,7 @@ export const doSendMagicLink = async (email: string, url: string) => {
   const EmailClient = new Resend(process.env.RESEND_KEY)
 
   const { error } = await EmailClient.emails.send({
-    from: `next-auth-template <${process.env.RESEND_EMAIL_FROM}>`,
+    from: `next-auth-template <${process.env.EMAIL_FROM}>`,
     to: email,
     subject: "Sign in link for next-auth-template",
     html: EmailMagicLink({ type: "html", context: { url } }),

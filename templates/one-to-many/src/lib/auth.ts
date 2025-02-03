@@ -39,7 +39,7 @@ export const authConfig = {
     }),
     Resend({
       apiKey: process.env.RESEND_KEY,
-      from: process.env.RESEND_EMAIL_FROM,
+      from: process.env.EMAIL_FROM,
       sendVerificationRequest: async ({ identifier: email, url }) => {
         doSendMagicLink(email, url)
       },
