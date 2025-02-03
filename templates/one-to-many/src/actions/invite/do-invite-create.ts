@@ -213,7 +213,7 @@ export const doInviteCreate = withFormProtection(
     const EmailClient = new Resend(process.env.RESEND_KEY)
 
     const { error } = await EmailClient.emails.send({
-      from: `next-auth-template <${process.env.RESEND_EMAIL_FROM}>`,
+      from: `next-auth-template <${process.env.EMAIL_FROM}>`,
       to: validatedEmail.data,
       subject: `${session.user.name} invited you to join ${account[0].name}`,
       react: EmailInvite({

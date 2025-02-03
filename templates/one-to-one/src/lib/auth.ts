@@ -8,6 +8,7 @@ import { sessionsTable } from "@/db/schema/sessions"
 import { verificationTokensTable } from "@/db/schema/verification_tokens"
 import Resend from "next-auth/providers/resend"
 import { NextRequest } from "next/server"
+import { doSendMagicLink } from "@/actions/auth/do-send-magic-link"
 
 declare module "next-auth" {
   interface Session {
@@ -34,7 +35,10 @@ export const authConfig = {
     }),
     Resend({
       apiKey: process.env.RESEND_KEY,
-      from: process.env.AUTH_MAGIC_LINK_EMAIL_FROM,
+      from: process.env.EMAIL_FROM,
+      sendVerificationRequest: async ({ identifier: email, url }) => {
+        doSendMagicLink(email, url)
+      },
     }),
   ],
   callbacks: {

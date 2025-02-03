@@ -35,6 +35,7 @@
     "prettier-plugin-tailwindcss": "^0.6.10",
     "react": "19.0.0-rc.1",
     "react-dom": "19.0.0-rc.1",
+    "resend": "^4.1.1",
     "tailwind-merge": "^2.6.0",
     "zod": "^3.24.1"
   },
