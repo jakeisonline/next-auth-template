@@ -33,8 +33,8 @@ export function Feature({
   const IconSlot = icons[icon as keyof typeof icons] || Check
 
   return (
-    <li className={cn("flex flex-row items-center gap-2", className)}>
-      <IconSlot className="h-4 w-4" />
+    <li className={cn("flex flex-row gap-2 items-start", className)}>
+      <IconSlot className="mt-1 h-4 w-4" />
       {children}
     </li>
   )

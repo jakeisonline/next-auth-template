@@ -28,7 +28,14 @@ export function TemplateCardTitle({
   children: React.ReactNode
 }) {
   return (
-    <h3 className={cn("text-3xl font-bold flex", className)}>{children}</h3>
+    <h3
+      className={cn(
+        "text-3xl font-bold flex flex-col-reverse md:flex-row",
+        className,
+      )}
+    >
+      {children}
+    </h3>
   )
 }
 
@@ -42,7 +49,7 @@ export function TemplateCardBadge({
   return (
     <Badge
       className={cn(
-        "ml-auto font-normal bg-muted text-muted-foreground select-none",
+        "font-normal bg-muted text-muted-foreground md:ml-auto mr-auto mb-2 md:mb-0 md:mr-0 select-none",
         className,
       )}
     >
