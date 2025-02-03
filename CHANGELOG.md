@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.3.4
+
+### Patch Changes
+
+- [#23](https://github.com/jakeisonline/next-auth-template/pull/23) [`6b64565`](https://github.com/jakeisonline/next-auth-template/commit/6b64565b7aaddee047cb50b7be92195745a51ea9) Thanks [@jakeisonline](https://github.com/jakeisonline)! - Be consistent with magic link related environment variables, and methods for sending magic links
+
 ## 0.3.3
 
 ### Patch Changes
