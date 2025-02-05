@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 import { Moon, Sun } from "lucide-react"
 import { useCallback, useEffect, useState } from "react"
 
-export default function ThemeToggle() {
+export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
   const [theme, setTheme] = useState<"light" | "dark" | "system">("system")
 
