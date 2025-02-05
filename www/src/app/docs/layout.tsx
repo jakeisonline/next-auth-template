@@ -1,3 +1,4 @@
+import ThemeToggle from "@/components/theme-toggle"
 import type { Metadata } from "next"
 import type { FC, ReactNode } from "react"
 
@@ -17,7 +18,9 @@ const DocsLayout: FC<{ children: ReactNode }> = async ({ children }) => {
         <div>
           <span>next-auth-template</span>
         </div>
-        <div className="flex flex-1 justify-end gap-2"></div>
+        <div className="flex flex-1 justify-end gap-2">
+          <ThemeToggle />
+        </div>
       </div>
       {children}
     </header>
