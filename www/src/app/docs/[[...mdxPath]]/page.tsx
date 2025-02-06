@@ -6,9 +6,9 @@ import { generateStaticParamsFor, importPage } from "nextra/pages"
 export const generateStaticParams = generateStaticParamsFor("mdxPath")
 
 interface PageProps {
-  params: {
+  params: Promise<{
     mdxPath: string
-  }
+  }>
 }
 
 export async function generateMetadata(props: PageProps) {
