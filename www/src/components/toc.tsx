@@ -43,49 +43,51 @@ export const TOC: FC<TOCProps> = ({ toc }) => {
   }, [activeSlug])
 
   return (
-    <nav
-      aria-labelledby="doc-outline-aria-label"
-      className={cn(
-        "text-sm sticky top-20 h-[calc(100vh-3.5rem)] pl-3 hidden xl:block",
-      )}
-    >
-      {hasHeadings && (
-        <>
-          <p className="font-semibold">On this page</p>
-          <ul ref={tocRef}>
-            {anchors.map(({ id, value, depth }) => (
-              <li className="my-2 scroll-my-6 scroll-py-6" key={id}>
-                <a
-                  href={`#${id}`}
-                  className={cn(
-                    "focus-visible:nextra-focus",
-                    {
-                      2: "font-semibold",
-                      3: "ms-3",
-                      4: "ms-6",
-                      5: "ms-9",
-                      6: "ms-12",
-                    }[depth],
-                    "block transition-colors subpixel-antialiased",
-                    id === activeSlug
-                      ? "text-primary-600 contrast-more:text-primary-600!"
-                      : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300",
-                    "contrast-more:text-gray-900 contrast-more:underline contrast-more:dark:text-gray-50 break-words",
-                  )}
-                >
-                  {value}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+    <div className="hidden xl:block">
+      <nav
+        aria-labelledby="doc-outline-aria-label"
+        className={cn(
+          "text-sm sticky top-10 h-[calc(100vh)+4rem] pl-3 hidden xl:block",
+        )}
+      >
+        {hasHeadings && (
+          <>
+            <p className="font-semibold">On this page</p>
+            <ul ref={tocRef}>
+              {anchors.map(({ id, value, depth }) => (
+                <li className="my-2 scroll-my-6 scroll-py-6" key={id}>
+                  <a
+                    href={`#${id}`}
+                    className={cn(
+                      "focus-visible:nextra-focus",
+                      {
+                        2: "font-semibold",
+                        3: "ms-3",
+                        4: "ms-6",
+                        5: "ms-9",
+                        6: "ms-12",
+                      }[depth],
+                      "block transition-colors subpixel-antialiased",
+                      id === activeSlug
+                        ? "text-primary-600 contrast-more:text-primary-600!"
+                        : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300",
+                      "contrast-more:text-gray-900 contrast-more:underline contrast-more:dark:text-gray-50 break-words",
+                    )}
+                  >
+                    {value}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
 
-      <div className={cn("grid gap-2 py-4 mx-4")}>
-        <BackToTop className={linkClassName} hidden={activeIndex < 2}>
-          Back to top
-        </BackToTop>
-      </div>
-    </nav>
+        <div className={cn("grid gap-2 py-4 mx-4")}>
+          <BackToTop className={linkClassName} hidden={activeIndex < 2}>
+            Back to top
+          </BackToTop>
+        </div>
+      </nav>
+    </div>
   )
 }
