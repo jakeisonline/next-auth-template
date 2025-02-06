@@ -10,11 +10,12 @@ import {
 import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
 import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 import { useCallback, useEffect, useState } from "react"
 
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
-  const [theme, setTheme] = useState<"light" | "dark" | "system">("system")
+  const { theme, setTheme } = useTheme()
 
   /* We don't want this component to render until it's mounted,
   as the server doesn't understand nor care about a user's theme preference */
