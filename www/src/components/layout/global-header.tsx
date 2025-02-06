@@ -19,8 +19,9 @@ export default function GlobalHeader() {
         <div className="flex flex-1 justify-end gap-2">
           <Button variant="ghost" asChild className="px-3">
             <Link
-              href="https://github.com/jakeisonline/next-auth-template"
+              href="https://www.npmjs.com/package/next-auth-template"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <CgNpm className="h-4 w-4" />
             </Link>
@@ -29,6 +30,7 @@ export default function GlobalHeader() {
             <Link
               href="https://github.com/jakeisonline/next-auth-template"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <FaGithub className="h-4 w-4" />
             </Link>
