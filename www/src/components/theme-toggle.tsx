@@ -32,6 +32,8 @@ export function ThemeToggle({ className }: { className?: string }) {
     const isDarkMode = document.documentElement.classList.contains("dark")
     setTheme(isDarkMode ? "dark" : "light")
     setMounted(true)
+    // Adding setTheme to the dependency array will cause the component to re-render endlessly
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
