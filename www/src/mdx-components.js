@@ -5,7 +5,7 @@ const defaultComponents = getNextraComponents({
   wrapper({ children, toc }) {
     return (
       <>
-        <div style={{ flexGrow: 1, padding: 20 }}>{children}</div>
+        <div className="prose">{children}</div>
         <TOC toc={toc} />
       </>
     )
