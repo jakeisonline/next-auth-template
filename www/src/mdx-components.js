@@ -1,6 +1,8 @@
 import { H1, H2, H3, H4, H5, H6 } from "@/components/mdx/heading"
 import { TOC } from "@/components/toc"
 import { useMDXComponents as getNextraComponents } from "nextra/mdx-components"
+import { normalizePages } from "nextra/normalize-pages"
+import { Breadcrumb } from "./components/breadcrumb"
 
 const defaultComponents = getNextraComponents({
   h1: H1,
@@ -9,10 +11,18 @@ const defaultComponents = getNextraComponents({
   h4: H4,
   h5: H5,
   h6: H6,
-  wrapper({ children, toc }) {
+  wrapper({ children, toc, pageMap }) {
+    const normalizedPages = normalizePages({
+      list: pageMap,
+      route: "/docs",
+    })
+
+    console.log(normalizedPages)
+
     return (
       <>
         <div className="prose prose-h2:border-b prose-h2:pb-2 prose-headings:scroll-m-20 prose-headings:tracking-tight prose-h1:text-3xl prose-headings:font-bold prose-h1:mb-0 dark:prose-invert">
+          <Breadcrumb activePath={normalizedPages.activePath} />
           {children}
         </div>
         <TOC toc={toc} />
