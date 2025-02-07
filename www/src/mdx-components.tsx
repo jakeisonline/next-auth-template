@@ -26,8 +26,6 @@ const defaultComponents = getNextraComponents({
       route: "/docs",
     })
 
-    console.log(normalizedPages)
-
     return (
       <>
         <div className="prose prose-h2:border-b prose-h2:pb-2 prose-headings:scroll-m-20 prose-headings:tracking-tight prose-h1:text-3xl prose-headings:font-bold prose-h1:mb-0 dark:prose-invert">
