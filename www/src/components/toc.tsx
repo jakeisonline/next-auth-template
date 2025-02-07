@@ -3,6 +3,7 @@
 import { BackToTop } from "@/components/back-to-top"
 import { useActiveAnchor } from "@/stores/active-anchor"
 import cn from "clsx"
+import { ChevronRight } from "lucide-react"
 import type { Heading } from "nextra"
 import type { FC } from "react"
 import { useEffect, useRef } from "react"
@@ -53,13 +54,15 @@ export const TOC: FC<TOCProps> = ({ toc }) => {
         {hasHeadings && (
           <>
             <p className="font-semibold">On this page</p>
-            <ul ref={tocRef}>
+            <ul className="-m-2.5 mt-5" ref={tocRef}>
               {anchors.map(({ id, value, depth }) => (
-                <li className="my-2 scroll-my-6 scroll-py-6" key={id}>
+                <li
+                  className="my-2 scroll-my-6 scroll-py-6 flex items-center text-sm"
+                  key={id}
+                >
                   <a
                     href={`#${id}`}
                     className={cn(
-                      "focus-visible:nextra-focus",
                       {
                         2: "font-semibold",
                         3: "ms-3",
@@ -69,11 +72,15 @@ export const TOC: FC<TOCProps> = ({ toc }) => {
                       }[depth],
                       "block transition-colors subpixel-antialiased",
                       id === activeSlug
-                        ? "text-primary-600 contrast-more:text-primary-600!"
-                        : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300",
-                      "contrast-more:text-gray-900 contrast-more:underline contrast-more:dark:text-gray-50 break-words",
+                        ? "text-link hover:text-link-hover"
+                        : "text-muted-foreground/70 hover:text-muted-foreground/50",
                     )}
                   >
+                    <span className="inline-flex items-center w-3 mr-0.5">
+                      {id === activeSlug && (
+                        <ChevronRight className="w-3 h-3" />
+                      )}
+                    </span>
                     {value}
                   </a>
                 </li>
