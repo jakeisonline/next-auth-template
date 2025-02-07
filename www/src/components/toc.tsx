@@ -89,9 +89,9 @@ export const TOC: FC<TOCProps> = ({ toc }) => {
           </>
         )}
 
-        <div className={cn("grid gap-2 py-4 mx-4")}>
+        <div className="mt-8 pt-3 border-t border-border">
           <BackToTop className={linkClassName} hidden={activeIndex < 2}>
-            Back to top
+            Scroll to top
           </BackToTop>
         </div>
       </nav>

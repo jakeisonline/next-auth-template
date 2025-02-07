@@ -1,6 +1,6 @@
 import cn from "clsx"
+import { CircleChevronUpIcon } from "lucide-react"
 import { Button } from "nextra/components"
-import { ArrowRightIcon } from "nextra/icons"
 import type { ComponentProps, FC, ReactNode } from "react"
 
 const SCROLL_TO_OPTIONS = { top: 0, behavior: "smooth" } as const
@@ -28,18 +28,15 @@ export const BackToTop: FC<{
       disabled={hidden}
       className={({ disabled }) =>
         cn(
-          "x:flex x:items-center x:gap-1.5",
-          "x:whitespace-nowrap", // Safari
-          disabled ? "x:opacity-0" : "x:opacity-100",
+          "flex items-center gap-1.5",
+          "whitespace-nowrap", // Safari
+          disabled ? "opacity-0" : "opacity-100",
           className,
         )
       }
     >
       {children}
-      <ArrowRightIcon
-        height="1.1em"
-        className="x:-rotate-90 x:border x:rounded-full x:border-current"
-      />
+      <CircleChevronUpIcon className="w-4 h-4" />
     </Button>
   )
 }
