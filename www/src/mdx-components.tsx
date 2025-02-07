@@ -1,5 +1,6 @@
 import { H1, H2, H3, H4, H5, H6 } from "@/components/mdx/heading"
 import { TOC } from "@/components/toc"
+import { Heading, PageMapItem } from "nextra"
 import { useMDXComponents as getNextraComponents } from "nextra/mdx-components"
 import { normalizePages } from "nextra/normalize-pages"
 import { Breadcrumb } from "./components/breadcrumb"
@@ -11,7 +12,15 @@ const defaultComponents = getNextraComponents({
   h4: H4,
   h5: H5,
   h6: H6,
-  wrapper({ children, toc, pageMap }) {
+  wrapper({
+    children,
+    toc,
+    pageMap = [],
+  }: {
+    children: React.ReactNode
+    toc: Heading[]
+    pageMap?: PageMapItem[]
+  }) {
     const normalizedPages = normalizePages({
       list: pageMap,
       route: "/docs",
@@ -31,7 +40,9 @@ const defaultComponents = getNextraComponents({
   },
 })
 
-export const useMDXComponents = (components) => ({
+export const useMDXComponents = <T extends Record<string, unknown>>(
+  components: T,
+) => ({
   ...defaultComponents,
   ...components,
 })
