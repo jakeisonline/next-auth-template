@@ -1,13 +1,15 @@
 import { Breadcrumb } from "@/components/breadcrumb"
+import { Code } from "@/components/mdx/code"
 import { H1, H2, H3, H4, H5, H6 } from "@/components/mdx/heading"
+import { Link } from "@/components/mdx/link"
 import { TOC } from "@/components/toc"
 import { Heading, PageMapItem } from "nextra"
 import { useMDXComponents as getNextraComponents } from "nextra/mdx-components"
 import { normalizePages } from "nextra/normalize-pages"
-import { Code } from "./components/mdx/code"
 
 const defaultComponents = getNextraComponents({
   code: Code,
+  a: Link,
   h1: H1,
   h2: H2,
   h3: H3,
