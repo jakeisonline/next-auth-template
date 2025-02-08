@@ -1,0 +1,50 @@
+# Installing
+
+Use the handy CLI tool to quickly start building a new Next.js application, with auth already set up.
+
+```bash
+pnpm dlx next-auth-template
+# or
+npx next-auth-template
+# or
+bunx --bun next-auth-template
+```
+
+You will be asked to select a template:
+
+```bash
+? Select a template › - Use arrow-keys. Return to submit.
+❯   One-to-one
+    One-to-many
+```
+
+You will also be asked to provide a project name. This is also used as the directory name. You can leave it as default (.) to have the project initialized into the current directory. Must be a single word, no special characters.
+
+```bash
+? Enter the name of your project › .
+```
+
+If everything goes well, you will see a message of confirmation.
+
+```bash
+✔ Template copied successfully to /path/to/project
+```
+
+## Non-interactive
+
+You can also use the CLI non-interactively; provide arguments and options to the CLI to skip the prompts.
+
+```bash
+Usage: next-auth-template [options] [template]
+
+Create a new Next.js application with auth already set up
+
+Arguments:
+  template                   name of the template to initialize -- optional (choices: "one-to-one", "one-to-many")
+
+Options:
+  -v, --version              show version of cli
+  -p, --project-name <name>  name of the project to initialize, also used as the directory name
+  -o, --overwrite            overwrite existing files in the directory (project name) without prompting
+  -h, --help                 display help for command
+```
