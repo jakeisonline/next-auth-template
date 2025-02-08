@@ -64,7 +64,7 @@ export const TOC: FC<TOCProps> = ({ toc }) => {
                     href={`#${id}`}
                     className={cn(
                       {
-                        2: "font-semibold",
+                        2: "",
                         3: "ms-3",
                         4: "ms-6",
                         5: "ms-9",
@@ -72,7 +72,7 @@ export const TOC: FC<TOCProps> = ({ toc }) => {
                       }[depth],
                       "block transition-colors subpixel-antialiased",
                       id === activeSlug
-                        ? "text-link hover:text-link-hover"
+                        ? "text-link hover:text-link-hover font-semibold"
                         : "text-muted-foreground/70 hover:text-muted-foreground/50",
                     )}
                   >
