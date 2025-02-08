@@ -1,11 +1,13 @@
+import { Breadcrumb } from "@/components/breadcrumb"
 import { H1, H2, H3, H4, H5, H6 } from "@/components/mdx/heading"
 import { TOC } from "@/components/toc"
 import { Heading, PageMapItem } from "nextra"
 import { useMDXComponents as getNextraComponents } from "nextra/mdx-components"
 import { normalizePages } from "nextra/normalize-pages"
-import { Breadcrumb } from "./components/breadcrumb"
+import { Code } from "./components/mdx/code"
 
 const defaultComponents = getNextraComponents({
+  code: Code,
   h1: H1,
   h2: H2,
   h3: H3,
@@ -28,7 +30,7 @@ const defaultComponents = getNextraComponents({
 
     return (
       <>
-        <div className="prose prose-h2:border-b prose-h2:pb-2 prose-headings:scroll-m-20 prose-headings:tracking-tight prose-h1:text-3xl prose-headings:font-bold prose-h1:mb-0 dark:prose-invert">
+        <div className="prose prose-h2:border-b prose-h2:pb-2 prose-headings:scroll-m-20 prose-headings:tracking-tight prose-h1:text-3xl prose-headings:font-bold prose-h1:mb-0 dark:prose-invert prose-code:before:content-none prose-code:after:content-none">
           <Breadcrumb activePath={normalizedPages.activePath} />
           {children}
         </div>
