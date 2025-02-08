@@ -1,6 +1,6 @@
 "use client"
 
-import { Link } from "@/components/mdx/link"
+import { Link } from "@/components/ui/link"
 import { usePathname } from "next/navigation"
 import type { PageMapItem } from "nextra"
 import { normalizePages } from "nextra/normalize-pages"
@@ -33,7 +33,7 @@ export const Sidebar: FC<{ pageMap: PageMapItem[] }> = ({ pageMap }) => {
               ) : (
                 <Link
                   href={route}
-                  className="hover:text-link-hover underline-offset-4 underline decoration-transparent decoration-dotted transition-colors duration-300 ease-out hover:decoration-link-hover inline-flex px-1.5 py-1 rounded-sm group text-foreground/60"
+                  className="text-foreground/60 hover:text-link-hover px-1.5 py-1 rounded-sm group inline-flex"
                 >
                   {title}
                 </Link>

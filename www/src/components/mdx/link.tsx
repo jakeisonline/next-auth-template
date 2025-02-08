@@ -1,5 +1,4 @@
-import { cn, isExternalUrl } from "@/lib/utils"
-import { ExternalLinkIcon } from "lucide-react"
+import { Link as UiLink } from "@/components/ui/link"
 import type { ComponentProps, FC } from "react"
 
 export const Link: FC<ComponentProps<"a">> = ({
@@ -7,21 +6,11 @@ export const Link: FC<ComponentProps<"a">> = ({
   className,
   ...props
 }) => {
-  const href = props.href || null
-  const isExternal = href ? isExternalUrl(href) : false
+  const href = props.href || undefined
 
   return (
-    <a
-      className={cn(
-        "transition-all duration-200 decoration-transparent hover:decoration-link-hover text-link hover:text-link-hover underline-offset-2",
-        className,
-      )}
-      {...props}
-    >
+    <UiLink href={href} className={className} {...props}>
       {children}
-      {isExternal && (
-        <ExternalLinkIcon className="ml-1 size-3 -mt-2 hover:decoration-none inline-block" />
-      )}
-    </a>
+    </UiLink>
   )
 }
