@@ -2,8 +2,6 @@ import { cn, isExternalUrl } from "@/lib/utils"
 import { ExternalLinkIcon } from "lucide-react"
 import type { ComponentProps, FC } from "react"
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
-
 export const Link: FC<ComponentProps<"a">> = ({
   children,
   className,
@@ -11,12 +9,6 @@ export const Link: FC<ComponentProps<"a">> = ({
 }) => {
   const href = props.href || null
   const isExternal = href ? isExternalUrl(href) : false
-
-  if (!baseUrl) {
-    console.warn(
-      "NEXT_PUBLIC_BASE_URL is not set, all links will be treated as external",
-    )
-  }
 
   return (
     <a
