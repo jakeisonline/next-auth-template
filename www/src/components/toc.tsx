@@ -48,7 +48,7 @@ export const TOC: FC<TOCProps> = ({ toc }) => {
       <nav
         aria-labelledby="doc-outline-aria-label"
         className={cn(
-          "text-sm sticky top-10 h-[calc(100vh)+4rem] pl-3 hidden xl:block",
+          "text-sm sticky top-20 h-[calc(100vh)+4rem] pl-3 hidden xl:block",
         )}
       >
         {hasHeadings && (
