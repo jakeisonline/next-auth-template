@@ -4,7 +4,7 @@ import type { FC, ReactNode } from "react"
 export const metadata: Metadata = {
   title: {
     absolute: "",
-    template: "%s - Nextra",
+    template: "next-auth-template - %s",
   },
 }
 
