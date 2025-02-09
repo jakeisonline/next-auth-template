@@ -1,6 +1,5 @@
 import { Breadcrumb } from "@/components/breadcrumb"
 import { Sidebar } from "@/components/layout/sidebar"
-import { Code } from "@/components/mdx/code"
 import { H1, H2, H3, H4, H5, H6 } from "@/components/mdx/heading"
 import { Link } from "@/components/mdx/link"
 import { TOC } from "@/components/toc"
@@ -9,7 +8,6 @@ import { useMDXComponents as getNextraComponents } from "nextra/mdx-components"
 import { normalizePages } from "nextra/normalize-pages"
 
 const defaultComponents = getNextraComponents({
-  code: Code,
   a: Link,
   h1: H1,
   h2: H2,

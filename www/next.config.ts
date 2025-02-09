@@ -2,6 +2,14 @@ import nextra from "nextra"
 
 const withNextra = nextra({
   contentDirBasePath: "/docs",
+  mdxOptions: {
+    rehypePrettyCodeOptions: {
+      theme: {
+        dark: "poimandres",
+        light: "poimandres",
+      },
+    },
+  },
 })
 
 // You can include other Next.js configuration options here, in addition to Nextra settings:

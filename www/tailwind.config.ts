@@ -85,6 +85,19 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            code: {
+              "background-color": "hsl(var(--accent))",
+              "padding": "0.25rem 0.5rem",
+              "border-radius": "0.25rem",
+              "border": "1px solid hsl(var(--border))",
+              "font-weight": "normal",
+            },
+          },
+        },
+      },
     },
   },
   plugins: [

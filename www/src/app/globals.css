@@ -95,4 +95,18 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  pre {
+    @apply bg-muted;
+  }
+  pre code {
+    @apply text-foreground;
+  }
+  pre code span {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg, transparent);
+  }
+  .dark pre code span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg, transparent);
+  }
 }
