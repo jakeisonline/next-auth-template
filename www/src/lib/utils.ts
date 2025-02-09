@@ -1,4 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
+import type { PageMapItem } from "nextra"
+import { normalizePages } from "nextra/normalize-pages"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -16,4 +18,27 @@ export function isExternalUrl(url: string) {
   }
 
   return !url?.startsWith(baseUrl) && /^(https?:)?\/\//i.test(url)
+}
+
+export function getSortedPages({
+  pages,
+  currentPathname,
+  customOrder,
+}: {
+  pages: PageMapItem[]
+  currentPathname: string
+  customOrder?: string[]
+}) {
+  const { docsDirectories } = normalizePages({
+    list: pages,
+    route: currentPathname,
+  })
+
+  if (!customOrder) return docsDirectories
+
+  return docsDirectories.sort((a, b) => {
+    const indexA = customOrder.indexOf(a.name)
+    const indexB = customOrder.indexOf(b.name)
+    return indexA - indexB
+  })
 }
