@@ -5,8 +5,8 @@ const withNextra = nextra({
   mdxOptions: {
     rehypePrettyCodeOptions: {
       theme: {
-        dark: "poimandres",
-        light: "poimandres",
+        dark: "plastic",
+        light: "plastic",
       },
     },
   },

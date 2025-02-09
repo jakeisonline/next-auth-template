@@ -31,6 +31,7 @@ const config: Config = {
         "foreground": "hsl(var(--foreground))",
         "link": "hsl(var(--link))",
         "link-hover": "hsl(var(--link-hover))",
+        "code-background": "hsl(var(--code-background))",
         "card": {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",

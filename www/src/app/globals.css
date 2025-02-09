@@ -20,6 +20,7 @@ body {
     --link-hover: var(--primary) / 80%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
+    --code-background: 216 13% 15%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
     --primary: 207 94% 56%;
@@ -57,6 +58,7 @@ body {
     --link-hover: var(--primary) / 80%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
+    --code-background: 216 13% 15%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 268 86% 69%;
@@ -95,18 +97,10 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-  pre {
-    @apply bg-muted;
-  }
-  pre code {
-    @apply text-foreground;
-  }
   pre code span {
     color: var(--shiki-light);
-    background-color: var(--shiki-light-bg, transparent);
   }
   .dark pre code span {
     color: var(--shiki-dark);
-    background-color: var(--shiki-dark-bg, transparent);
   }
 }
