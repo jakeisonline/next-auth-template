@@ -73,7 +73,7 @@ export const TOC: FC<TOCProps> = ({ toc }) => {
                       "block transition-colors subpixel-antialiased",
                       id === activeSlug
                         ? "text-link hover:text-link-hover font-semibold"
-                        : "text-muted-foreground/70 hover:text-muted-foreground/50",
+                        : "text-muted-foreground/70 hover:text-link-hover",
                     )}
                   >
                     <span className="inline-flex items-center w-3 mr-0.5">
