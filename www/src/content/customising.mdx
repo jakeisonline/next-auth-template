@@ -2,7 +2,7 @@
 
 While this template is designed to be as simple as possible, with the intention of you enhancing it further, there are a few changes you might want to make.
 
-### Change PostgreSQL host
+## Change PostgreSQL host
 
 This template expects a PostgreSQL database, and uses Drizzle ORM to interface with it. Out of the box, Drizzle is configured to use Neon, but you can change this to any other PostgreSQL host.
 
@@ -10,7 +10,7 @@ This template expects a PostgreSQL database, and uses Drizzle ORM to interface w
 
 See [Drizzle ORM's documentation](https://orm.drizzle.team/docs/get-started-postgresql) for more information.
 
-### Add other Auth.js providers
+## Add other Auth.js providers
 
 This template uses Google Sign-in, but you can add other providers Auth.js supports.
 
@@ -19,7 +19,7 @@ This template uses Google Sign-in, but you can add other providers Auth.js suppo
 3. In `src/lib/auth.ts`, add the provider to the `providers` array (and be sure to import it!)
 4. On your sign in and sign up pages, add `<SocialSignInButton provider="new_provider" />` component where `new_provider` is the name of the provider you added
 
-### Change Email Provider
+## Change Email Provider
 
 By default, this template uses [Resend](https://resend.com/emails) to send magic links. You can change this to any other email provider that Auth.js supports.
 
