@@ -6,6 +6,7 @@ import { TOC } from "@/components/toc"
 import { Heading, PageMapItem } from "nextra"
 import { useMDXComponents as getNextraComponents } from "nextra/mdx-components"
 import { normalizePages } from "nextra/normalize-pages"
+import Pagination from "./components/mdx/pagination"
 
 const defaultComponents = getNextraComponents({
   a: Link,
@@ -26,11 +27,10 @@ const defaultComponents = getNextraComponents({
     pageMap?: PageMapItem[]
     pagePath?: string
   }) {
-    console.log("pagePath", pagePath)
-
+    const currentPath = `/docs${pagePath ? `/${pagePath}` : ""}`
     const normalizedPages = normalizePages({
       list: pageMap,
-      route: `/docs/${pagePath}`,
+      route: currentPath,
     })
 
     return (
@@ -42,6 +42,10 @@ const defaultComponents = getNextraComponents({
           <div className="prose prose-h2:border-b prose-h2:pb-2 prose-headings:scroll-m-20 prose-headings:tracking-tight prose-h1:text-3xl prose-headings:font-bold prose-h1:mb-0 dark:prose-invert prose-code:before:content-none prose-code:after:content-none prose-pre:bg-code-background">
             <Breadcrumb activePath={normalizedPages.activePath} />
             {children}
+            <Pagination
+              flatMap={normalizedPages.flatDocsDirectories}
+              currentPath={currentPath}
+            />
           </div>
           <TOC toc={toc} />
         </div>

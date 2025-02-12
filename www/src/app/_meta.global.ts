@@ -7,5 +7,10 @@ export default {
   docs: {
     type: "page",
     title: "Documentation",
+    items: {
+      installing: "",
+      configuring: "",
+      customising: "",
+    },
   },
 }
