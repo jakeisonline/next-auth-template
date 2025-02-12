@@ -9,7 +9,7 @@ export const Breadcrumb: FC<{
   activePath: Item[]
 }> = ({ activePath }) => {
   return (
-    <div className="nextra-breadcrumb mt-1.5 flex items-center gap-1 overflow-hidden text-sm text-gray-500 dark:text-gray-400 contrast-more:text-current">
+    <div className="mt-1.5 flex items-center gap-1 overflow-hidden text-sm text-muted-foreground contrast-more:text-foreground">
       {activePath.map((item, index, arr) => {
         const nextItem = arr[index + 1]
         const href = nextItem
@@ -34,9 +34,8 @@ export const Breadcrumb: FC<{
                 "whitespace-nowrap transition-colors",
                 nextItem
                   ? "min-w-6 overflow-hidden text-ellipsis"
-                  : "font-medium text-gray-700 dark:text-gray-100",
-                href &&
-                  "focus-visible:nextra-focus ring-inset hover:text-gray-900 dark:hover:text-gray-100",
+                  : "font-medium",
+                href && "no-underline hover:text-link-hover",
               )}
               title={item.title}
               {...(href && { href })}

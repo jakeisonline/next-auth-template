@@ -19,14 +19,18 @@ const defaultComponents = getNextraComponents({
     children,
     toc,
     pageMap = [],
+    pagePath,
   }: {
     children: React.ReactNode
     toc: Heading[]
     pageMap?: PageMapItem[]
+    pagePath?: string
   }) {
+    console.log("pagePath", pagePath)
+
     const normalizedPages = normalizePages({
       list: pageMap,
-      route: "/docs",
+      route: `/docs/${pagePath}`,
     })
 
     return (

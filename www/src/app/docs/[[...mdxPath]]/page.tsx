@@ -27,7 +27,7 @@ export default async function Page(props: PageProps) {
   const { default: MDXContent, toc } = result
 
   return (
-    <Wrapper toc={toc} pageMap={pageMap}>
+    <Wrapper toc={toc} pageMap={pageMap} pagePath={params.mdxPath}>
       <MDXContent {...props} params={params} />
     </Wrapper>
   )
