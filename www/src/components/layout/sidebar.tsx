@@ -1,17 +1,18 @@
 "use client"
 
 import { Link } from "@/components/ui/link"
-import { cn, getSortedPages } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { usePathname } from "next/navigation"
 import type { PageMapItem } from "nextra"
+import { normalizePages } from "nextra/normalize-pages"
 import type { FC } from "react"
 
 export const Sidebar: FC<{ pageMap: PageMapItem[] }> = ({ pageMap }) => {
   const pathname = usePathname()
-  const docsDirectories = getSortedPages({
-    pages: pageMap,
-    currentPathname: pathname,
-    customOrder: ["installing", "configuring", "customising"],
+
+  const { docsDirectories } = normalizePages({
+    list: pageMap,
+    route: pathname,
   })
 
   return (
