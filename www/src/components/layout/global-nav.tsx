@@ -36,9 +36,9 @@ const demoItems: {
   },
 ]
 
-export default function GlobalNav() {
+export default function GlobalNav({ className }: { className?: string }) {
   return (
-    <NavigationMenu className="ml-8">
+    <NavigationMenu className={cn("ml-8", className)}>
       <NavigationMenuList className="flex flex-row gap-4">
         <NavigationMenuItem>
           <Link href="/docs" legacyBehavior passHref>
