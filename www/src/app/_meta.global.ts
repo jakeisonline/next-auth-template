@@ -1,7 +1,11 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
-  docs: {
-    title: "Documentation",
+  index: {
     type: "page",
+    display: "hidden",
+  },
+  docs: {
+    type: "page",
+    title: "Documentation",
   },
 }
