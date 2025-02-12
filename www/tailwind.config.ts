@@ -89,7 +89,17 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            code: {
+            "pre": {
+              padding: ".85rem 0",
+            },
+            "pre code > span": {
+              padding: "0 0.85rem 0",
+              borderLeft: "0.25rem solid transparent",
+            },
+            "pre code > span[data-highlighted-line]": {
+              borderLeft: "0.25rem solid hsl(var(--primary))",
+            },
+            "code": {
               "background-color": "hsl(var(--accent))",
               "padding": "0.25rem 0.5rem",
               "border-radius": "0.25rem",

@@ -97,10 +97,20 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-  pre code span {
-    color: var(--shiki-light);
-  }
-  .dark pre code span {
-    color: var(--shiki-dark);
+  pre {
+    code {
+      display: grid;
+      span {
+        color: var(--shiki-light);
+
+        &[data-highlighted-line] {
+          @apply bg-muted-foreground/20;
+          display: block;
+        }
+      }
+      .dark pre code span {
+        color: var(--shiki-dark);
+      }
+    }
   }
 }
