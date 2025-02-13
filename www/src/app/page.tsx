@@ -35,7 +35,7 @@ export default function Home() {
             <CopyToClipboardButton />
           </pre>
           <p className="text-sm text-center text-muted-foreground/70">
-            <Link href="/docs">Getting started guide</Link>
+            <Link href="/docs/installation">Getting started guide</Link>
           </p>
         </div>
       </section>
