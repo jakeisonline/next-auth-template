@@ -9,17 +9,28 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { cn } from "@/lib/utils"
 import { setMobileMenu, useMobileMenu } from "@/stores/mobile-menu"
 import { MenuIcon } from "lucide-react"
 import { PageMapItem } from "nextra"
 
-export function MobileNav({ pageMap }: { pageMap: PageMapItem[] }) {
+export function MobileNav({
+  pageMap,
+  className,
+}: {
+  pageMap: PageMapItem[]
+  className?: string
+}) {
   const isOpen = useMobileMenu()
 
   return (
     <Sheet open={isOpen} onOpenChange={setMobileMenu}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden">
+        <Button
+          variant="ghost"
+          size="icon"
+          className={cn("lg:hidden", className)}
+        >
           <MenuIcon className="w-4 h-4" />
         </Button>
       </SheetTrigger>
