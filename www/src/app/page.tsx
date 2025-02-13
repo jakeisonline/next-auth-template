@@ -35,9 +35,7 @@ export default function Home() {
             <CopyToClipboardButton />
           </pre>
           <p className="text-sm text-center text-muted-foreground/70">
-            <Link href="https://jakeisonline.com/playground/tools/next-auth-template">
-              Getting started guide
-            </Link>
+            <Link href="/docs">Getting started guide</Link>
           </p>
         </div>
       </section>
@@ -72,9 +70,7 @@ export default function Home() {
                 </Link>
               </Button>
               <Button variant="outline" className="mt-auto w-full" asChild>
-                <Link href="https://jakeisonline.com/playground/tools/next-auth-template">
-                  Docs
-                </Link>
+                <Link href="/docs">Docs</Link>
               </Button>
             </div>
             <div className="mt-4">
@@ -105,9 +101,7 @@ export default function Home() {
                   </Link>
                 </Button>
                 <Button variant="outline" className="mt-auto w-full" asChild>
-                  <Link href="https://jakeisonline.com/playground/tools/next-auth-template">
-                    Docs
-                  </Link>
+                  <Link href="/docs">Docs</Link>
                 </Button>
               </div>
               <div className="mt-4">
