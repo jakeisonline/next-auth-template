@@ -1,7 +1,18 @@
-import type { NextConfig } from "next";
+import nextra from "nextra"
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+const withNextra = nextra({
+  contentDirBasePath: "/docs",
+  mdxOptions: {
+    rehypePrettyCodeOptions: {
+      theme: {
+        dark: "plastic",
+        light: "plastic",
+      },
+    },
+  },
+})
 
-export default nextConfig;
+// You can include other Next.js configuration options here, in addition to Nextra settings:
+export default withNextra({
+  // ... Other Next.js config options
+})

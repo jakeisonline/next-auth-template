@@ -1,0 +1,26 @@
+# Configuring
+
+Many of the core features of this template need configuration before you can use them.
+
+## Environment Variables
+
+This template relies on environment variables to work. You can use the `.env.example` file as a starting guide; rename `.env.example` to `.env` and fill in the values.
+
+| Variable Name        | Description                                                                                                                                                                                        |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BASE_URL`           | The base URL of the app. Required.                                                                                                                                                                 |
+| `EMAIL_FROM`         | The email address to send magic links from. Required for magic links.                                                                                                                              |
+| `DATABASE_URL`       | The database connection string. Required. [See Drizzle docs for more info](https://orm.drizzle.team/docs/connect-overview).                                                                        |
+| `RESEND_KEY`         | The API key for [Resend](https://resend.com/). Required for magic links. If not set, disables magic link auth. [See Auth.js docs for Resend set up](https://authjs.dev/guides/configuring-resend). |
+| `AUTH_SECRET`        | A secret used to sign cookies and to sign and verify JSON Web Tokens. [See Auth.js docs on how to generate](https://authjs.dev/getting-started/deployment#auth_secret). Required in production.    |
+| `AUTH_GOOGLE_ID`     | The Client ID for your Google OAuth app. Required for social sign in. [See Auth.js docs for set up](https://authjs.dev/getting-started/providers/google#setup).                                    |
+| `AUTH_GOOGLE_SECRET` | The Client Secret for your Google OAuth app. Required for social sign in. [See Auth.js docs for set up](https://authjs.dev/getting-started/providers/google#setup).                                |
+
+## Enabling Magic Links
+
+Magic links are a great way to sign in users without them needing to have any social media accounts. Magic links are not enabled by default, due to requiring an email provider and live domain and DNS record setup. To enable magic links, follow these steps:
+
+1. Follow the [Auth.js documentation](https://authjs.dev/getting-started/providers/resend#configuration) up to and including setting the `AUTH_RESEND_KEY` environment variable.
+2. Be sure to set `MAGIC_LINK_EMAIL_FROM` to the email address you want to send magic links from.
+
+That's it! Note domain validation with Resend will be required for magic links to work, and could take anywhere from a few minutes to a few hours to validate.

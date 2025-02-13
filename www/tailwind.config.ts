@@ -7,6 +7,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/mdx-components.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -30,6 +31,7 @@ const config: Config = {
         "foreground": "hsl(var(--foreground))",
         "link": "hsl(var(--link))",
         "link-hover": "hsl(var(--link-hover))",
+        "code-background": "hsl(var(--code-background))",
         "card": {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
@@ -84,9 +86,34 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            "pre": {
+              padding: ".85rem 0",
+            },
+            "pre code > span": {
+              padding: "0 0.85rem 0",
+              borderLeft: "0.25rem solid transparent",
+            },
+            "pre code > span[data-highlighted-line]": {
+              borderLeft: "0.25rem solid hsl(var(--primary))",
+            },
+            "code": {
+              "background-color": "hsl(var(--accent))",
+              "padding": "0.25rem 0.5rem",
+              "border-radius": "0.25rem",
+              "border": "1px solid hsl(var(--border))",
+              "font-weight": "normal",
+            },
+          },
+        },
+      },
     },
   },
   plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    require("@tailwindcss/typography"),
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     require("tailwindcss-animate"),
     plugin(function ({ addBase }) {

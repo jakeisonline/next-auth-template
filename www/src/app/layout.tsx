@@ -1,5 +1,8 @@
 import "@/app/globals.css"
+import GlobalHeader from "@/components/layout/global-header"
+import { ThemeProvider } from "@/components/theme-provider"
 import type { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "next-auth-template - Sign up and auth, super quick",
@@ -20,9 +23,27 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head />
       <body className="bg-background top-0 z-[-2] flex h-auto min-h-dvh w-screen flex-col items-center overflow-x-clip overflow-y-scroll bg-[radial-gradient(100%_50%_at_50%_0%,rgba(85,176,250,0.3)_0,rgba(85,176,250,0)_50%,rgba(85,176,250,0)_100%)]">
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="flex w-full max-w-screen-2xl flex-col items-center justify-center px-2 md:px-4 2xl:px-0">
+            <GlobalHeader />
+            {children}
+          </main>
+          <footer className="mb-6 mt-auto grid w-full max-w-screen-2xl px-2 pt-20 text-xs md:px-4 lg:text-sm 2xl:px-0">
+            <div className="text-center">
+              <Link href="https://www.jakeisonline.com">
+                👋 a thing by Jake
+              </Link>
+            </div>
+          </footer>
+        </ThemeProvider>
       </body>
     </html>
   )
