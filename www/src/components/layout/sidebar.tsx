@@ -13,7 +13,7 @@ export const Sidebar: FC<{ pageMap: PageMapItem[] }> = ({ pageMap }) => {
 
   const { docsDirectories } = normalizePages({
     list: pageMap,
-    route: pathname,
+    route: pathname === "/" ? "/docs" : pathname,
   })
 
   return (
