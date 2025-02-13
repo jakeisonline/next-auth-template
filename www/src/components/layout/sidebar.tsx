@@ -2,6 +2,7 @@
 
 import { Link } from "@/components/ui/link"
 import { cn } from "@/lib/utils"
+import { setMobileMenu } from "@/stores/mobile-menu"
 import { usePathname } from "next/navigation"
 import type { PageMapItem } from "nextra"
 import { normalizePages } from "nextra/normalize-pages"
@@ -44,6 +45,7 @@ export const Sidebar: FC<{ pageMap: PageMapItem[] }> = ({ pageMap }) => {
                     "hover:text-link-hover",
                     isActive ? "text-foreground" : "text-foreground/60",
                   )}
+                  onClick={() => setMobileMenu(false)}
                 >
                   {title}
                 </Link>

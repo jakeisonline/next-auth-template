@@ -1,3 +1,5 @@
+"use client"
+
 import { Sidebar } from "@/components/layout/sidebar"
 import { Button } from "@/components/ui/button"
 import {
@@ -7,14 +9,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { setMobileMenu, useMobileMenu } from "@/stores/mobile-menu"
 import { MenuIcon } from "lucide-react"
-import { getPageMap } from "nextra/page-map"
+import { PageMapItem } from "nextra"
 
-export default async function MobileNav() {
-  const pageMap = await getPageMap()
+export function MobileNav({ pageMap }: { pageMap: PageMapItem[] }) {
+  const isOpen = useMobileMenu()
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setMobileMenu}>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="md:hidden">
           <MenuIcon className="w-4 h-4" />
@@ -25,9 +28,7 @@ export default async function MobileNav() {
         <SheetDescription className="sr-only">
           Menu used for navigation on mobile.
         </SheetDescription>
-        <div className="pr-8">
-          <Sidebar pageMap={pageMap} />
-        </div>
+        <Sidebar pageMap={pageMap} />
       </SheetContent>
     </Sheet>
   )
