@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.3.5
+
+### Patch Changes
+
+- [#26](https://github.com/jakeisonline/next-auth-template/pull/26) [`ae9935d`](https://github.com/jakeisonline/next-auth-template/commit/ae9935d7ea74c2f46c13e1dfa9565b79751d13f0) Thanks [@jakeisonline](https://github.com/jakeisonline)! - Update all major dependencies
+
 ## 0.3.4
 
 ### Patch Changes
