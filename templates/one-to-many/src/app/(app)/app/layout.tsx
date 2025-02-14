@@ -41,7 +41,7 @@ export default async function AppLayout({
             variant="inset"
             currentUser={currentUser}
           />
-          <SidebarInset className="peer-data-[variant=inset]:max-h-[calc(100svh-theme(spacing.4))]">
+          <SidebarInset className="peer-data-[variant=inset]:max-h-[calc(100svh-(--spacing(4)))]">
             <header className="bg-background sticky top-0 flex h-16 shrink-0 items-center gap-2">
               <div className="flex items-center gap-2 px-4">
                 <SidebarTrigger className="-ml-1" />
