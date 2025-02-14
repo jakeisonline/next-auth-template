@@ -18,7 +18,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold leading-tight tracking-tighter lg:text-6xl xl:text-7xl">
           Sign up and auth,
           <br />
-          <span className="animate-bg bg-gradient-to-r from-[#55b0fa] to-[#ad6df4]  bg-clip-text text-transparent">
+          <span className="animate-bg bg-linear-to-r from-[#55b0fa] to-[#ad6df4]  bg-clip-text text-transparent">
             super quick
           </span>
         </h1>
@@ -82,7 +82,7 @@ export default function Home() {
           </TemplateCardContent>
         </TemplateCard>
         <div className="relative row-start-2 lg:row-start-auto">
-          <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-[#55b0fa] to-[#ad6df4] opacity-60 blur"></div>
+          <div className="absolute -inset-0.5 rounded-lg bg-linear-to-r from-[#55b0fa] to-[#ad6df4] opacity-60 blur-sm"></div>
           <TemplateCard className="relative">
             <TemplateCardTitle>
               One to Many

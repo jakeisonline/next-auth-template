@@ -12,7 +12,7 @@ export default async function GlobalHeader() {
   const pageMap = await getPageMap()
 
   return (
-    <header className="md:sticky lg:top-0 z-50 relative w-full max-w-screen-2xl text-sm lg:backdrop-blur-3xl supports[backdrop-filter]:bg-background/60">
+    <header className="md:sticky lg:top-0 z-50 relative w-full max-w-(--breakpoint-2xl) text-sm lg:backdrop-blur-3xl supports[backdrop-filter]:bg-background/60">
       <div className="flex h-14 items-center text-xs md:text-sm">
         <MobileNav pageMap={pageMap} />
         <Logo className="w-4 h-4 md:w-5 md:h-5 mr-0.5" />
