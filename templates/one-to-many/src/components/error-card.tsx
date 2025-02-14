@@ -11,7 +11,7 @@ export function ErrorCard({
   children: React.ReactNode
 }) {
   return (
-    <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
+    <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-xs">
       <CardHeader className="flex flex-col items-center gap-3 text-center">
         <Avatar className="size-32">
           <AvatarFallback>

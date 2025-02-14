@@ -11,7 +11,7 @@ export function TemplateCard({
   return (
     <div
       className={cn(
-        "flex flex-col rounded-xl p-4 border text-card-foreground shadow-sm mx-auto w-full bg-background border-border/70",
+        "flex flex-col rounded-xl p-4 border text-card-foreground shadow-xs mx-auto w-full bg-background border-border/70",
         className,
       )}
     >

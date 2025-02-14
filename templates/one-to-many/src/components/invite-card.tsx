@@ -20,7 +20,7 @@ export function InviteCard<T extends Invite | InviteFull>({
 
   if (type === "preview") {
     return (
-      <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
+      <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-xs">
         <CardHeader className="flex flex-col items-center gap-3 text-center">
           <Avatar className="size-32">
             <AvatarFallback>
@@ -45,7 +45,7 @@ export function InviteCard<T extends Invite | InviteFull>({
     }
 
     return (
-      <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
+      <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-xs">
         <CardHeader className="flex flex-col items-center gap-3 text-center">
           <Avatar className="size-32">
             <AvatarImage src={invite.inviter.image ?? undefined} />

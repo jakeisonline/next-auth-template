@@ -12,7 +12,7 @@ import Link from "next/link"
 
 export default function SignInPage() {
   return (
-    <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
+    <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-xs">
       <CardHeader>
         <CardTitle className="text-2xl">Create an account</CardTitle>
         <CardDescription>

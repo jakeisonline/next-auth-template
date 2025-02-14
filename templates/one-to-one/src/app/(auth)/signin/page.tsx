@@ -10,7 +10,7 @@ import { AccountSignInForm } from "@/components/account-signin-form"
 
 export default function SignInPage() {
   return (
-    <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
+    <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-xs">
       <CardHeader>
         <CardTitle className="text-2xl">Sign in</CardTitle>
         <CardDescription>Select an option below to sign in.</CardDescription>

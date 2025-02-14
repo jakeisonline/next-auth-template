@@ -49,7 +49,7 @@ export function AccountSetupForm({ currentUser }: { currentUser: User }) {
   }, [state])
 
   return (
-    <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-sm">
+    <Card className="mx-auto w-[24rem] border-0 shadow-none md:border md:shadow-xs">
       <CardHeader>
         <CardTitle className="text-2xl">Before you get started</CardTitle>
         <CardDescription>

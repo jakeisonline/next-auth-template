@@ -32,11 +32,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex w-full max-w-screen-2xl flex-col items-center justify-center px-2 md:px-4 2xl:px-0">
+          <main className="flex w-full max-w-(--breakpoint-2xl) flex-col items-center justify-center px-2 md:px-4 2xl:px-0">
             <GlobalHeader />
             {children}
           </main>
-          <footer className="mb-6 mt-auto grid w-full max-w-screen-2xl px-2 pt-20 text-xs md:px-4 lg:text-sm 2xl:px-0">
+          <footer className="mb-6 mt-auto grid w-full max-w-(--breakpoint-2xl) px-2 pt-20 text-xs md:px-4 lg:text-sm 2xl:px-0">
             <div className="text-center">
               <Link href="https://www.jakeisonline.com">
                 👋 a thing by Jake
