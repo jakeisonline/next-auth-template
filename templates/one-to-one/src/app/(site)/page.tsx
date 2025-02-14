@@ -106,7 +106,7 @@ export default function AppPage() {
 
   return (
     <>
-      <header className="relative w-full max-w-screen-2xl px-3 md:px-4 lg:top-0 2xl:px-0">
+      <header className="relative w-full max-w-(--breakpoint-2xl) px-3 md:px-4 lg:top-0 2xl:px-0">
         <div className="absolute -top-28 bottom-auto left-auto right-20 -z-10 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]" />
         <div className="absolute -top-52 bottom-auto left-72 right-auto -z-10 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(198,229,255,1)] opacity-50 blur-[80px]" />
         <div className="flex h-14 items-center">
@@ -129,7 +129,7 @@ export default function AppPage() {
           </div>
         </div>
       </header>
-      <main className="flex w-full max-w-screen-2xl flex-col items-center justify-center px-2 md:px-4 2xl:px-0">
+      <main className="flex w-full max-w-(--breakpoint-2xl) flex-col items-center justify-center px-2 md:px-4 2xl:px-0">
         <section className="mt-20 flex w-5/6 flex-col items-center gap-2 text-center lg:w-full">
           <h1 className="text-4xl font-bold leading-tight tracking-tighter lg:text-6xl">
             Sign up and auth, super quick
@@ -249,7 +249,7 @@ export default function AppPage() {
           </Card>
         </section>
       </main>
-      <footer className="mb-6 mt-auto grid w-full max-w-screen-2xl px-2 pt-10 text-xs md:px-4 lg:text-sm 2xl:px-0">
+      <footer className="mb-6 mt-auto grid w-full max-w-(--breakpoint-2xl) px-2 pt-10 text-xs md:px-4 lg:text-sm 2xl:px-0">
         <div className="text-center text-lg">
           <Link href="https://www.jakeisonline.com">👋 a template by Jake</Link>
         </div>
