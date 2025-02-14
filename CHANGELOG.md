@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.4.0
+
+### Minor Changes
+
+- [#28](https://github.com/jakeisonline/next-auth-template/pull/28) [`4b7576c`](https://github.com/jakeisonline/next-auth-template/commit/4b7576c8713fc722c28c9ac12b97ebcc67ec4026) Thanks [@jakeisonline](https://github.com/jakeisonline)! - Upgrade to tailwind v4
+
 ## 0.3.5
 
 ### Patch Changes
