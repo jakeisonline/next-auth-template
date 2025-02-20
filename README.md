@@ -63,8 +63,8 @@ Options:
 
 Once you've initialized a template using the CLI, visit the following links to learn more about the template you've chosen:
 
-- [One-to-one](https://jakeisonline.com/playground/tools/next-auth-template)
+- [One-to-one](https://next-auth-template-demo.vercel.app/docs/configuring)
 
 # Documentation
 
-Visit https://jakeisonline.com/playground/tools/next-auth-template for detailed documentation about this CLI tool and all the templates.
+Visit https://next-auth-template-demo.vercel.app/docs for detailed documentation about this CLI tool and all the templates.
