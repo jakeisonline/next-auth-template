@@ -32,7 +32,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex w-full max-w-(--breakpoint-2xl) flex-col items-center justify-center px-2 md:px-4 2xl:px-0">
+          <main className="flex w-full max-w-(--breakpoint-xl) flex-col items-center justify-center px-2 md:px-4 2xl:px-0">
             <GlobalHeader />
             {children}
           </main>

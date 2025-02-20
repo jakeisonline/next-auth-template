@@ -39,7 +39,7 @@ const defaultComponents = getNextraComponents({
           <Sidebar pageMap={pageMap} />
         </aside>
         <div className="relative lg:grid grid-cols-full xl:grid-cols-[1fr_300px]">
-          <div className="prose prose-h2:border-b prose-h2:pb-2 prose-headings:scroll-m-20 prose-headings:tracking-tight prose-h1:text-3xl prose-headings:font-bold prose-h1:mb-0 dark:prose-invert prose-code:before:content-none prose-code:after:content-none prose-pre:bg-code-background">
+          <div className="prose prose-h2:border-b prose-h2:pb-2 prose-headings:scroll-m-20 prose-headings:tracking-tight prose-h1:text-3xl prose-headings:font-bold prose-h1:mb-0 dark:prose-invert prose-code:before:content-none prose-code:after:content-none prose-pre:bg-code-background max-w-9/10">
             <Breadcrumb activePath={normalizedPages.activePath} />
             {children}
             <Pagination
