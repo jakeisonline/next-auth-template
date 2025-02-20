@@ -1,5 +1,11 @@
 # next-auth-template
 
+## 0.4.1
+
+### Patch Changes
+
+- [#30](https://github.com/jakeisonline/next-auth-template/pull/30) [`a95d859`](https://github.com/jakeisonline/next-auth-template/commit/a95d8597f2a0155433f7e0c7242e15d5ccab03a6) Thanks [@jakeisonline](https://github.com/jakeisonline)! - Update readme to point to correct docs location"
+
 ## 0.4.0
 
 ### Minor Changes
