@@ -1,5 +1,11 @@
 # next-auth-template-one-to-one
 
+## 0.9.0
+
+### Minor Changes
+
+- [#32](https://github.com/jakeisonline/next-auth-template/pull/32) [`b8d216c`](https://github.com/jakeisonline/next-auth-template/commit/b8d216c1bbd18c359ca3e386c631a493f46f65de) Thanks [@jakeisonline](https://github.com/jakeisonline)! - fix(all): update next to 15.2.4
+
 ## 0.8.0
 
 ### Minor Changes
