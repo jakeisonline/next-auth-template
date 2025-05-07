@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthConfig, Session } from "next-auth"
+import NextAuth, { AuthOptions, Session } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import { db } from "@/db"
@@ -29,8 +29,8 @@ export const authConfig = {
   },
   providers: [
     GoogleProvider({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      clientId: process.env.AUTH_GOOGLE_ID || "",
+      clientSecret: process.env.AUTH_GOOGLE_SECRET || "",
       allowDangerousEmailAccountLinking: true,
     }),
     Resend({
