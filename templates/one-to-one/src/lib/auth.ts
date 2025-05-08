@@ -1,4 +1,4 @@
-import NextAuth, { AuthOptions, Session } from "next-auth"
+import NextAuth, { NextAuthConfig, Session } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import { db } from "@/db"
