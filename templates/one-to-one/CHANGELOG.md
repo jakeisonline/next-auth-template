@@ -1,5 +1,11 @@
 # next-auth-template-one-to-one
 
+## 0.10.0
+
+### Minor Changes
+
+- [#34](https://github.com/jakeisonline/next-auth-template/pull/34) [`50ed37e`](https://github.com/jakeisonline/next-auth-template/commit/50ed37e0ca7d782583b62e6f261fd241a98548bf) Thanks [@jakeisonline](https://github.com/jakeisonline)! - chore(all): update dependencies
+
 ## 0.9.0
 
 ### Minor Changes
